@@ -14,8 +14,7 @@ Like [xsAI](https://github.com/moeru-ai/xsai), xsMCP does not force you to use a
 
 ### Roadmap
 
-Our current target is Streamable HTTP Client,
-Stdio and Server have lower priority.
+Our current target is Streamable HTTP Client (Waiting [modelcontextprotocol/typescript-sdk#230](https://github.com/modelcontextprotocol/typescript-sdk/pull/230)), Server and Stdio have lower priority.
 
 ### Compatibility
 
