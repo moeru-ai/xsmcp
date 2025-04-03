@@ -42,6 +42,14 @@ importers:
         specifier: ^4.19.3
         version: 4.19.3
 
+  packages/client-http:
+    dependencies:
+      '@xsmcp/client-shared':
+        specifier: 'workspace:'
+        version: link:../client-shared
+
+  packages/client-shared: {}
+
 packages:
 
   '@antfu/eslint-config@4.11.0':

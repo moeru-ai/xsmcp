@@ -8,9 +8,11 @@ words:
   - eslintcache
   - importantimport
   - masknet
+  - modelcontextprotocol
   - moeru
   - pkgroll
   - sonarjs
+  - streamable
   - vercel
   - xsai
   - xsmcp
