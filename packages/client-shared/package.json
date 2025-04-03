@@ -11,7 +11,7 @@
     "url": "git+https://github.com/moeru-ai/xsmcp.git",
     "directory": "packages/client-shared"
   },
-  "bugs": "https://github.com/moeru-ai/xsai/issues",
+  "bugs": "https://github.com/moeru-ai/xsmcp/issues",
   "keywords": ["xsmcp", "mcp", "modelcontextprotocol"],
   "sideEffects": false,
   "exports": "./src/index.ts",
