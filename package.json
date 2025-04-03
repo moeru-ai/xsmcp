@@ -1,0 +1,28 @@
+{
+  "name": "@xsmcp/workspace",
+  "type": "module",
+  "version": "0.0.0",
+  "private": true,
+  "packageManager": "pnpm@10.0.0",
+  "repository": "github:moeru-ai/xsmcp",
+  "scripts": {
+    "build": "pnpm -r build",
+    "bump": "bumpp",
+    "docs:dev": "pnpm -rF @xsmcp/docs dev",
+    "lint": "eslint --cache .",
+    "test": "pnpm -r --workspace-concurrency=1 test"
+  },
+  "devDependencies": {
+    "@antfu/eslint-config": "^4.11.0",
+    "@importantimport/eslint-config": "^1.0.0-beta.2",
+    "@importantimport/tsconfig": "^1.0.0-beta.2",
+    "@pnpm/find-workspace-dir": "^1000.1.0",
+    "@types/node": "^22.14.0",
+    "automd": "^0.4.0",
+    "bumpp": "^10.1.0",
+    "eslint": "^9.23.0",
+    "jiti": "^2.4.2",
+    "pkgroll": "^2.12.1",
+    "tsx": "^4.19.3"
+  }
+}

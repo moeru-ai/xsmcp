@@ -1,0 +1,18 @@
+version: "0.2"
+ignorePaths: []
+dictionaryDefinitions: []
+dictionaries: []
+words:
+  - automd
+  - bumpp
+  - eslintcache
+  - importantimport
+  - masknet
+  - moeru
+  - pkgroll
+  - sonarjs
+  - vercel
+  - xsai
+  - xsmcp
+ignoreWords: []
+import: []
