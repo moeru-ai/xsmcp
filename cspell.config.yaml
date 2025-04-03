@@ -8,6 +8,7 @@ words:
   - eslintcache
   - importantimport
   - masknet
+  - modelcontextprotocol
   - moeru
   - pkgroll
   - sonarjs
