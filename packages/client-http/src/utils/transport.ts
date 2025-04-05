@@ -15,6 +15,10 @@ export class HttpTransport implements Transport {
     return fetch(this.url, {
       body: JSON.stringify(request),
       headers: {
+        'Accept': [
+          'application/json',
+          'text/event-stream'
+        ].join(', '),
         'Content-Type': 'application/json',
       },
       method: 'POST',
