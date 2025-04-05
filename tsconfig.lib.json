@@ -2,6 +2,8 @@
   "extends": "@importantimport/tsconfig/app.json",
   "include": [
     "packages/**/src",
-    "packages/**/test"
+    "packages/**/test",
+    "packages-top/**/src",
+    "packages-top/**/test"
   ]
 }

@@ -16,5 +16,6 @@ words:
   - vercel
   - xsai
   - xsmcp
+  - xsrpc
 ignoreWords: []
 import: []
