@@ -1,4 +1,5 @@
-import type { JSONRPCRequest, JSONRPCResponse, Transport } from '@xsmcp/client-shared'
+import type { Transport } from '@xsmcp/client-shared'
+import type { JSONRPCRequest, JSONRPCResponse } from '@xsmcp/shared'
 
 export interface HttpTransportOptions {
   url: string | URL
@@ -11,18 +12,18 @@ export class HttpTransport implements Transport {
     this.url = options.url instanceof URL ? options.url : new URL(options.url)
   }
 
-  public async send<T extends Record<string, unknown> = Record<string, unknown>>(request: JSONRPCRequest): Promise<JSONRPCResponse<T>> {
+  public async send(request: JSONRPCRequest): Promise<JSONRPCResponse> {
     return fetch(this.url, {
       body: JSON.stringify(request),
       headers: {
         'Accept': [
           'application/json',
-          'text/event-stream'
+          'text/event-stream',
         ].join(', '),
         'Content-Type': 'application/json',
       },
       method: 'POST',
-    }).then(async res => res.json() as Promise<JSONRPCResponse<T>>)
+    }).then(async res => res.json() as Promise<JSONRPCResponse>)
   }
 
   public shutdown(): void {}

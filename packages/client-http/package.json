@@ -33,6 +33,7 @@
     "build": "pkgroll"
   },
   "dependencies": {
-    "@xsmcp/client-shared": "workspace:"
+    "@xsmcp/client-shared": "workspace:",
+    "@xsmcp/shared": "workspace:"
   }
 }
