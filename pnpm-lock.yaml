@@ -62,7 +62,11 @@ importers:
         specifier: 'workspace:'
         version: link:../client-shared
 
-  packages/client-shared: {}
+  packages/client-shared:
+    dependencies:
+      '@xsmcp/shared':
+        specifier: 'workspace:'
+        version: link:../shared
 
   packages/server-http:
     dependencies:

@@ -1,7 +1,7 @@
-import type { JSONRPCRequest, JSONRPCResponse } from './jsonrpc'
+import type { JSONRPCRequest, JSONRPCResponse } from '@xsmcp/shared'
 
 export abstract class Transport {
-  public abstract send<T extends Record<string, unknown> = Record<string, unknown>>(request: JSONRPCRequest): JSONRPCResponse<T> | Promise<JSONRPCResponse<T>>
+  public abstract send(request: JSONRPCRequest): JSONRPCResponse | Promise<JSONRPCResponse>
 
   public abstract shutdown?(): Promise<void> | void
 }

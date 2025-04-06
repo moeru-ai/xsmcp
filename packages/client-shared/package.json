@@ -31,5 +31,8 @@
   },
   "scripts": {
     "build": "pkgroll"
+  },
+  "dependencies": {
+    "@xsmcp/shared": "workspace:"
   }
 }

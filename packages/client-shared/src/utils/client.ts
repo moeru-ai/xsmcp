@@ -1,11 +1,13 @@
-import type { Capabilities } from '../types/capabilities'
+import type { ClientCapabilities } from '@xsmcp/shared'
+
+import { LATEST_PROTOCOL_VERSION } from '@xsmcp/shared'
+
 import type { Transport } from '../types/transport'
 
-import { LATEST_PROTOCOL_VERSION } from './const'
 import { jsonrpcRequest } from './jsonrpc'
 
 export interface CreateClientOptions {
-  capabilities?: Capabilities
+  capabilities?: ClientCapabilities
   name: string
   transport: Transport
   version: string
