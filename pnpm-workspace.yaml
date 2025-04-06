@@ -2,3 +2,7 @@ packages:
   - docs
   - packages/*
   - packages-top/*
+
+catalog:
+  xsai: &xsai ^0.2.0-beta.3
+  xsschema: *xsai

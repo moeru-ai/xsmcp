@@ -17,5 +17,6 @@ words:
   - xsai
   - xsmcp
   - xsrpc
+  - xsschema
 ignoreWords: []
 import: []

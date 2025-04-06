@@ -1,0 +1,60 @@
+import type { CallToolRequest, CallToolResult, ListToolsRequest, ListToolsResult, ServerCapabilities } from '@xsmcp/shared'
+
+import type { ToolOptions } from './internal/tool'
+
+import { listTool } from './internal/tool'
+
+export interface CreateServerOptions {
+  capabilities?: ServerCapabilities
+  tools?: ToolOptions[]
+}
+
+export class Server {
+  private tools: ToolOptions[] = []
+
+  constructor(options?: CreateServerOptions) {
+    if (options) {
+      if (options.tools)
+        this.tools.push(...options.tools)
+    }
+  }
+
+  public addTool(tool: ToolOptions) {
+    this.tools.push(tool)
+    return this
+  }
+
+  /** @see {@link https://spec.modelcontextprotocol.io/specification/2025-03-26/server/tools/#calling-tools} */
+  public async callTool(params: CallToolRequest['params']): Promise<CallToolResult> {
+    const tool = this.tools.find(tool => tool.name === params.name)
+
+    // TODO: JSONRPCError
+    if (!tool)
+      throw new Error(`Tool not found: ${params.name}`)
+
+    try {
+      const content = await tool.execute(params.arguments)
+
+      return {
+        content,
+        isError: false,
+      }
+    }
+    catch {
+      return {
+        content: [],
+        isError: true,
+      }
+    }
+  }
+
+  // TODO: support params (cursor)
+  /** @see {@link https://spec.modelcontextprotocol.io/specification/2025-03-26/server/tools/#listing-tools} */
+  public async listTools(_params?: ListToolsRequest['params']): Promise<ListToolsResult> {
+    return {
+      tools: await Promise.all(this.tools.map(async toolOptions => listTool(toolOptions))),
+    }
+  }
+}
+
+export const createServer = (options: CreateServerOptions) => new Server(options)

@@ -1,5 +1,6 @@
-import { describe, expect, it } from 'vitest'
 import { Hono } from 'hono'
+import { describe, expect, it } from 'vitest'
+
 import { createServerPrimitive } from '../src/utils/server-primitive'
 
 describe('@xsmcp/server-http', () => {
