@@ -37,3 +37,5 @@ export class HttpServer extends Server {
     }
   }
 }
+
+export const createHttpServer = (options?: CreateServerOptions) => new HttpServer(options)

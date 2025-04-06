@@ -1,9 +1,9 @@
 import type { CallToolRequest, CallToolResult, ListToolsRequest, ListToolsResult, ServerCapabilities } from '@xsmcp/shared'
 
-import type { ToolOptions } from './internal/tool'
+import type { ToolOptions } from './tool'
 
 import { MethodNotFound } from './error'
-import { listTool } from './internal/tool'
+import { listTool } from './tool'
 
 export interface CreateServerOptions {
   capabilities?: ServerCapabilities
@@ -69,4 +69,4 @@ export class Server {
   }
 }
 
-export const createServer = (options: CreateServerOptions) => new Server(options)
+export const createServer = (options?: CreateServerOptions) => new Server(options)
