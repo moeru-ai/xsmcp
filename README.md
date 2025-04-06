@@ -31,3 +31,4 @@ This project partially copies code from the following projects:
 | Project | License |
 | -- | -- |
 | [modelcontextprotocol/specification](https://github.com/modelcontextprotocol/specification) | [MIT](https://github.com/modelcontextprotocol/specification/blob/main/LICENSE) |
+| [modelcontextprotocol/servers](https://github.com/modelcontextprotocol/servers) | [MIT](https://github.com/modelcontextprotocol/servers/blob/main/LICENSE) |
