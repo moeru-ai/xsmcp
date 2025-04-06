@@ -1,5 +1,4 @@
 import type { CallToolRequest, CallToolResult, ListToolsRequest, ListToolsResult, ServerCapabilities } from '@xsmcp/shared'
-import type { Schema } from 'xsschema'
 
 import type { ToolOptions } from './tool'
 
