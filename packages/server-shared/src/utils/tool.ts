@@ -10,6 +10,8 @@ export interface ToolOptions<T1 extends Schema = Schema> {
   parameters: T1
 }
 
+export const defineTool = <T extends Schema>(options: ToolOptions<T>) => options
+
 export const listTool = async <T extends Schema>({ description, name, parameters }: ToolOptions<T>): Promise<Tool> => ({
   description,
   inputSchema: await toJsonSchema(parameters) as Tool['inputSchema'],

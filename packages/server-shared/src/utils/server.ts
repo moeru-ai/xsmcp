@@ -1,4 +1,5 @@
 import type { CallToolRequest, CallToolResult, ListToolsRequest, ListToolsResult, ServerCapabilities } from '@xsmcp/shared'
+import type { Schema } from 'xsschema'
 
 import type { ToolOptions } from './tool'
 
@@ -20,7 +21,9 @@ export class Server {
     }
   }
 
-  public addTool(tool: ToolOptions) {
+  // TODO: fix types
+  public addTool(tool: ToolOptions<any>) {
+    // eslint-disable-next-line ts/no-unsafe-argument
     this.tools.push(tool)
     return this
   }
