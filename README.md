@@ -23,3 +23,11 @@ xsMCP v0.1 is targeted to be compatible with the `2025-03-26` revision and is no
 ## License
 
 [MIT](LICENSE.md)
+
+### Third Party Licenses
+
+This project partially copies code from the following projects:
+
+| Project | License |
+| -- | -- |
+| [modelcontextprotocol/specification](https://github.com/modelcontextprotocol/specification) | [MIT](https://github.com/modelcontextprotocol/specification/blob/main/LICENSE) |
