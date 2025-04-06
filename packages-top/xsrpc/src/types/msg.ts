@@ -1,6 +1,6 @@
 export type RPCNotification<T extends Record<string, unknown> = Record<string, unknown>> = Omit<RPCRequest<T>, 'id'>
 
-export interface RPCRequest<T extends Record<string, unknown> = Record<string, unknown>> extends RPCCommon {
+export interface RPCRequest<T extends Record<string, unknown> | unknown[] = Record<string, unknown> | unknown[]> extends RPCCommon {
   method: string
   params?: T
 }
@@ -15,7 +15,7 @@ export interface RPCResponseError extends RPCCommon {
   }
 }
 
-export interface RPCResponseResult<T extends Record<string, unknown> = Record<string, unknown>> extends RPCCommon {
+export interface RPCResponseResult<T = unknown> extends RPCCommon {
   result: T
 }
 

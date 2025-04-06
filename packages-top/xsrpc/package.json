@@ -12,7 +12,11 @@
     "directory": "packages-top/xsrpc"
   },
   "bugs": "https://github.com/moeru-ai/xsmcp/issues",
-  "keywords": ["xsmcp", "mcp", "modelcontextprotocol"],
+  "keywords": [
+    "xsmcp",
+    "mcp",
+    "modelcontextprotocol"
+  ],
   "sideEffects": false,
   "exports": "./src/index.ts",
   "files": [
@@ -30,6 +34,10 @@
     "types": "./dist/index.d.ts"
   },
   "scripts": {
-    "build": "pkgroll"
+    "build": "pkgroll",
+    "test": "vitest run"
+  },
+  "devDependencies": {
+    "hono": "^4.7.5"
   }
 }
