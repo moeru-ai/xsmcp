@@ -32,6 +32,9 @@ importers:
       eslint:
         specifier: ^9.23.0
         version: 9.23.0(jiti@2.4.2)
+      itty-router:
+        specifier: ^5.0.18
+        version: 5.0.18
       jiti:
         specifier: ^2.4.2
         version: 2.4.2
@@ -60,6 +63,16 @@ importers:
         version: link:../client-shared
 
   packages/client-shared: {}
+
+  packages/server-http:
+    devDependencies:
+      hono:
+        specifier: ^4.7.5
+        version: 4.7.5
+
+  packages/server-shared: {}
+
+  packages/shared: {}
 
 packages:
 
@@ -1782,6 +1795,9 @@ packages:
 
   isexe@2.0.0:
     resolution: {integrity: sha512-RHxMLp9lnKHGHRng9QFhRCMbYAcVpn69smSGcq3f36xjgVVWThj4qqLbTLlq7Ssj8B+fIQ1EuCEGI2lKsyQeIw==}
+
+  itty-router@5.0.18:
+    resolution: {integrity: sha512-mK3ReOt4ARAGy0V0J7uHmArG2USN2x0zprZ+u+YgmeRjXTDbaowDy3kPcsmQY6tH+uHhDgpWit9Vqmv/4rTXwA==}
 
   jiti@2.4.2:
     resolution: {integrity: sha512-rg9zJN+G4n2nfJl5MW3BMygZX56zKPNVEYYqq7adpmMh4Jn2QNEwhvQlFy6jPVdcod7txZtKHWnyZiA3a0zP7A==}
@@ -4470,6 +4486,8 @@ snapshots:
   isarray@2.0.5: {}
 
   isexe@2.0.0: {}
+
+  itty-router@5.0.18: {}
 
   jiti@2.4.2: {}
 
