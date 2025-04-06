@@ -38,7 +38,8 @@
     "test": "vitest run"
   },
   "dependencies": {
-    "@xsmcp/server-shared": "workspace:"
+    "@xsmcp/server-shared": "workspace:",
+    "@xsmcp/shared": "workspace:"
   },
   "devDependencies": {
     "hono": "^4.7.5"

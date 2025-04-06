@@ -2,6 +2,7 @@ import type { CallToolRequest, CallToolResult, ListToolsRequest, ListToolsResult
 
 import type { ToolOptions } from './internal/tool'
 
+import { MethodNotFound } from './error'
 import { listTool } from './internal/tool'
 
 export interface CreateServerOptions {
@@ -45,6 +46,17 @@ export class Server {
         content: [],
         isError: true,
       }
+    }
+  }
+
+  public async handleRequest(method: string, params: unknown) {
+    switch (method) {
+      case 'tools/call':
+        return this.callTool(params as CallToolRequest['params'])
+      case 'tools/list':
+        return this.listTools(params as ListToolsRequest['params'])
+      default:
+        throw MethodNotFound()
     }
   }
 
