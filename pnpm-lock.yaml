@@ -56,12 +56,6 @@ importers:
 
   packages-top/xsmcp: {}
 
-  packages-top/xsrpc:
-    devDependencies:
-      hono:
-        specifier: ^4.7.5
-        version: 4.7.5
-
   packages/client-http:
     dependencies:
       '@xsmcp/client-shared':
