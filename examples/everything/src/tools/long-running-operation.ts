@@ -31,7 +31,7 @@ export const longRunningOperation = defineTool({
       type: 'text',
     }]
   },
-  name: 'long-running-operation',
+  name: 'longRunningOperation',
   parameters: object({
     duration: pipe(
       optional(number()),

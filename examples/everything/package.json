@@ -9,6 +9,7 @@
     "@whatwg-node/server": "^0.10.3",
     "@xsmcp/server-http": "workspace:",
     "@xsmcp/server-shared": "workspace:",
+    "@xsmcp/shared": "workspace:",
     "valibot": "^1.0.0"
   }
 }

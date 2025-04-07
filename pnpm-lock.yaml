@@ -65,6 +65,9 @@ importers:
       '@xsmcp/server-shared':
         specifier: 'workspace:'
         version: link:../../packages/server-shared
+      '@xsmcp/shared':
+        specifier: 'workspace:'
+        version: link:../../packages/shared
       valibot:
         specifier: ^1.0.0
         version: 1.0.0(typescript@5.8.2)
