@@ -22,8 +22,12 @@ export class Client {
     this.transport = options.transport
   }
 
+  public async close() {
+    return this.transport.close?.()
+  }
+
   public async initialize() {
-    await this.transport.send(jsonrpcRequest('initialize', {
+    await this.transport.request(jsonrpcRequest('initialize', {
       capabilities: this.options.capabilities,
       clientInfo: {
         name: this.options.name,
@@ -32,15 +36,11 @@ export class Client {
       protocolVersion: LATEST_PROTOCOL_VERSION,
     }))
 
-    await this.transport.send(jsonrpcRequest('notifications/initialized', undefined, true))
+    await this.transport.notification(jsonrpcRequest('notifications/initialized', undefined, true))
   }
 
   public async listTools() {
-    return this.transport.send(jsonrpcRequest('tools/list'))
-  }
-
-  public async shutdown() {
-    return this.transport.shutdown?.()
+    return this.transport.request(jsonrpcRequest('tools/list'))
   }
 }
 
