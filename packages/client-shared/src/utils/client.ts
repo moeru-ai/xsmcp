@@ -1,10 +1,8 @@
-import type { ClientCapabilities } from '@xsmcp/shared'
+import type { ClientCapabilities, JSONRPCNotification, JSONRPCRequest } from '@xsmcp/shared'
 
 import { LATEST_PROTOCOL_VERSION } from '@xsmcp/shared'
 
 import type { Transport } from '../types/transport'
-
-import { jsonrpcRequest } from './jsonrpc'
 
 export interface CreateClientOptions {
   capabilities?: ClientCapabilities
@@ -27,7 +25,7 @@ export class Client {
   }
 
   public async initialize() {
-    await this.transport.request(jsonrpcRequest('initialize', {
+    await this.transport.request(this.request('initialize', {
       capabilities: this.options.capabilities,
       clientInfo: {
         name: this.options.name,
@@ -36,11 +34,28 @@ export class Client {
       protocolVersion: LATEST_PROTOCOL_VERSION,
     }))
 
-    await this.transport.notification(jsonrpcRequest('notifications/initialized', undefined, true))
+    await this.transport.notification(this.notification('notifications/initialized'))
   }
 
   public async listTools() {
-    return this.transport.request(jsonrpcRequest('tools/list'))
+    return this.transport.request(this.request('tools/list'))
+  }
+
+  private notification(method: string, params?: JSONRPCNotification['params']): JSONRPCNotification {
+    return {
+      jsonrpc: '2.0',
+      method,
+      params,
+    }
+  }
+
+  private request(method: string, params?: JSONRPCRequest['params']): JSONRPCRequest {
+    return {
+      id: crypto.randomUUID(),
+      jsonrpc: '2.0',
+      method,
+      params,
+    }
   }
 }
 
