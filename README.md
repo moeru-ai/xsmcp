@@ -32,3 +32,6 @@ This project partially copies code from the following projects:
 | -- | -- |
 | [modelcontextprotocol/specification](https://github.com/modelcontextprotocol/specification) | [MIT](https://github.com/modelcontextprotocol/specification/blob/main/LICENSE) |
 | [modelcontextprotocol/servers](https://github.com/modelcontextprotocol/servers) | [MIT](https://github.com/modelcontextprotocol/servers/blob/main/LICENSE) |
+| [modelcontextprotocol/typescript-sdk](https://github.com/modelcontextprotocol/typescript-sdk) | [MIT](https://github.com/modelcontextprotocol/typescript-sdk/blob/main/LICENSE) |
+| [crouchcd/pkce-challenge](https://github.com/crouchcd/pkce-challenge) | [MIT](https://github.com/crouchcd/pkce-challenge/blob/master/LICENSE) |
+| [denoland/std](https://github.com/denoland/std) | [MIT](https://github.com/denoland/std/blob/main/LICENSE) |

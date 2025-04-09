@@ -12,7 +12,11 @@
     "directory": "packages/client-shared"
   },
   "bugs": "https://github.com/moeru-ai/xsmcp/issues",
-  "keywords": ["xsmcp", "mcp", "modelcontextprotocol"],
+  "keywords": [
+    "xsmcp",
+    "mcp",
+    "modelcontextprotocol"
+  ],
   "sideEffects": false,
   "exports": "./src/index.ts",
   "files": [
@@ -34,5 +38,8 @@
   },
   "dependencies": {
     "@xsmcp/shared": "workspace:"
+  },
+  "devDependencies": {
+    "valibot": "^1.0.0"
   }
 }

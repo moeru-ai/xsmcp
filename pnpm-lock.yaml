@@ -88,6 +88,10 @@ importers:
       '@xsmcp/shared':
         specifier: 'workspace:'
         version: link:../shared
+    devDependencies:
+      valibot:
+        specifier: ^1.0.0
+        version: 1.0.0(typescript@5.8.2)
 
   packages/server-http:
     dependencies:

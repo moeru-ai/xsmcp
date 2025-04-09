@@ -1,17 +1,20 @@
-import type { Transport } from '@xsmcp/client-shared'
+import type { OAuthClientProvider, Transport } from '@xsmcp/client-shared'
 import type { JSONRPCMessage, JSONRPCNotification, JSONRPCRequest, JSONRPCResponse } from '@xsmcp/shared'
 
 export interface HttpTransportOptions {
+  authProvider?: OAuthClientProvider
   url: string | URL
 }
 
 export class HttpTransport implements Transport {
   private abortController: AbortController = new AbortController()
+  private authProvider?: OAuthClientProvider
   private mcpSessionId?: string
   private url: URL
 
   constructor(options: HttpTransportOptions) {
     this.url = options.url instanceof URL ? options.url : new URL(options.url)
+    this.authProvider = options.authProvider
   }
 
   public async close(): Promise<void> {
@@ -28,13 +31,23 @@ export class HttpTransport implements Transport {
   }
 
   private async send(message: JSONRPCMessage | JSONRPCMessage[]): Promise<Response> {
+    const headers = new Headers({
+      'Accept': 'application/json, text/event-stream',
+      'Content-Type': 'application/json',
+    })
+
+    if (this.mcpSessionId != null)
+      headers.set('Mcp-Session-Id', this.mcpSessionId)
+
+    if (this.authProvider != null) {
+      const tokens = await this.authProvider.tokens()
+      if (tokens)
+        headers.set('Authorization', `Bearer ${tokens.access_token}`)
+    }
+
     const res = await fetch(this.url, {
       body: JSON.stringify(message),
-      headers: {
-        'Accept': 'application/json, text/event-stream',
-        'Content-Type': 'application/json',
-        ...(this.mcpSessionId != null ? { 'Mcp-Session-Id': this.mcpSessionId } : {}),
-      },
+      headers,
       method: 'POST',
       signal: this.abortController.signal,
     })
