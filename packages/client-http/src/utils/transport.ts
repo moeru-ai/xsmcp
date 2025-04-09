@@ -1,43 +1,49 @@
 import type { Transport } from '@xsmcp/client-shared'
-import type { JSONRPCNotification, JSONRPCRequest, JSONRPCResponse } from '@xsmcp/shared'
+import type { JSONRPCMessage, JSONRPCNotification, JSONRPCRequest, JSONRPCResponse } from '@xsmcp/shared'
 
 export interface HttpTransportOptions {
   url: string | URL
 }
 
 export class HttpTransport implements Transport {
+  private abortController: AbortController = new AbortController()
+  private mcpSessionId?: string
   private url: URL
 
   constructor(options: HttpTransportOptions) {
     this.url = options.url instanceof URL ? options.url : new URL(options.url)
   }
 
-  public async notification(notification: JSONRPCNotification): Promise<void> {
-    await fetch(this.url, {
-      body: JSON.stringify(notification),
-      headers: {
-        'Accept': [
-          'application/json',
-          'text/event-stream',
-        ].join(', '),
-        'Content-Type': 'application/json',
-      },
-      method: 'POST',
-    })
+  public async close(): Promise<void> {
+    this.abortController.abort()
   }
 
-  public async request(request: JSONRPCRequest): Promise<JSONRPCResponse> {
-    return fetch(this.url, {
-      body: JSON.stringify(request),
+  public async notification(notification: JSONRPCNotification | JSONRPCNotification[]): Promise<void> {
+    await this.send(notification)
+  }
+
+  public async request<T extends JSONRPCRequest | JSONRPCRequest[]>(request: T): Promise<T extends JSONRPCRequest[] ? JSONRPCResponse[] : JSONRPCResponse> {
+    // eslint-disable-next-line ts/no-unsafe-return
+    return this.send(request).then(async res => res.json())
+  }
+
+  private async send(message: JSONRPCMessage | JSONRPCMessage[]): Promise<Response> {
+    const res = await fetch(this.url, {
+      body: JSON.stringify(message),
       headers: {
-        'Accept': [
-          'application/json',
-          'text/event-stream',
-        ].join(', '),
+        'Accept': 'application/json, text/event-stream',
         'Content-Type': 'application/json',
+        ...(this.mcpSessionId != null ? { 'Mcp-Session-Id': this.mcpSessionId } : {}),
       },
       method: 'POST',
-    }).then(async res => res.json() as Promise<JSONRPCResponse>)
+      signal: this.abortController.signal,
+    })
+
+    const mcpSessionId = res.headers.get('mcp-session-id')
+    if (mcpSessionId != null)
+      this.mcpSessionId = mcpSessionId
+
+    return res
   }
 }
 
