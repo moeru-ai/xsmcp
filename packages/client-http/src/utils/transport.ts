@@ -1,6 +1,9 @@
 import type { OAuthClientProvider, Transport } from '@xsmcp/client-shared'
 import type { JSONRPCMessage, JSONRPCNotification, JSONRPCRequest, JSONRPCResponse } from '@xsmcp/shared'
 
+import { auth, UnauthorizedError } from '@xsmcp/client-shared'
+// import { EventSourceParserStream } from 'eventsource-parser/stream'
+
 export interface HttpTransportOptions {
   authProvider?: OAuthClientProvider
   url: string | URL
@@ -9,6 +12,7 @@ export interface HttpTransportOptions {
 export class HttpTransport implements Transport {
   private abortController: AbortController = new AbortController()
   private authProvider?: OAuthClientProvider
+  // private lastEventId?: string
   private mcpSessionId?: string
   private url: URL
 
@@ -25,10 +29,54 @@ export class HttpTransport implements Transport {
     await this.send(notification)
   }
 
-  public async request<T extends JSONRPCRequest | JSONRPCRequest[]>(request: T): Promise<T extends JSONRPCRequest[] ? JSONRPCResponse[] : JSONRPCResponse> {
-    // eslint-disable-next-line ts/no-unsafe-return
-    return this.send(request).then(async res => res.json())
+  public async request(request: JSONRPCRequest | JSONRPCRequest[]): Promise<JSONRPCResponse[]> {
+    const res = await this.send(request)
+
+    // Check the response type
+    // const contentType = res.headers.get('content-type')
+
+    if (!res.body)
+      throw new Error('No response body')
+
+    // if (contentType?.includes('text/event-stream')) {
+    //   // For streaming responses, create a unique stream ID based on request IDs
+    //   this.handleSseStream(res.body)
+    // }
+    // else if (contentType?.includes('application/json')) {
+    // eslint-disable-next-line @masknet/type-prefer-return-type-annotation
+    return res.json() as Promise<JSONRPCResponse[]>
+    // }
   }
+
+  // private handleSseStream(stream: ReadableStream<Uint8Array>): void {
+  //   // Create a pipeline: binary stream -> text decoder -> SSE parser
+  //   const eventStream = stream
+  //     .pipeThrough(new TextDecoderStream())
+  //     .pipeThrough(new EventSourceParserStream())
+
+  //   const reader = eventStream.getReader()
+  //   const processStream = async () => {
+  //     while (true) {
+  //       const { done, value: event } = await reader.read()
+  //       if (done) {
+  //         break
+  //       }
+
+  //       // Update last event ID if provided
+  //       if (event.id != null) {
+  //         this.lastEventId = event.id
+  //       }
+
+  //       // Handle message events (default event type is undefined per docs)
+  //       // or explicit 'message' event type
+  //       if (event.event == null || event.event === 'message') {
+  //         const message = JSON.parse(event.data) as JSONRPCMessage
+  //       }
+  //     }
+  //   }
+
+  //   void processStream()
+  // }
 
   private async send(message: JSONRPCMessage | JSONRPCMessage[]): Promise<Response> {
     const headers = new Headers({
@@ -46,7 +94,7 @@ export class HttpTransport implements Transport {
     }
 
     const res = await fetch(this.url, {
-      body: JSON.stringify(message),
+      body: JSON.stringify(Array.isArray(message) ? message : [message]),
       headers,
       method: 'POST',
       signal: this.abortController.signal,
@@ -55,6 +103,20 @@ export class HttpTransport implements Transport {
     const mcpSessionId = res.headers.get('mcp-session-id')
     if (mcpSessionId != null)
       this.mcpSessionId = mcpSessionId
+
+    if (!res.ok) {
+      if (res.status === 401 && this.authProvider) {
+        const result = await auth(this.authProvider, { serverUrl: this.url })
+        if (result !== 'AUTHORIZED')
+          throw new UnauthorizedError()
+
+        // Purposely _not_ awaited, so we don't call onerror twice
+        return this.send(message)
+      }
+
+      const text = await res.text().catch(() => '')
+      throw new Error(`Error POSTing to endpoint (HTTP ${res.status}): ${text}`)
+    }
 
     return res
   }

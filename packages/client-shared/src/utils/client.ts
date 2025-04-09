@@ -25,7 +25,7 @@ export class Client {
   }
 
   public async initialize() {
-    await this.transport.request(this.request('initialize', {
+    const result = await this.transport.request(this.request('initialize', {
       capabilities: this.options.capabilities,
       clientInfo: {
         name: this.options.name,
@@ -33,6 +33,9 @@ export class Client {
       },
       protocolVersion: LATEST_PROTOCOL_VERSION,
     }))
+
+    // eslint-disable-next-line no-console
+    console.log(result)
 
     await this.transport.notification(this.notification('notifications/initialized'))
   }

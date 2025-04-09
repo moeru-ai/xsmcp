@@ -5,7 +5,7 @@ export abstract class Transport {
 
   public abstract notification(request: JSONRPCNotification | JSONRPCNotification[]): Promise<void> | void
 
-  public abstract request<T extends JSONRPCRequest | JSONRPCRequest[]>(request: T): Promise<T extends JSONRPCRequest[] ? JSONRPCResponse[] : JSONRPCResponse>
+  public abstract request(request: JSONRPCRequest | JSONRPCRequest[]): Promise<JSONRPCResponse[]>
 
   public abstract start?(): Promise<void> | void
 }

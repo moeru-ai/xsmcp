@@ -109,6 +109,10 @@ importers:
       '@xsmcp/shared':
         specifier: 'workspace:'
         version: link:../shared
+    devDependencies:
+      eventsource-parser:
+        specifier: ^3.0.1
+        version: 3.0.1
 
   packages/client-shared:
     dependencies:
