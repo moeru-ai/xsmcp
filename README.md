@@ -14,11 +14,53 @@ Like [xsAI](https://github.com/moeru-ai/xsai), xsMCP does not force you to use a
 
 ### Roadmap
 
-Our current target is Streamable HTTP Client / Server (Waiting [modelcontextprotocol/typescript-sdk#266](https://github.com/modelcontextprotocol/typescript-sdk/pull/266) for testing), Stdio have lower priority.
+Our current target is Streamable HTTP Client / Server, Stdio have lower priority.
 
 ### Compatibility
 
 xsMCP v0.1 is targeted to be compatible with the `2025-03-26` revision and is not backward compatible.
+
+### HTTP Server Structure
+
+`@xsmcp/server-http` is based on [Web Standards](https://hono.dev/docs/concepts/web-standard), not Express.
+
+```ts
+import { createHttpServer } from '@xsmcp/server-http'
+
+const server = createHttpServer({ ...options })
+
+// (req: Request) => Promise<Response>
+type ServerFetch = typeof server.fetch
+
+export default server
+```
+
+It can be used as a server on its own or with `hono`, `elysia` and `itty-router` for more features:
+
+```ts
+import { createHttpServer } from '@xsmcp/server-http'
+import { Elysia } from 'elysia'
+import { Hono } from 'hono'
+import { AutoRouter } from 'itty-router'
+
+const server = createHttpServer({ ...options })
+
+// hono
+new Hono()
+  .post('/mcp', ({ req }) => server.fetch(req.raw))
+
+// elysia
+new Elysia()
+  .post('/mcp', ({ request }) => server.fetch(request))
+
+// itty-router
+AutoRouter()
+  .post('/mcp', req => server.fetch(req))
+```
+
+At the same time, it does not depends on any server framework thus minimizing the size.
+
+For simplicity reasons, this server only returns JSON Response, not SSE.
 
 ## License
 
