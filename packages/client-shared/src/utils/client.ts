@@ -39,13 +39,14 @@ export class Client {
     }))
 
     // eslint-disable-next-line no-console
-    console.log(result)
+    console.log(JSON.stringify(result, null, 2))
 
     await this.transport.notification(this.notification('notifications/initialized'))
   }
 
   public async listTools() {
-    return this.transport.request(this.request('tools/list'))
+    const result = await this.transport.request(this.request('tools/list'))
+    return result[0]
   }
 
   private notification(method: string, params?: JSONRPCNotification['params']): JSONRPCNotification {

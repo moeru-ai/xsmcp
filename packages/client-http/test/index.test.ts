@@ -11,6 +11,9 @@ describe('@xsmcp/client-http', async () => {
 
   it('listTools', async () => {
     const result = await client.listTools()
-    expect(result).toMatchSnapshot()
+    expect({
+      ...result,
+      id: undefined,
+    }).toMatchSnapshot()
   })
 })

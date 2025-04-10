@@ -29,6 +29,7 @@ export class HttpTransport implements Transport {
     await this.send(notification)
   }
 
+  // eslint-disable-next-line sonarjs/cognitive-complexity
   public async request(request: JSONRPCRequest | JSONRPCRequest[]): Promise<JSONRPCResponse[]> {
     const res = await this.send(request)
 
@@ -60,8 +61,12 @@ export class HttpTransport implements Transport {
         if (event.id != null)
           this.lastEventId = event.id
 
-        if (event.event == null || event.event === 'message')
-          messages.push(JSON.parse(event.data) as JSONRPCResponse)
+        if (event.event == null || event.event === 'message') {
+          const message = JSON.parse(event.data) as JSONRPCNotification | JSONRPCResponse
+
+          if ('id' in message)
+            messages.push(message)
+        }
       }
 
       return messages
