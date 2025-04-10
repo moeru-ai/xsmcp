@@ -25,13 +25,23 @@ xsMCP v0.1 is targeted to be compatible with the `2025-03-26` revision and is no
 `@xsmcp/server-http` is based on [Web Standards](https://hono.dev/docs/concepts/web-standard), not Express.
 
 ```ts
+import { createServerAdapter } from '@whatwg-node/server'
 import { createHttpServer } from '@xsmcp/server-http'
+import { createServer } from 'node:http'
 
 const server = createHttpServer({ ...options })
 
 // (req: Request) => Promise<Response>
 type ServerFetch = typeof server.fetch
 
+// node.js
+const httpServer = createServer(createServerAdapter(server.fetch))
+httpServer.listen(3000)
+
+// next.js
+export const POST = router.fetch
+
+// cloudflare workers, bun
 export default server
 ```
 
