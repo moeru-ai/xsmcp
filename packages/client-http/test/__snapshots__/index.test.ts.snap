@@ -1,0 +1,167 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`@xsmcp/client-http > listTools 1`] = `
+[
+  {
+    "id": "e8662fe9-3fb9-49c6-8cd6-91290b54f5ca",
+    "jsonrpc": "2.0",
+    "result": {
+      "tools": [
+        {
+          "description": "Echoes back the input",
+          "inputSchema": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "additionalProperties": false,
+            "properties": {
+              "message": {
+                "description": "Message to echo",
+                "type": "string",
+              },
+            },
+            "required": [
+              "message",
+            ],
+            "type": "object",
+          },
+          "name": "echo",
+        },
+        {
+          "description": "Adds two numbers",
+          "inputSchema": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "additionalProperties": false,
+            "properties": {
+              "a": {
+                "description": "First number",
+                "type": "number",
+              },
+              "b": {
+                "description": "Second number",
+                "type": "number",
+              },
+            },
+            "required": [
+              "a",
+              "b",
+            ],
+            "type": "object",
+          },
+          "name": "add",
+        },
+        {
+          "description": "Prints all environment variables, helpful for debugging MCP server configuration",
+          "inputSchema": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "additionalProperties": false,
+            "properties": {},
+            "type": "object",
+          },
+          "name": "printEnv",
+        },
+        {
+          "description": "Demonstrates a long running operation with progress updates",
+          "inputSchema": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "additionalProperties": false,
+            "properties": {
+              "duration": {
+                "default": 10,
+                "description": "Duration of the operation in seconds",
+                "type": "number",
+              },
+              "steps": {
+                "default": 5,
+                "description": "Number of steps in the operation",
+                "type": "number",
+              },
+            },
+            "type": "object",
+          },
+          "name": "longRunningOperation",
+        },
+        {
+          "description": "Samples from an LLM using MCP's sampling feature",
+          "inputSchema": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "additionalProperties": false,
+            "properties": {
+              "maxTokens": {
+                "default": 100,
+                "description": "Maximum number of tokens to generate",
+                "type": "number",
+              },
+              "prompt": {
+                "description": "The prompt to send to the LLM",
+                "type": "string",
+              },
+            },
+            "required": [
+              "prompt",
+            ],
+            "type": "object",
+          },
+          "name": "sampleLLM",
+        },
+        {
+          "description": "Returns the MCP_TINY_IMAGE",
+          "inputSchema": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "additionalProperties": false,
+            "properties": {},
+            "type": "object",
+          },
+          "name": "getTinyImage",
+        },
+        {
+          "description": "Demonstrates how annotations can be used to provide metadata about content",
+          "inputSchema": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "additionalProperties": false,
+            "properties": {
+              "includeImage": {
+                "default": false,
+                "description": "Whether to include an example image",
+                "type": "boolean",
+              },
+              "messageType": {
+                "description": "Type of message to demonstrate different annotation patterns",
+                "enum": [
+                  "error",
+                  "success",
+                  "debug",
+                ],
+                "type": "string",
+              },
+            },
+            "required": [
+              "messageType",
+            ],
+            "type": "object",
+          },
+          "name": "annotatedMessage",
+        },
+        {
+          "description": "Returns a resource reference that can be used by MCP clients",
+          "inputSchema": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "additionalProperties": false,
+            "properties": {
+              "resourceId": {
+                "description": "ID of the resource to reference (1-100)",
+                "maximum": 100,
+                "minimum": 1,
+                "type": "number",
+              },
+            },
+            "required": [
+              "resourceId",
+            ],
+            "type": "object",
+          },
+          "name": "getResourceReference",
+        },
+      ],
+    },
+  },
+]
+`;

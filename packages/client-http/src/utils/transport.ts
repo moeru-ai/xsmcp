@@ -2,7 +2,7 @@ import type { OAuthClientProvider, Transport } from '@xsmcp/client-shared'
 import type { JSONRPCMessage, JSONRPCNotification, JSONRPCRequest, JSONRPCResponse } from '@xsmcp/shared'
 
 import { auth, UnauthorizedError } from '@xsmcp/client-shared'
-// import { EventSourceParserStream } from 'eventsource-parser/stream'
+import { EventSourceParserStream } from 'eventsource-parser/stream'
 
 export interface HttpTransportOptions {
   authProvider?: OAuthClientProvider
@@ -12,7 +12,7 @@ export interface HttpTransportOptions {
 export class HttpTransport implements Transport {
   private abortController: AbortController = new AbortController()
   private authProvider?: OAuthClientProvider
-  // private lastEventId?: string
+  private lastEventId?: string
   private mcpSessionId?: string
   private url: URL
 
@@ -33,22 +33,44 @@ export class HttpTransport implements Transport {
     const res = await this.send(request)
 
     // Check the response type
-    // const contentType = res.headers.get('content-type')
+    const contentType = res.headers.get('Content-Type')
 
     if (!res.body)
       throw new Error('No response body')
 
-    // if (contentType?.includes('text/event-stream')) {
-    //   // For streaming responses, create a unique stream ID based on request IDs
-    //   this.handleSseStream(res.body)
-    // }
-    // else if (contentType?.includes('application/json')) {
-    // eslint-disable-next-line @masknet/type-prefer-return-type-annotation
-    return res.json() as Promise<JSONRPCResponse[]>
-    // }
+    if (contentType?.includes('application/json')) {
+      // eslint-disable-next-line @masknet/type-prefer-return-type-annotation
+      return res.json() as Promise<JSONRPCResponse[]>
+    }
+    else if (contentType?.includes('text/event-stream')) {
+      const stream = res.body
+        .pipeThrough(new TextDecoderStream())
+        .pipeThrough(new EventSourceParserStream())
+
+      const reader = stream.getReader()
+
+      const messages: JSONRPCResponse[] = []
+
+      while (true) {
+        const { done, value: event } = await reader.read()
+
+        if (done)
+          break
+
+        if (event.id != null)
+          this.lastEventId = event.id
+
+        if (event.event == null || event.event === 'message')
+          messages.push(JSON.parse(event.data) as JSONRPCResponse)
+      }
+
+      return messages
+    }
+
+    throw new Error(`Invalid content type: ${contentType}`)
   }
 
-  // private handleSseStream(stream: ReadableStream<Uint8Array>): void {
+  // private async handleSseStream(stream: ReadableStream<Uint8Array>): void {
   //   // Create a pipeline: binary stream -> text decoder -> SSE parser
   //   const eventStream = stream
   //     .pipeThrough(new TextDecoderStream())

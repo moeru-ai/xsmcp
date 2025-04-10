@@ -12,12 +12,19 @@ export interface CreateClientOptions {
 }
 
 export class Client {
-  options: Omit<CreateClientOptions, 'transport'>
+  capabilities: ClientCapabilities = {}
+  clientInfo: Pick<CreateClientOptions, 'name' | 'version'>
   transport: Transport
 
   constructor(options: CreateClientOptions) {
-    this.options = options
+    this.clientInfo = {
+      name: options.name,
+      version: options.version,
+    }
     this.transport = options.transport
+
+    if (options.capabilities)
+      this.capabilities = options.capabilities
   }
 
   public async close() {
@@ -26,11 +33,8 @@ export class Client {
 
   public async initialize() {
     const result = await this.transport.request(this.request('initialize', {
-      capabilities: this.options.capabilities,
-      clientInfo: {
-        name: this.options.name,
-        version: this.options.version,
-      },
+      capabilities: this.capabilities,
+      clientInfo: this.clientInfo,
       protocolVersion: LATEST_PROTOCOL_VERSION,
     }))
 
