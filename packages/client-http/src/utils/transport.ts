@@ -29,7 +29,6 @@ export class HttpTransport implements Transport {
     await this.send(notification)
   }
 
-  // eslint-disable-next-line sonarjs/cognitive-complexity
   public async request(request: JSONRPCRequest | JSONRPCRequest[]): Promise<JSONRPCResponse[]> {
     const res = await this.send(request)
 
@@ -44,20 +43,13 @@ export class HttpTransport implements Transport {
       return res.json() as Promise<JSONRPCResponse[]>
     }
     else if (contentType?.includes('text/event-stream')) {
-      const stream = res.body
+      const eventStream = res.body
         .pipeThrough(new TextDecoderStream())
         .pipeThrough(new EventSourceParserStream())
 
-      const reader = stream.getReader()
-
       const messages: JSONRPCResponse[] = []
 
-      while (true) {
-        const { done, value: event } = await reader.read()
-
-        if (done)
-          break
-
+      for await (const event of eventStream) {
         if (event.id != null)
           this.lastEventId = event.id
 
@@ -74,36 +66,6 @@ export class HttpTransport implements Transport {
 
     throw new Error(`Invalid content type: ${contentType}`)
   }
-
-  // private async handleSseStream(stream: ReadableStream<Uint8Array>): void {
-  //   // Create a pipeline: binary stream -> text decoder -> SSE parser
-  //   const eventStream = stream
-  //     .pipeThrough(new TextDecoderStream())
-  //     .pipeThrough(new EventSourceParserStream())
-
-  //   const reader = eventStream.getReader()
-  //   const processStream = async () => {
-  //     while (true) {
-  //       const { done, value: event } = await reader.read()
-  //       if (done) {
-  //         break
-  //       }
-
-  //       // Update last event ID if provided
-  //       if (event.id != null) {
-  //         this.lastEventId = event.id
-  //       }
-
-  //       // Handle message events (default event type is undefined per docs)
-  //       // or explicit 'message' event type
-  //       if (event.event == null || event.event === 'message') {
-  //         const message = JSON.parse(event.data) as JSONRPCMessage
-  //       }
-  //     }
-  //   }
-
-  //   void processStream()
-  // }
 
   private async send(message: JSONRPCMessage | JSONRPCMessage[]): Promise<Response> {
     const headers = new Headers({
