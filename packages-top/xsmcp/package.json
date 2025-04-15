@@ -31,5 +31,12 @@
   },
   "scripts": {
     "build": "pkgroll"
+  },
+  "dependencies": {
+    "@xsmcp/client-http": "workspace:",
+    "@xsmcp/client-shared": "workspace:",
+    "@xsmcp/server-http": "workspace:",
+    "@xsmcp/server-shared": "workspace:",
+    "@xsmcp/shared": "workspace:"
   }
 }

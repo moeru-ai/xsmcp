@@ -103,7 +103,23 @@ importers:
         specifier: ^3.24.5
         version: 3.24.5(zod@3.24.2)
 
-  packages-top/xsmcp: {}
+  packages-top/xsmcp:
+    dependencies:
+      '@xsmcp/client-http':
+        specifier: 'workspace:'
+        version: link:../../packages/client-http
+      '@xsmcp/client-shared':
+        specifier: 'workspace:'
+        version: link:../../packages/client-shared
+      '@xsmcp/server-http':
+        specifier: 'workspace:'
+        version: link:../../packages/server-http
+      '@xsmcp/server-shared':
+        specifier: 'workspace:'
+        version: link:../../packages/server-shared
+      '@xsmcp/shared':
+        specifier: 'workspace:'
+        version: link:../../packages/shared
 
   packages/client-http:
     dependencies:
