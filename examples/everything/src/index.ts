@@ -1,10 +1,10 @@
 import { createServerAdapter } from '@whatwg-node/server'
 import { createServer } from 'node:http'
 
+import { fetch } from '../../../packages/server-http/src'
 import { server } from './server'
 
-// eslint-disable-next-line ts/unbound-method
-const serverAdapter = createServerAdapter(server.fetch)
+const serverAdapter = createServerAdapter(fetch(server))
 
 // eslint-disable-next-line ts/no-misused-promises
 const httpServer = createServer(serverAdapter)

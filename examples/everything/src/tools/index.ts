@@ -1,3 +1,6 @@
 export * from './add'
+export * from './annotated-message'
 export * from './echo'
+export * from './get-tiny-image'
 export * from './long-running-operation'
+export * from './print-env'

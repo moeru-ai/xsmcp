@@ -3,13 +3,18 @@
   "type": "module",
   "private": true,
   "scripts": {
-    "start": "tsx src/index.ts"
+    "start": "tsx src/index.ts",
+    "test": "vitest run"
   },
   "dependencies": {
+    "@valibot/to-json-schema": "^1.0.0",
     "@whatwg-node/server": "^0.10.3",
     "@xsmcp/server-http": "workspace:",
     "@xsmcp/server-shared": "workspace:",
     "@xsmcp/shared": "workspace:",
     "valibot": "^1.0.0"
+  },
+  "devDependencies": {
+    "@xsmcp/client-http": "workspace:"
   }
 }
