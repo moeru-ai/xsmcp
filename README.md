@@ -27,9 +27,18 @@ xsMCP v0.1 is targeted to be compatible with the `2025-03-26` revision and is no
 ```ts
 import { createServerAdapter } from '@whatwg-node/server'
 import { createHttpServer } from '@xsmcp/server-http'
+import { createServer as createMcpServer } from '@xsmcp/server-shared'
 import { createServer } from 'node:http'
 
-const server = createHttpServer({ ...options })
+import * as tools from '...'
+
+const s = createMcpServer({ ...options })
+
+for (const tool of tools) {
+  s.addTool(tool)
+}
+
+const server = createHttpServer(s)
 
 // (req: Request) => Promise<Response>
 type ServerFetch = typeof server.fetch
