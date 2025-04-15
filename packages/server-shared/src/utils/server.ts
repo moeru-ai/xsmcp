@@ -53,6 +53,9 @@ export class Server {
 
   public async handleRequest(method: string, params: unknown) {
     switch (method) {
+      case 'initialize':
+      case 'notifications/initialized':
+        return
       case 'tools/call':
         return this.callTool(params as CallToolRequest['params'])
       case 'tools/list':

@@ -4,6 +4,7 @@ import type { JSONRPCBatchResponse, JSONRPCRequest, JSONRPCResponse } from '@xsm
 import { InternalError, JSONRPCError } from '@xsmcp/server-shared'
 
 export const fetch = (server: Server) =>
+  // eslint-disable-next-line sonarjs/cognitive-complexity
   async (req: Request) => {
     try {
       const accept = req.headers.get('Accept')
@@ -17,14 +18,18 @@ export const fetch = (server: Server) =>
         const results: JSONRPCBatchResponse = []
         for (const { id, method, params } of json) {
           const result = await server.handleRequest(method, params)
-          results.push({ id, jsonrpc: '2.0', result })
+          if (result)
+            results.push({ id, jsonrpc: '2.0', result })
         }
         return Response.json(results)
       }
       else {
         const { id, method, params } = json
         const result = await server.handleRequest(method, params)
-        return Response.json({ id, jsonrpc: '2.0', result } satisfies JSONRPCResponse)
+        if (result)
+          return Response.json({ id, jsonrpc: '2.0', result } satisfies JSONRPCResponse)
+        else
+          return new Response(null, { status: 202 })
       }
     }
     catch (err) {
