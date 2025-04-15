@@ -7,8 +7,6 @@ describe('@xsmcp/client-http', async () => {
     version: '1.0.0',
   }, { url: 'http://localhost:3000/mcp' })
 
-  await client.initialize()
-
   it('listTools', async () => {
     const result = await client.listTools()
     expect({

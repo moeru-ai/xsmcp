@@ -6,6 +6,8 @@ import type { Transport } from '../types/transport'
 
 export interface CreateClientOptions {
   capabilities?: ClientCapabilities
+  /** @default true */
+  initialize?: boolean
   name: string
   transport: Transport
   version: string
@@ -25,6 +27,10 @@ export class Client {
 
     if (options.capabilities)
       this.capabilities = options.capabilities
+
+    if (options.initialize !== false)
+      // eslint-disable-next-line sonarjs/no-async-constructor
+      void this.initialize()
   }
 
   public async callTool(name: string, args: Record<string, unknown>) {
