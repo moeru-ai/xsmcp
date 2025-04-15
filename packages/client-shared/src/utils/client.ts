@@ -1,4 +1,4 @@
-import type { ClientCapabilities, JSONRPCNotification, JSONRPCRequest } from '@xsmcp/shared'
+import type { CallToolResult, ClientCapabilities, JSONRPC_VERSION, JSONRPCNotification, JSONRPCRequest, RequestId } from '@xsmcp/shared'
 
 import { LATEST_PROTOCOL_VERSION } from '@xsmcp/shared'
 
@@ -25,6 +25,20 @@ export class Client {
 
     if (options.capabilities)
       this.capabilities = options.capabilities
+  }
+
+  public async callTool(name: string, args: Record<string, unknown>) {
+    const result = await this.transport.request(this.request('tools/call', {
+      arguments: args,
+      name,
+    }))
+
+    // eslint-disable-next-line @masknet/type-prefer-return-type-annotation
+    return result[0] as {
+      id: RequestId
+      jsonrpc: typeof JSONRPC_VERSION
+      result: CallToolResult
+    }
   }
 
   public async close() {

@@ -16,4 +16,15 @@ describe('@xsmcp/client-http', async () => {
       id: undefined,
     }).toMatchSnapshot()
   })
+
+  it('callTool', async () => {
+    const result = await client.callTool('add', {
+      a: 1,
+      b: 1,
+    })
+    expect({
+      ...result,
+      id: undefined,
+    }).toMatchSnapshot()
+  })
 })
