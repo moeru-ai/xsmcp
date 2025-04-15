@@ -11,8 +11,8 @@ export class HttpServer extends Server {
   public async fetch(req: Request): Promise<Response> {
     try {
       const accept = req.headers.get('Accept')
-      if (accept == null || !accept.includes('text/event-stream'))
-        throw new JSONRPCError('Not Acceptable: Client must accept text/event-stream', -32000, 406)
+      if (accept == null || !accept.includes('application/json'))
+        throw new JSONRPCError('Not Acceptable: Client must accept application/json', -32000, 406)
 
       const { id, method, params } = await req.json() as JSONRPCRequest
       const result = await this.handleRequest(method, params)
