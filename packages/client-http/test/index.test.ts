@@ -1,6 +1,8 @@
 import { createHttpClient } from '@xsmcp/client-http'
 import { describe, expect, it } from 'vitest'
 
+const cleanId = <T>(obj: T) => ({ ...obj, id: undefined })
+
 describe('@xsmcp/client-http', async () => {
   const client = createHttpClient({
     name: 'example-client',
@@ -9,20 +11,11 @@ describe('@xsmcp/client-http', async () => {
 
   it('listTools', async () => {
     const result = await client.listTools()
-    expect({
-      ...result,
-      id: undefined,
-    }).toMatchSnapshot()
+    expect(cleanId(result)).toMatchSnapshot()
   })
 
   it('callTool', async () => {
-    const result = await client.callTool('add', {
-      a: 1,
-      b: 1,
-    })
-    expect({
-      ...result,
-      id: undefined,
-    }).toMatchSnapshot()
+    const result = await client.callTool('add', { a: 1, b: 1 })
+    expect(cleanId(result)).toMatchSnapshot()
   })
 })
