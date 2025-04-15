@@ -33,7 +33,7 @@ export class Client {
       void this.initialize()
   }
 
-  public async callTool(name: string, args: Record<string, unknown>) {
+  public async callTool(name: string, args: Record<string, unknown> = {}) {
     const result = await this.transport.request(this.request('tools/call', {
       arguments: args,
       name,

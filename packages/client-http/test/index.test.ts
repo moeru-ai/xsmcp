@@ -15,7 +15,16 @@ describe('@xsmcp/client-http', async () => {
   })
 
   it('callTool', async () => {
-    const result = await client.callTool('add', { a: 1, b: 1 })
-    expect(cleanId(result)).toMatchSnapshot()
+    const addResult = await client.callTool('add', { a: 1, b: 1 })
+    expect(cleanId(addResult)).toMatchSnapshot()
+
+    const echoResult = await client.callTool('echo', { message: 'Hello, World!' })
+    expect(cleanId(echoResult)).toMatchSnapshot()
+
+    const longRunningOperationResult = await client.callTool('longRunningOperation', { duration: 1, steps: 2 })
+    expect(cleanId(longRunningOperationResult)).toMatchSnapshot()
+
+    const getTinyImageResult = await client.callTool('getTinyImage', {})
+    expect(cleanId(getTinyImageResult)).toMatchSnapshot()
   })
 })
