@@ -58,11 +58,20 @@ It can be used as a server on its own or with `hono`, `elysia` and `itty-router`
 
 ```ts
 import { createHttpServer } from '@xsmcp/server-http'
+import { createServer as createMcpServer } from '@xsmcp/server-shared'
 import { Elysia } from 'elysia'
 import { Hono } from 'hono'
 import { AutoRouter } from 'itty-router'
 
-const server = createHttpServer({ ...options })
+import * as tools from '...'
+
+const s = createMcpServer({ ...options })
+
+for (const tool of tools) {
+  s.addTool(tool)
+}
+
+const server = createHttpServer(s)
 
 // hono
 new Hono()
