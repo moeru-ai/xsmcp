@@ -4,6 +4,12 @@ settings:
   autoInstallPeers: true
   excludeLinksFromLockfile: false
 
+catalogs:
+  default:
+    xsschema:
+      specifier: ^0.2.0-beta.3
+      version: 0.2.0-beta.3
+
 importers:
 
   .:
@@ -66,8 +72,8 @@ importers:
   examples/everything-original:
     dependencies:
       '@modelcontextprotocol/sdk':
-        specifier: ^1.9.0
-        version: 1.9.0
+        specifier: file:../../modelcontextprotocol-sdk-1.10.0.tgz
+        version: file:modelcontextprotocol-sdk-1.10.0.tgz
       '@types/content-type':
         specifier: ^1.1.8
         version: 1.1.8
@@ -498,8 +504,9 @@ packages:
     peerDependencies:
       eslint: '>= 8'
 
-  '@modelcontextprotocol/sdk@1.9.0':
-    resolution: {integrity: sha512-Jq2EUCQpe0iyO5FGpzVYDNFR6oR53AIrwph9yWl7uSc7IWUMsrmpmSaTGra5hQNunXpM+9oit85p924jWuHzUA==}
+  '@modelcontextprotocol/sdk@file:modelcontextprotocol-sdk-1.10.0.tgz':
+    resolution: {integrity: sha512-OFEP/dRucrclMdKvOfOdwt7CWU60QIhv6tVSbR+xubfPJO7Rpg6v5B9WCnJPkVSGZXlCNhgMYRJ0Ca431ec38Q==, tarball: file:modelcontextprotocol-sdk-1.10.0.tgz}
+    version: 1.10.0
     engines: {node: '>=18'}
 
   '@napi-rs/wasm-runtime@0.2.8':
@@ -3341,7 +3348,7 @@ snapshots:
     dependencies:
       eslint: 9.23.0(jiti@2.4.2)
 
-  '@modelcontextprotocol/sdk@1.9.0':
+  '@modelcontextprotocol/sdk@file:modelcontextprotocol-sdk-1.10.0.tgz':
     dependencies:
       content-type: 1.0.5
       cors: 2.8.5

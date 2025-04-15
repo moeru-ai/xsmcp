@@ -2,11 +2,11 @@
 /* eslint-disable @masknet/no-top-level */
 import type { Request, Response } from 'express'
 
+import { StreamableHTTPServerTransport } from '@modelcontextprotocol/sdk/server/streamableHttp.js'
 import express from 'express'
 import process from 'node:process'
 
 import { createServer } from './everything'
-import { StreamableHTTPServerTransport } from './streamableHttp'
 
 const app = express()
 app.disable('x-powered-by')
