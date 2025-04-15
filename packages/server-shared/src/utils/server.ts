@@ -1,4 +1,6 @@
-import type { CallToolRequest, CallToolResult, ListToolsRequest, ListToolsResult, ServerCapabilities } from '@xsmcp/shared'
+import type { CallToolRequest, CallToolResult, InitializeRequest, InitializeResult, ListToolsRequest, ListToolsResult, ServerCapabilities } from '@xsmcp/shared'
+
+import { LATEST_PROTOCOL_VERSION } from '@xsmcp/shared'
 
 import type { ToolOptions } from './tool'
 
@@ -7,17 +9,27 @@ import { listTool } from './tool'
 
 export interface CreateServerOptions {
   capabilities?: ServerCapabilities
+  name: string
   tools?: ToolOptions[]
+  version: string
 }
 
 export class Server {
+  private capabilities: ServerCapabilities = {}
+  private serverInfo: InitializeResult['serverInfo']
   private tools: ToolOptions[] = []
 
-  constructor(options?: CreateServerOptions) {
-    if (options) {
-      if (options.tools)
-        this.tools.push(...options.tools)
+  constructor(options: CreateServerOptions) {
+    this.serverInfo = {
+      name: options.name,
+      version: options.version,
     }
+
+    if (options.capabilities)
+      this.capabilities = options.capabilities
+
+    if (options.tools)
+      this.tools.push(...options.tools)
   }
 
   // TODO: fix types
@@ -54,6 +66,7 @@ export class Server {
   public async handleRequest(method: string, params: unknown) {
     switch (method) {
       case 'initialize':
+        return this.initialize(params as InitializeRequest['params'])
       case 'notifications/initialized':
         return
       case 'tools/call':
@@ -62,6 +75,17 @@ export class Server {
         return this.listTools(params as ListToolsRequest['params'])
       default:
         throw MethodNotFound()
+    }
+  }
+
+  public initialize(_params: InitializeRequest['params']): InitializeResult {
+    return {
+      capabilities: {
+        ...this.capabilities,
+        ...(this.tools.length > 0 ? { tools: {} } : {}),
+      },
+      protocolVersion: LATEST_PROTOCOL_VERSION,
+      serverInfo: this.serverInfo,
     }
   }
 
@@ -74,4 +98,4 @@ export class Server {
   }
 }
 
-export const createServer = (options?: CreateServerOptions) => new Server(options)
+export const createServer = (options: CreateServerOptions) => new Server(options)

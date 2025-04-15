@@ -4,7 +4,10 @@ import { createServer } from '@xsmcp/server-shared'
 
 import * as tools from './tools'
 
-const server = createServer()
+const server = createServer({
+  name: 'everything',
+  version: '1.0.0',
+})
 
 for (const tool of Object.values(tools)) {
   server.addTool(tool)

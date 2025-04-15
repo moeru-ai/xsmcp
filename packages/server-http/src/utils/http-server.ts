@@ -5,7 +5,7 @@ import { Server } from '@xsmcp/server-shared'
 import { fetch } from './fetch'
 
 export class HttpServer extends Server {
-  constructor(options?: CreateServerOptions) {
+  constructor(options: CreateServerOptions) {
     super(options)
   }
 
@@ -14,4 +14,4 @@ export class HttpServer extends Server {
   }
 }
 
-export const createHttpServer = (options?: CreateServerOptions) => new HttpServer(options)
+export const createHttpServer = (options: CreateServerOptions) => new HttpServer(options)
