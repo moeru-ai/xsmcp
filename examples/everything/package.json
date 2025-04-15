@@ -1,6 +1,7 @@
 {
   "name": "@xsmcp/everything",
   "type": "module",
+  "version": "0.0.0",
   "private": true,
   "scripts": {
     "start": "tsx src/index.ts",
