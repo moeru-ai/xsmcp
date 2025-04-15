@@ -1,7 +1,7 @@
 import type { Server } from '@xsmcp/server-shared'
 import type { JSONRPCBatchResponse, JSONRPCRequest, JSONRPCResponse } from '@xsmcp/shared'
 
-import { InternalError, JSONRPCError } from '@xsmcp/server-shared'
+import { InternalError, XSMCPError } from '@xsmcp/server-shared'
 
 export const fetch = (server: Server) =>
   // eslint-disable-next-line sonarjs/cognitive-complexity
@@ -9,7 +9,7 @@ export const fetch = (server: Server) =>
     try {
       const accept = req.headers.get('Accept')
       if (accept == null || !accept.includes('application/json'))
-        throw new JSONRPCError('Not Acceptable: Client must accept application/json', -32000, 406)
+        throw new XSMCPError('Not Acceptable: Client must accept application/json', -32000, 406)
 
       const text = await req.text()
       const json = JSON.parse(text) as JSONRPCRequest | JSONRPCRequest[]
@@ -33,11 +33,11 @@ export const fetch = (server: Server) =>
       }
     }
     catch (err) {
-      if (err instanceof JSONRPCError) {
+      if (err instanceof XSMCPError) {
         return err.toResponse()
       }
       else if (err instanceof Error) {
-        return new JSONRPCError(err.message, -32000, 500).toResponse()
+        return new XSMCPError(err.message, -32000, 500).toResponse()
       }
       else {
       // eslint-disable-next-line unicorn/throw-new-error
