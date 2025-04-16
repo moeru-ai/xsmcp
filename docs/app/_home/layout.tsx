@@ -1,7 +1,7 @@
-import type { ReactNode } from 'react';
-import { HomeLayout } from 'fumadocs-ui/layouts/home';
-import { baseOptions } from '@/app/layout.config';
+import type { PropsWithChildren } from 'react'
 
-export default function Layout({ children }: { children: ReactNode }) {
-  return <HomeLayout {...baseOptions}>{children}</HomeLayout>;
-}
+import { baseOptions } from '@/app/layout.config'
+import { HomeLayout } from 'fumadocs-ui/layouts/home'
+
+export default ({ children }: Readonly<PropsWithChildren>) =>
+  <HomeLayout {...baseOptions}>{children}</HomeLayout>

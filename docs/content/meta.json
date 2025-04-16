@@ -1,0 +1,10 @@
+{
+  "root": true,
+  "pages": [
+    "index",
+    "---Client---",
+    "...client",
+    "---Server---",
+    "...server"
+  ]
+}

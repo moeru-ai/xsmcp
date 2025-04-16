@@ -1,5 +1,7 @@
 import type { BaseLayoutProps } from 'fumadocs-ui/layouts/shared'
 
+import pkg from '../package.json' with { type: 'json' }
+
 /**
  * Shared layout configurations
  *
@@ -8,26 +10,24 @@ import type { BaseLayoutProps } from 'fumadocs-ui/layouts/shared'
  * Docs Layout: app/docs/layout.tsx
  */
 export const baseOptions: BaseLayoutProps = {
-  links: [
-    {
-      active: 'nested-url',
-      text: 'Documentation',
-      url: '/docs',
-    },
-  ],
+  githubUrl: 'https://github.com/moeru-ai/xsmcp',
+  // links: [
+  //   {
+  //     active: 'none',
+  //     text: 'Blog',
+  //     url: 'https://blog.moeru.ai',
+  //   },
+  // ],
   nav: {
     title: (
-      <>
-        <svg
-          aria-label="Logo"
-          height="24"
-          width="24"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <circle cx={12} cy={12} fill="currentColor" r={12} />
-        </svg>
-        My App
-      </>
+      <div className="prose flex items-center justify-center gap-3">
+        <img className="size-6 mb-0 -mr-1" src="https://github.com/moeru-ai.png" />
+        <span>xsMCP</span>
+        <code className="py-0 px-1">
+          {pkg.version}
+        </code>
+      </div>
     ),
+    transparentMode: 'top',
   },
 }
