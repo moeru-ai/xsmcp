@@ -1,0 +1,22 @@
+---
+title: Bun
+---
+
+```package-install
+npm i @xsmcp/server-http @xsmcp/server-shared
+```
+
+```ts twoslash
+import { createHttpServer } from '@xsmcp/server-http'
+import { createServer as createMcpServer } from '@xsmcp/server-shared'
+import { createServer } from 'node:http'
+
+const s = createMcpServer({
+  name: 'example-server',
+  version: '1.0.0'
+})
+
+const server = createHttpServer(s)
+
+export default server // [!code highlight]
+```

@@ -1,3 +1,5 @@
+import 'fumadocs-twoslash/twoslash.css'
+
 import './global.css'
 
 import type { PropsWithChildren } from 'react'

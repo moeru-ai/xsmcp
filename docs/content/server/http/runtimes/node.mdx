@@ -1,0 +1,24 @@
+---
+title: Node.js
+---
+
+```package-install
+npm i @whatwg-node/server @xsmcp/server-http @xsmcp/server-shared
+```
+
+```ts twoslash
+import { createServerAdapter } from '@whatwg-node/server' // [!code highlight]
+import { createHttpServer } from '@xsmcp/server-http'
+import { createServer as createMcpServer } from '@xsmcp/server-shared'
+import { createServer } from 'node:http'
+
+const s = createMcpServer({
+  name: 'example-server',
+  version: '1.0.0'
+})
+
+const server = createHttpServer(s)
+
+const httpServer = createServer(createServerAdapter(server.fetch)) // [!code highlight]
+httpServer.listen(3000) // [!code highlight]
+```

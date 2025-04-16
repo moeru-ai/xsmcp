@@ -3,6 +3,5 @@
 @custom-variant dark (&:is(.dark *));
 @import 'fumadocs-ui/css/black.css';
 @import 'fumadocs-ui/css/preset.css';
-@import 'fumadocs-twoslash/twoslash.css';
 
 @source '../node_modules/fumadocs-ui/dist/**/*.js';

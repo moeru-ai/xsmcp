@@ -1,8 +1,9 @@
 {
-  "title": "Server",
+  "title": "HTTP",
   "defaultOpen": true,
   "pages": [
     "index",
-    "http"
+    "web-standards",
+    "runtimes"
   ]
 }

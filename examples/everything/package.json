@@ -8,12 +8,12 @@
     "test": "vitest run"
   },
   "dependencies": {
-    "@valibot/to-json-schema": "^1.0.0",
-    "@whatwg-node/server": "^0.10.3",
+    "@valibot/to-json-schema": "catalog:",
+    "@whatwg-node/server": "catalog:",
     "@xsmcp/server-http": "workspace:",
     "@xsmcp/server-shared": "workspace:",
     "@xsmcp/shared": "workspace:",
-    "valibot": "^1.0.0"
+    "valibot": "catalog:"
   },
   "devDependencies": {
     "@xsmcp/client-http": "workspace:"
