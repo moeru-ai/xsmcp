@@ -12,7 +12,7 @@ export interface HttpTransportOptions {
 export class HttpTransport implements Transport {
   private abortController: AbortController = new AbortController()
   private authProvider?: OAuthClientProvider
-  private lastEventId?: string
+  // private lastEventId?: string
   private mcpSessionId?: string
   private url: URL
 
@@ -50,8 +50,8 @@ export class HttpTransport implements Transport {
       const messages: JSONRPCResponse[] = []
 
       for await (const event of eventStream) {
-        if (event.id != null)
-          this.lastEventId = event.id
+        // if (event.id != null)
+        //   this.lastEventId = event.id
 
         if (event.event == null || event.event === 'message') {
           const message = JSON.parse(event.data) as JSONRPCNotification | JSONRPCResponse
