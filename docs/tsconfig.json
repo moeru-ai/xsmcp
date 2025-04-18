@@ -7,8 +7,12 @@
     "incremental": true,
     "baseUrl": ".",
     "paths": {
-      "@/.source": ["./.source/index.ts"],
-      "@/*": ["./*"]
+      "@/.source": [
+        "./.source/index.ts"
+      ],
+      "@/*": [
+        "./*"
+      ]
     },
     "resolveJsonModule": true,
     "allowJs": true,
@@ -17,8 +21,16 @@
       {
         "name": "next"
       }
-    ]
+    ],
+    "esModuleInterop": true
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
-  "exclude": ["node_modules"]
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    ".next/types/**/*.ts"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
 }
