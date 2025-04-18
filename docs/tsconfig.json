@@ -1,11 +1,12 @@
 {
-  "extends": [
-    "@importantimport/tsconfig/app.json",
-    "@importantimport/tsconfig/parts/jsx-preserve.json"
-  ],
   "compilerOptions": {
     "incremental": true,
+    "target": "ESNext",
+    "jsx": "preserve",
+    "lib": ["DOM", "DOM.Iterable", "DOM.AsyncIterable", "ESNext"],
     "baseUrl": ".",
+    "module": "ESNext",
+    "moduleResolution": "bundler",
     "paths": {
       "@/.source": [
         "./.source/index.ts"
@@ -16,13 +17,17 @@
     },
     "resolveJsonModule": true,
     "allowJs": true,
+    "strict": true,
+    "noEmit": true,
+    "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
+    "isolatedModules": true,
+    "skipLibCheck": true,
     "plugins": [
       {
         "name": "next"
       }
-    ],
-    "esModuleInterop": true
+    ]
   },
   "include": [
     "next-env.d.ts",
