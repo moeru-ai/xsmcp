@@ -7,7 +7,7 @@
     "start": "tsx src/index.ts"
   },
   "dependencies": {
-    "@modelcontextprotocol/sdk": "file:../../modelcontextprotocol-sdk-1.10.0.tgz",
+    "@modelcontextprotocol/sdk": "^1.10.0",
     "@types/content-type": "^1.1.8",
     "@types/express": "^5.0.1",
     "content-type": "^1.0.5",

@@ -161,8 +161,8 @@ importers:
   examples/everything-original:
     dependencies:
       '@modelcontextprotocol/sdk':
-        specifier: file:../../modelcontextprotocol-sdk-1.10.0.tgz
-        version: file:modelcontextprotocol-sdk-1.10.0.tgz
+        specifier: ^1.10.0
+        version: 1.10.0
       '@types/content-type':
         specifier: ^1.1.8
         version: 1.1.8
@@ -747,9 +747,8 @@ packages:
   '@mdx-js/mdx@3.1.0':
     resolution: {integrity: sha512-/QxEhPAvGwbQmy1Px8F899L5Uc2KZ6JtXwlCgJmjSTBedwOZkByYcBG4GceIGPXRDsmfxhHazuS+hlOShRLeDw==}
 
-  '@modelcontextprotocol/sdk@file:modelcontextprotocol-sdk-1.10.0.tgz':
-    resolution: {integrity: sha512-OFEP/dRucrclMdKvOfOdwt7CWU60QIhv6tVSbR+xubfPJO7Rpg6v5B9WCnJPkVSGZXlCNhgMYRJ0Ca431ec38Q==, tarball: file:modelcontextprotocol-sdk-1.10.0.tgz}
-    version: 1.10.0
+  '@modelcontextprotocol/sdk@1.10.0':
+    resolution: {integrity: sha512-wijOavYZfSOADbVM0LA7mrQ17N4IKNdFcfezknCCsZ1Y1KstVWlkDZ5ebcxuQJmqTTxsNjBHLc7it1SV0TBiPg==}
     engines: {node: '>=18'}
 
   '@napi-rs/wasm-runtime@0.2.8':
@@ -4911,7 +4910,7 @@ snapshots:
       - acorn
       - supports-color
 
-  '@modelcontextprotocol/sdk@file:modelcontextprotocol-sdk-1.10.0.tgz':
+  '@modelcontextprotocol/sdk@1.10.0':
     dependencies:
       content-type: 1.0.5
       cors: 2.8.5
