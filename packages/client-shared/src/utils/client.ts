@@ -1,4 +1,15 @@
-import type { CallToolResult, ClientCapabilities, Implementation, InitializeResult, JSONRPC_VERSION, JSONRPCNotification, JSONRPCRequest, RequestId, ServerCapabilities } from '@xsmcp/shared'
+import type {
+  CallToolResult,
+  ClientCapabilities,
+  GetPromptResult,
+  Implementation,
+  InitializeResult,
+  JSONRPCNotification,
+  JSONRPCRequest,
+  ListPromptsResult,
+  ListToolsResult,
+  ServerCapabilities,
+} from '@xsmcp/shared'
 
 import { LATEST_PROTOCOL_VERSION } from '@xsmcp/shared'
 
@@ -36,18 +47,14 @@ export class Client {
       void this.initialize()
   }
 
-  public async callTool(name: string, args: Record<string, unknown> = {}) {
-    const result = await this.transport.request(this.request('tools/call', {
+  public async callTool(name: string, args: Record<string, unknown> = {}): Promise<CallToolResult> {
+    const res = await this.transport.request(this.request('tools/call', {
       arguments: args,
       name,
     }))
 
     // eslint-disable-next-line @masknet/type-prefer-return-type-annotation
-    return result[0] as {
-      id: RequestId
-      jsonrpc: typeof JSONRPC_VERSION
-      result: CallToolResult
-    }
+    return res[0].result as CallToolResult
   }
 
   public async close() {
@@ -56,6 +63,16 @@ export class Client {
 
   public getInstructions() {
     return this.serverInstructions
+  }
+
+  public async getPrompts(name: string, args: Record<string, unknown> = {}): Promise<GetPromptResult> {
+    const res = await this.transport.request(this.request('prompts/get', {
+      arguments: args,
+      name,
+    }))
+
+    // eslint-disable-next-line @masknet/type-prefer-return-type-annotation
+    return res[0].result as GetPromptResult
   }
 
   public getServerCapabilities() {
@@ -85,9 +102,18 @@ export class Client {
     await this.transport.notification(this.notification('notifications/initialized'))
   }
 
-  public async listTools() {
-    const result = await this.transport.request(this.request('tools/list'))
-    return result[0]
+  // TODO: params.cursor
+  public async listPrompts(): Promise<ListPromptsResult> {
+    const res = await this.transport.request(this.request('prompts/list'))
+    // eslint-disable-next-line @masknet/type-prefer-return-type-annotation
+    return res[0].result as ListPromptsResult
+  }
+
+  // TODO: params.cursor
+  public async listTools(): Promise<ListToolsResult> {
+    const res = await this.transport.request(this.request('tools/list'))
+    // eslint-disable-next-line @masknet/type-prefer-return-type-annotation
+    return res[0].result as ListToolsResult
   }
 
   private notification(method: string, params?: JSONRPCNotification['params']): JSONRPCNotification {
