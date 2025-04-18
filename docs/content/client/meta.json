@@ -2,6 +2,7 @@
   "title": "Client",
   "defaultOpen": true,
   "pages": [
-    "index"
+    "index",
+    "tools"
   ]
 }
