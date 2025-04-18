@@ -65,7 +65,7 @@ export class Client {
     return this.serverInstructions
   }
 
-  public async getPrompts(name: string, args: Record<string, unknown> = {}): Promise<GetPromptResult> {
+  public async getPrompt(name: string, args: Record<string, unknown> = {}): Promise<GetPromptResult> {
     const res = await this.transport.request(this.request('prompts/get', {
       arguments: args,
       name,
@@ -92,8 +92,9 @@ export class Client {
 
     const result = res[0].result as InitializeResult
 
-    if (result.protocolVersion !== LATEST_PROTOCOL_VERSION)
-      throw new Error(`Server's protocol version is not supported: ${result.protocolVersion}.`)
+    // https://github.com/modelcontextprotocol/typescript-sdk/issues/364
+    // if (result.protocolVersion !== LATEST_PROTOCOL_VERSION)
+    //   throw new Error(`Server's protocol version is not supported: ${result.protocolVersion}.`)
 
     this.serverCapabilities = result.capabilities
     this.serverInfo = result.serverInfo

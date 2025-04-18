@@ -184,6 +184,10 @@ importers:
       zod-to-json-schema:
         specifier: ^3.24.5
         version: 3.24.5(zod@3.24.2)
+    devDependencies:
+      '@xsmcp/client-http':
+        specifier: 'workspace:'
+        version: link:../../packages/client-http
 
   packages-top/xsmcp:
     dependencies:
