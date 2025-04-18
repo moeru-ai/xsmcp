@@ -11,6 +11,7 @@ export default defineConfig({
   rules: {
     '@masknet/no-default-error': 'off',
     '@masknet/no-then': 'off',
+    'sonarjs/fixme-tag': 'warn',
     'sonarjs/todo-tag': 'warn',
   },
 }, {
