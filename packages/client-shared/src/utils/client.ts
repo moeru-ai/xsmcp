@@ -1,4 +1,4 @@
-import type { CallToolResult, ClientCapabilities, InitializeResult, JSONRPC_VERSION, JSONRPCNotification, JSONRPCRequest, RequestId } from '@xsmcp/shared'
+import type { CallToolResult, ClientCapabilities, Implementation, InitializeResult, JSONRPC_VERSION, JSONRPCNotification, JSONRPCRequest, RequestId, ServerCapabilities } from '@xsmcp/shared'
 
 import { LATEST_PROTOCOL_VERSION } from '@xsmcp/shared'
 
@@ -14,9 +14,12 @@ export interface CreateClientOptions {
 }
 
 export class Client {
-  capabilities: ClientCapabilities = {}
-  clientInfo: Pick<CreateClientOptions, 'name' | 'version'>
-  transport: Transport
+  private clientCapabilities: ClientCapabilities = {}
+  private clientInfo: Implementation
+  private serverCapabilities?: ServerCapabilities
+  private serverInfo?: Implementation
+  private serverInstructions?: string
+  private transport: Transport
 
   constructor(options: CreateClientOptions) {
     this.clientInfo = {
@@ -26,7 +29,7 @@ export class Client {
     this.transport = options.transport
 
     if (options.capabilities)
-      this.capabilities = options.capabilities
+      this.clientCapabilities = options.capabilities
 
     if (options.initialize !== false)
       // eslint-disable-next-line sonarjs/no-async-constructor
@@ -51,9 +54,21 @@ export class Client {
     return this.transport.close?.()
   }
 
+  public getInstructions() {
+    return this.serverInstructions
+  }
+
+  public getServerCapabilities() {
+    return this.serverCapabilities
+  }
+
+  public getServerVersion() {
+    return this.serverInfo
+  }
+
   public async initialize() {
     const res = await this.transport.request(this.request('initialize', {
-      capabilities: this.capabilities,
+      capabilities: this.clientCapabilities,
       clientInfo: this.clientInfo,
       protocolVersion: LATEST_PROTOCOL_VERSION,
     }))
@@ -61,10 +76,11 @@ export class Client {
     const result = res[0].result as InitializeResult
 
     if (result.protocolVersion !== LATEST_PROTOCOL_VERSION)
-      throw new Error(`Server does not support the latest protocol version (${LATEST_PROTOCOL_VERSION}).`)
+      throw new Error(`Server's protocol version is not supported: ${result.protocolVersion}.`)
 
-    // eslint-disable-next-line no-console
-    console.log(JSON.stringify(result, null, 2))
+    this.serverCapabilities = result.capabilities
+    this.serverInfo = result.serverInfo
+    this.serverInstructions = result.instructions
 
     await this.transport.notification(this.notification('notifications/initialized'))
   }
