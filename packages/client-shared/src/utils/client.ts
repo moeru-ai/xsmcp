@@ -1,4 +1,4 @@
-import type { CallToolResult, ClientCapabilities, JSONRPC_VERSION, JSONRPCNotification, JSONRPCRequest, RequestId } from '@xsmcp/shared'
+import type { CallToolResult, ClientCapabilities, InitializeResult, JSONRPC_VERSION, JSONRPCNotification, JSONRPCRequest, RequestId } from '@xsmcp/shared'
 
 import { LATEST_PROTOCOL_VERSION } from '@xsmcp/shared'
 
@@ -52,11 +52,16 @@ export class Client {
   }
 
   public async initialize() {
-    const result = await this.transport.request(this.request('initialize', {
+    const res = await this.transport.request(this.request('initialize', {
       capabilities: this.capabilities,
       clientInfo: this.clientInfo,
       protocolVersion: LATEST_PROTOCOL_VERSION,
     }))
+
+    const result = res[0].result as InitializeResult
+
+    if (result.protocolVersion !== LATEST_PROTOCOL_VERSION)
+      throw new Error(`Server does not support the latest protocol version (${LATEST_PROTOCOL_VERSION}).`)
 
     // eslint-disable-next-line no-console
     console.log(JSON.stringify(result, null, 2))
