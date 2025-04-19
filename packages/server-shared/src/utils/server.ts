@@ -48,6 +48,7 @@ export class Server {
       this.tools.push(...options.tools)
   }
 
+  // TODO: fix types
   public addPrompt(prompt: PromptOptions<any>) {
     // eslint-disable-next-line ts/no-unsafe-argument
     this.prompts.push(prompt)
