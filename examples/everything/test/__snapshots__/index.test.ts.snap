@@ -8,7 +8,6 @@ exports[`@xsmcp/everything > callTool 1`] = `
       "type": "text",
     },
   ],
-  "id": undefined,
   "isError": false,
 }
 `;
@@ -21,7 +20,6 @@ exports[`@xsmcp/everything > callTool 2`] = `
       "type": "text",
     },
   ],
-  "id": undefined,
   "isError": false,
 }
 `;
@@ -34,7 +32,6 @@ exports[`@xsmcp/everything > callTool 3`] = `
       "type": "text",
     },
   ],
-  "id": undefined,
   "isError": false,
 }
 `;
@@ -56,7 +53,6 @@ exports[`@xsmcp/everything > callTool 4`] = `
       "type": "text",
     },
   ],
-  "id": undefined,
   "isError": false,
 }
 `;
@@ -135,7 +131,6 @@ exports[`@xsmcp/everything > listPrompts 1`] = `
 
 exports[`@xsmcp/everything > listTools 1`] = `
 {
-  "id": undefined,
   "tools": [
     {
       "description": "Adds two numbers",
