@@ -1,21 +1,37 @@
-import type { CallToolRequest, CallToolResult, InitializeRequest, InitializeResult, ListToolsRequest, ListToolsResult, ServerCapabilities } from '@xsmcp/shared'
+import type {
+  CallToolRequest,
+  CallToolResult,
+  GetPromptRequest,
+  GetPromptResult,
+  InitializeRequest,
+  InitializeResult,
+  ListPromptsRequest,
+  ListPromptsResult,
+  ListToolsRequest,
+  ListToolsResult,
+  ServerCapabilities,
+} from '@xsmcp/shared'
 
 import { LATEST_PROTOCOL_VERSION } from '@xsmcp/shared'
 
+import type { PromptOptions } from './prompt'
 import type { ToolOptions } from './tool'
 
 import { MethodNotFound } from './error'
+import { listPrompt } from './prompt'
 import { listTool } from './tool'
 
 export interface CreateServerOptions {
   capabilities?: ServerCapabilities
   name: string
+  prompts?: PromptOptions[]
   tools?: ToolOptions[]
   version: string
 }
 
 export class Server {
   private capabilities: ServerCapabilities = {}
+  private prompts: PromptOptions[] = []
   private serverInfo: InitializeResult['serverInfo']
   private tools: ToolOptions[] = []
 
@@ -30,6 +46,12 @@ export class Server {
 
     if (options.tools)
       this.tools.push(...options.tools)
+  }
+
+  public addPrompt(prompt: PromptOptions<any>) {
+    // eslint-disable-next-line ts/no-unsafe-argument
+    this.prompts.push(prompt)
+    return this
   }
 
   // TODO: fix types
@@ -63,12 +85,28 @@ export class Server {
     }
   }
 
+  public async getPrompt(params: GetPromptRequest['params']): Promise<GetPromptResult> {
+    const prompt = this.prompts.find(prompt => prompt.name === params.name)
+
+    if (!prompt)
+      throw new Error(`Prompt not found: ${params.name}`)
+
+    return {
+      description: prompt.description,
+      messages: await prompt.execute(params.arguments),
+    }
+  }
+
   public async handleRequest(method: string, params: unknown) {
     switch (method) {
       case 'initialize':
         return this.initialize(params as InitializeRequest['params'])
       case 'notifications/initialized':
         return
+      case 'prompts/get':
+        return this.getPrompt(params as GetPromptRequest['params'])
+      case 'prompts/list':
+        return this.listPrompts(params as ListPromptsRequest['params'])
       case 'tools/call':
         return this.callTool(params as CallToolRequest['params'])
       case 'tools/list':
@@ -86,6 +124,13 @@ export class Server {
       },
       protocolVersion: LATEST_PROTOCOL_VERSION,
       serverInfo: this.serverInfo,
+    }
+  }
+
+  /** @see {@link https://modelcontextprotocol.io/specification/2025-03-26/server/prompts#listing-prompts} */
+  public async listPrompts(_params?: ListPromptsRequest['params']): Promise<ListPromptsResult> {
+    return {
+      prompts: await Promise.all(this.prompts.map(async promptOptions => listPrompt(promptOptions))),
     }
   }
 
