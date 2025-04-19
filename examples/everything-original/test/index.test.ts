@@ -44,5 +44,18 @@ describe('@xsmcp/everything-original', async () => {
     // TODO: FIXME: FAILED
     // const resourceResult = await client.getPrompt('resource_prompt', { resourceId: 2 })
     // expect(resourceResult).toMatchSnapshot()
-  }, 30000)
+  })
+
+  it('listResources', async () => {
+    const result = await client.listResources()
+    expect(result).toMatchSnapshot()
+  })
+
+  it('readResource', async () => {
+    const evenResult = await client.readResource('test://static/resource/1')
+    expect(evenResult).toMatchSnapshot()
+
+    const oddResult = await client.readResource('test://static/resource/2')
+    expect(oddResult).toMatchSnapshot()
+  })
 })
