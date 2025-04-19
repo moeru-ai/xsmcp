@@ -7,24 +7,31 @@ import type {
   InitializeResult,
   ListPromptsRequest,
   ListPromptsResult,
+  ListResourcesRequest,
+  ListResourcesResult,
   ListToolsRequest,
   ListToolsResult,
+  ReadResourceRequest,
+  ReadResourceResult,
   ServerCapabilities,
 } from '@xsmcp/shared'
 
 import { LATEST_PROTOCOL_VERSION } from '@xsmcp/shared'
 
 import type { PromptOptions } from './prompt'
+import type { ResourceOptions } from './resource'
 import type { ToolOptions } from './tool'
 
 import { MethodNotFound } from './error'
 import { listPrompt } from './prompt'
+import { listResource } from './resource'
 import { listTool } from './tool'
 
 export interface CreateServerOptions {
   capabilities?: ServerCapabilities
   name: string
   prompts?: PromptOptions[]
+  resources?: ResourceOptions[]
   tools?: ToolOptions[]
   version: string
 }
@@ -32,6 +39,7 @@ export interface CreateServerOptions {
 export class Server {
   private capabilities: ServerCapabilities = {}
   private prompts: PromptOptions[] = []
+  private resources: ResourceOptions[] = []
   private serverInfo: InitializeResult['serverInfo']
   private tools: ToolOptions[] = []
 
@@ -43,6 +51,12 @@ export class Server {
 
     if (options.capabilities)
       this.capabilities = options.capabilities
+
+    if (options.prompts)
+      this.prompts.push(...options.prompts)
+
+    if (options.resources)
+      this.resources.push(...options.resources)
 
     if (options.tools)
       this.tools.push(...options.tools)
@@ -108,6 +122,10 @@ export class Server {
         return this.getPrompt(params as GetPromptRequest['params'])
       case 'prompts/list':
         return this.listPrompts(params as ListPromptsRequest['params'])
+      case 'resources/list':
+        return this.listResources(params as ListResourcesRequest['params'])
+      case 'resources/read':
+        return this.readResource(params as ReadResourceRequest['params'])
       case 'tools/call':
         return this.callTool(params as CallToolRequest['params'])
       case 'tools/list':
@@ -135,12 +153,28 @@ export class Server {
     }
   }
 
+  /** @see {@link https://modelcontextprotocol.io/specification/2025-03-26/server/resources#listing-resources} */
+  public async listResources(_params: ListResourcesRequest['params']): Promise<ListResourcesResult> {
+    return {
+      resources: this.resources.map(resource => listResource(resource)),
+    }
+  }
+
   // TODO: support params (cursor)
   /** @see {@link https://spec.modelcontextprotocol.io/specification/2025-03-26/server/tools/#listing-tools} */
   public async listTools(_params?: ListToolsRequest['params']): Promise<ListToolsResult> {
     return {
       tools: await Promise.all(this.tools.map(async toolOptions => listTool(toolOptions))),
     }
+  }
+
+  public async readResource(params: ReadResourceRequest['params']): Promise<ReadResourceResult> {
+    const resource = this.resources.find(resource => resource.uri === params.uri)
+
+    if (!resource)
+      throw new Error(`Resource not found: ${params.uri}`)
+
+    return { contents: await resource.load() }
   }
 }
 
