@@ -105,6 +105,74 @@ exports[`@xsmcp/everything-original > listPrompts 1`] = `
 }
 `;
 
+exports[`@xsmcp/everything-original > listResources 1`] = `
+{
+  "nextCursor": "MTA=",
+  "resources": [
+    {
+      "mimeType": "text/plain",
+      "name": "Resource 1",
+      "text": "Resource 1: This is a plaintext resource",
+      "uri": "test://static/resource/1",
+    },
+    {
+      "blob": "UmVzb3VyY2UgMjogVGhpcyBpcyBhIGJhc2U2NCBibG9i",
+      "mimeType": "application/octet-stream",
+      "name": "Resource 2",
+      "uri": "test://static/resource/2",
+    },
+    {
+      "mimeType": "text/plain",
+      "name": "Resource 3",
+      "text": "Resource 3: This is a plaintext resource",
+      "uri": "test://static/resource/3",
+    },
+    {
+      "blob": "UmVzb3VyY2UgNDogVGhpcyBpcyBhIGJhc2U2NCBibG9i",
+      "mimeType": "application/octet-stream",
+      "name": "Resource 4",
+      "uri": "test://static/resource/4",
+    },
+    {
+      "mimeType": "text/plain",
+      "name": "Resource 5",
+      "text": "Resource 5: This is a plaintext resource",
+      "uri": "test://static/resource/5",
+    },
+    {
+      "blob": "UmVzb3VyY2UgNjogVGhpcyBpcyBhIGJhc2U2NCBibG9i",
+      "mimeType": "application/octet-stream",
+      "name": "Resource 6",
+      "uri": "test://static/resource/6",
+    },
+    {
+      "mimeType": "text/plain",
+      "name": "Resource 7",
+      "text": "Resource 7: This is a plaintext resource",
+      "uri": "test://static/resource/7",
+    },
+    {
+      "blob": "UmVzb3VyY2UgODogVGhpcyBpcyBhIGJhc2U2NCBibG9i",
+      "mimeType": "application/octet-stream",
+      "name": "Resource 8",
+      "uri": "test://static/resource/8",
+    },
+    {
+      "mimeType": "text/plain",
+      "name": "Resource 9",
+      "text": "Resource 9: This is a plaintext resource",
+      "uri": "test://static/resource/9",
+    },
+    {
+      "blob": "UmVzb3VyY2UgMTA6IFRoaXMgaXMgYSBiYXNlNjQgYmxvYg==",
+      "mimeType": "application/octet-stream",
+      "name": "Resource 10",
+      "uri": "test://static/resource/10",
+    },
+  ],
+}
+`;
+
 exports[`@xsmcp/everything-original > listTools 1`] = `
 {
   "tools": [
@@ -260,6 +328,32 @@ exports[`@xsmcp/everything-original > listTools 1`] = `
         "type": "object",
       },
       "name": "getResourceReference",
+    },
+  ],
+}
+`;
+
+exports[`@xsmcp/everything-original > readResource 1`] = `
+{
+  "contents": [
+    {
+      "mimeType": "text/plain",
+      "name": "Resource 1",
+      "text": "Resource 1: This is a plaintext resource",
+      "uri": "test://static/resource/1",
+    },
+  ],
+}
+`;
+
+exports[`@xsmcp/everything-original > readResource 2`] = `
+{
+  "contents": [
+    {
+      "blob": "UmVzb3VyY2UgMjogVGhpcyBpcyBhIGJhc2U2NCBibG9i",
+      "mimeType": "application/octet-stream",
+      "name": "Resource 2",
+      "uri": "test://static/resource/2",
     },
   ],
 }
