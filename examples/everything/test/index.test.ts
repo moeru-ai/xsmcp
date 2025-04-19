@@ -29,4 +29,21 @@ describe('@xsmcp/everything', async () => {
     const getTinyImageResult = await client.callTool('getTinyImage', {})
     expect(cleanId(getTinyImageResult)).toMatchSnapshot()
   })
+
+  it('listPrompts', async () => {
+    const result = await client.listPrompts()
+    expect(result).toMatchSnapshot()
+  })
+
+  it('getPrompt', async () => {
+    const simpleResult = await client.getPrompt('simple_prompt')
+    expect(simpleResult).toMatchSnapshot()
+
+    const complexResult = await client.getPrompt('complex_prompt', { style: 'dark', temperature: 42 })
+    expect(complexResult).toMatchSnapshot()
+
+    // TODO: add resource_prompt
+    // const resourceResult = await client.getPrompt('resource_prompt', { resourceId: 2 })
+    // expect(resourceResult).toMatchSnapshot()
+  })
 })
