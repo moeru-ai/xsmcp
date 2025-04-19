@@ -7,7 +7,9 @@ import type {
   JSONRPCNotification,
   JSONRPCRequest,
   ListPromptsResult,
+  ListResourcesResult,
   ListToolsResult,
+  ReadResourceResult,
   ServerCapabilities,
 } from '@xsmcp/shared'
 
@@ -111,10 +113,24 @@ export class Client {
   }
 
   // TODO: params.cursor
+  public async listResources(): Promise<ListResourcesResult> {
+    const res = await this.transport.request(this.request('resources/list'))
+    // eslint-disable-next-line @masknet/type-prefer-return-type-annotation
+    return res[0].result as ListResourcesResult
+  }
+
+  // TODO: params.cursor
   public async listTools(): Promise<ListToolsResult> {
     const res = await this.transport.request(this.request('tools/list'))
     // eslint-disable-next-line @masknet/type-prefer-return-type-annotation
     return res[0].result as ListToolsResult
+  }
+
+  public async readResource(uri: string): Promise<ReadResourceResult> {
+    const res = await this.transport.request(this.request('resources/read', { uri }))
+
+    // eslint-disable-next-line @masknet/type-prefer-return-type-annotation
+    return res[0].result as ReadResourceResult
   }
 
   private notification(method: string, params?: JSONRPCNotification['params']): JSONRPCNotification {
