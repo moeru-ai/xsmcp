@@ -3,6 +3,7 @@
 import { createServer } from '@xsmcp/server-shared'
 
 import * as pkg from '../package.json' with { type: 'json' }
+import * as prompts from './prompts'
 import * as tools from './tools'
 
 const server = createServer({
@@ -12,6 +13,10 @@ const server = createServer({
 
 for (const tool of Object.values(tools)) {
   server.addTool(tool)
+}
+
+for (const prompt of Object.values(prompts)) {
+  server.addPrompt(prompt)
 }
 
 export { server }
