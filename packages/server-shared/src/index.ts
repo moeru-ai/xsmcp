@@ -1,6 +1,5 @@
 export * from './utils/error'
 export * from './utils/prompt'
 export * from './utils/resource'
-export * from './utils/resource-template'
 export * from './utils/server'
 export * from './utils/tool'

@@ -15,6 +15,7 @@ import type {
   ListToolsResult,
   ReadResourceRequest,
   ReadResourceResult,
+  ResourceTemplate,
   ServerCapabilities,
 } from '@xsmcp/shared'
 
@@ -22,13 +23,11 @@ import { LATEST_PROTOCOL_VERSION } from '@xsmcp/shared'
 
 import type { PromptOptions } from './prompt'
 import type { ResourceOptions } from './resource'
-import type { ResourceTemplateOptions } from './resource-template'
 import type { ToolOptions } from './tool'
 
 import { MethodNotFound } from './error'
 import { listPrompt } from './prompt'
 import { listResource } from './resource'
-import { listResourceTemplate } from './resource-template'
 import { listTool } from './tool'
 
 export interface CreateServerOptions {
@@ -36,7 +35,7 @@ export interface CreateServerOptions {
   name: string
   prompts?: PromptOptions[]
   resources?: ResourceOptions[]
-  resourceTemplates?: ResourceTemplateOptions[]
+  resourceTemplates?: ResourceTemplate[]
   tools?: ToolOptions[]
   version: string
 }
@@ -45,7 +44,7 @@ export class Server {
   private capabilities: ServerCapabilities = {}
   private prompts: PromptOptions[] = []
   private resources: ResourceOptions[] = []
-  private resourceTemplates: ResourceTemplateOptions[] = []
+  private resourceTemplates: ResourceTemplate[] = []
   private serverInfo: InitializeResult['serverInfo']
   private tools: ToolOptions[] = []
 
@@ -71,10 +70,8 @@ export class Server {
       this.tools.push(...options.tools)
   }
 
-  // TODO: fix types
   public addPrompt(prompt: PromptOptions<any>) {
-    // eslint-disable-next-line ts/no-unsafe-argument
-    this.prompts.push(prompt)
+    this.prompts.push(prompt as PromptOptions)
     return this
   }
 
@@ -83,15 +80,13 @@ export class Server {
     return this
   }
 
-  public addResourceTemplate(resourceTemplate: ResourceTemplateOptions) {
+  public addResourceTemplate(resourceTemplate: ResourceTemplate) {
     this.resourceTemplates.push(resourceTemplate)
     return this
   }
 
-  // TODO: fix types
   public addTool(tool: ToolOptions<any>) {
-    // eslint-disable-next-line ts/no-unsafe-argument
-    this.tools.push(tool)
+    this.tools.push(tool as ToolOptions)
     return this
   }
 
@@ -167,6 +162,7 @@ export class Server {
     }
   }
 
+  // TODO: support params (cursor)
   /** @see {@link https://modelcontextprotocol.io/specification/2025-03-26/server/prompts#listing-prompts} */
   public async listPrompts(_params?: ListPromptsRequest['params']): Promise<ListPromptsResult> {
     return {
@@ -174,6 +170,7 @@ export class Server {
     }
   }
 
+  // TODO: support params (cursor)
   /** @see {@link https://modelcontextprotocol.io/specification/2025-03-26/server/resources#listing-resources} */
   public async listResources(_params: ListResourcesRequest['params']): Promise<ListResourcesResult> {
     return {
@@ -181,10 +178,11 @@ export class Server {
     }
   }
 
+  // TODO: support params (cursor)
   /** @see {@link https://modelcontextprotocol.io/specification/2025-03-26/server/resources#resource-templates} */
   public async listResourceTemplates(_params?: ListResourceTemplatesRequest['params']): Promise<ListResourceTemplatesResult> {
     return {
-      resourceTemplates: await Promise.all(this.resourceTemplates.map(async resourceTemplateOptions => listResourceTemplate(resourceTemplateOptions))),
+      resourceTemplates: this.resourceTemplates,
     }
   }
 
