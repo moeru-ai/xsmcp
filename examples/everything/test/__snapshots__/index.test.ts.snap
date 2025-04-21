@@ -129,6 +129,525 @@ exports[`@xsmcp/everything > listPrompts 1`] = `
 }
 `;
 
+exports[`@xsmcp/everything > listResourceTemplates 1`] = `
+{
+  "resourceTemplates": [
+    {
+      "description": "A static resource with a numeric ID",
+      "name": "Static Resource",
+      "uriTemplate": "test://static/resource/{id}",
+    },
+  ],
+}
+`;
+
+exports[`@xsmcp/everything > listResources 1`] = `
+{
+  "resources": [
+    {
+      "mimeType": "text/plain",
+      "name": "Resource 1",
+      "uri": "test://static/resource/1",
+    },
+    {
+      "mimeType": "application/octet-stream",
+      "name": "Resource 2",
+      "uri": "test://static/resource/2",
+    },
+    {
+      "mimeType": "text/plain",
+      "name": "Resource 3",
+      "uri": "test://static/resource/3",
+    },
+    {
+      "mimeType": "application/octet-stream",
+      "name": "Resource 4",
+      "uri": "test://static/resource/4",
+    },
+    {
+      "mimeType": "text/plain",
+      "name": "Resource 5",
+      "uri": "test://static/resource/5",
+    },
+    {
+      "mimeType": "application/octet-stream",
+      "name": "Resource 6",
+      "uri": "test://static/resource/6",
+    },
+    {
+      "mimeType": "text/plain",
+      "name": "Resource 7",
+      "uri": "test://static/resource/7",
+    },
+    {
+      "mimeType": "application/octet-stream",
+      "name": "Resource 8",
+      "uri": "test://static/resource/8",
+    },
+    {
+      "mimeType": "text/plain",
+      "name": "Resource 9",
+      "uri": "test://static/resource/9",
+    },
+    {
+      "mimeType": "application/octet-stream",
+      "name": "Resource 10",
+      "uri": "test://static/resource/10",
+    },
+    {
+      "mimeType": "text/plain",
+      "name": "Resource 11",
+      "uri": "test://static/resource/11",
+    },
+    {
+      "mimeType": "application/octet-stream",
+      "name": "Resource 12",
+      "uri": "test://static/resource/12",
+    },
+    {
+      "mimeType": "text/plain",
+      "name": "Resource 13",
+      "uri": "test://static/resource/13",
+    },
+    {
+      "mimeType": "application/octet-stream",
+      "name": "Resource 14",
+      "uri": "test://static/resource/14",
+    },
+    {
+      "mimeType": "text/plain",
+      "name": "Resource 15",
+      "uri": "test://static/resource/15",
+    },
+    {
+      "mimeType": "application/octet-stream",
+      "name": "Resource 16",
+      "uri": "test://static/resource/16",
+    },
+    {
+      "mimeType": "text/plain",
+      "name": "Resource 17",
+      "uri": "test://static/resource/17",
+    },
+    {
+      "mimeType": "application/octet-stream",
+      "name": "Resource 18",
+      "uri": "test://static/resource/18",
+    },
+    {
+      "mimeType": "text/plain",
+      "name": "Resource 19",
+      "uri": "test://static/resource/19",
+    },
+    {
+      "mimeType": "application/octet-stream",
+      "name": "Resource 20",
+      "uri": "test://static/resource/20",
+    },
+    {
+      "mimeType": "text/plain",
+      "name": "Resource 21",
+      "uri": "test://static/resource/21",
+    },
+    {
+      "mimeType": "application/octet-stream",
+      "name": "Resource 22",
+      "uri": "test://static/resource/22",
+    },
+    {
+      "mimeType": "text/plain",
+      "name": "Resource 23",
+      "uri": "test://static/resource/23",
+    },
+    {
+      "mimeType": "application/octet-stream",
+      "name": "Resource 24",
+      "uri": "test://static/resource/24",
+    },
+    {
+      "mimeType": "text/plain",
+      "name": "Resource 25",
+      "uri": "test://static/resource/25",
+    },
+    {
+      "mimeType": "application/octet-stream",
+      "name": "Resource 26",
+      "uri": "test://static/resource/26",
+    },
+    {
+      "mimeType": "text/plain",
+      "name": "Resource 27",
+      "uri": "test://static/resource/27",
+    },
+    {
+      "mimeType": "application/octet-stream",
+      "name": "Resource 28",
+      "uri": "test://static/resource/28",
+    },
+    {
+      "mimeType": "text/plain",
+      "name": "Resource 29",
+      "uri": "test://static/resource/29",
+    },
+    {
+      "mimeType": "application/octet-stream",
+      "name": "Resource 30",
+      "uri": "test://static/resource/30",
+    },
+    {
+      "mimeType": "text/plain",
+      "name": "Resource 31",
+      "uri": "test://static/resource/31",
+    },
+    {
+      "mimeType": "application/octet-stream",
+      "name": "Resource 32",
+      "uri": "test://static/resource/32",
+    },
+    {
+      "mimeType": "text/plain",
+      "name": "Resource 33",
+      "uri": "test://static/resource/33",
+    },
+    {
+      "mimeType": "application/octet-stream",
+      "name": "Resource 34",
+      "uri": "test://static/resource/34",
+    },
+    {
+      "mimeType": "text/plain",
+      "name": "Resource 35",
+      "uri": "test://static/resource/35",
+    },
+    {
+      "mimeType": "application/octet-stream",
+      "name": "Resource 36",
+      "uri": "test://static/resource/36",
+    },
+    {
+      "mimeType": "text/plain",
+      "name": "Resource 37",
+      "uri": "test://static/resource/37",
+    },
+    {
+      "mimeType": "application/octet-stream",
+      "name": "Resource 38",
+      "uri": "test://static/resource/38",
+    },
+    {
+      "mimeType": "text/plain",
+      "name": "Resource 39",
+      "uri": "test://static/resource/39",
+    },
+    {
+      "mimeType": "application/octet-stream",
+      "name": "Resource 40",
+      "uri": "test://static/resource/40",
+    },
+    {
+      "mimeType": "text/plain",
+      "name": "Resource 41",
+      "uri": "test://static/resource/41",
+    },
+    {
+      "mimeType": "application/octet-stream",
+      "name": "Resource 42",
+      "uri": "test://static/resource/42",
+    },
+    {
+      "mimeType": "text/plain",
+      "name": "Resource 43",
+      "uri": "test://static/resource/43",
+    },
+    {
+      "mimeType": "application/octet-stream",
+      "name": "Resource 44",
+      "uri": "test://static/resource/44",
+    },
+    {
+      "mimeType": "text/plain",
+      "name": "Resource 45",
+      "uri": "test://static/resource/45",
+    },
+    {
+      "mimeType": "application/octet-stream",
+      "name": "Resource 46",
+      "uri": "test://static/resource/46",
+    },
+    {
+      "mimeType": "text/plain",
+      "name": "Resource 47",
+      "uri": "test://static/resource/47",
+    },
+    {
+      "mimeType": "application/octet-stream",
+      "name": "Resource 48",
+      "uri": "test://static/resource/48",
+    },
+    {
+      "mimeType": "text/plain",
+      "name": "Resource 49",
+      "uri": "test://static/resource/49",
+    },
+    {
+      "mimeType": "application/octet-stream",
+      "name": "Resource 50",
+      "uri": "test://static/resource/50",
+    },
+    {
+      "mimeType": "text/plain",
+      "name": "Resource 51",
+      "uri": "test://static/resource/51",
+    },
+    {
+      "mimeType": "application/octet-stream",
+      "name": "Resource 52",
+      "uri": "test://static/resource/52",
+    },
+    {
+      "mimeType": "text/plain",
+      "name": "Resource 53",
+      "uri": "test://static/resource/53",
+    },
+    {
+      "mimeType": "application/octet-stream",
+      "name": "Resource 54",
+      "uri": "test://static/resource/54",
+    },
+    {
+      "mimeType": "text/plain",
+      "name": "Resource 55",
+      "uri": "test://static/resource/55",
+    },
+    {
+      "mimeType": "application/octet-stream",
+      "name": "Resource 56",
+      "uri": "test://static/resource/56",
+    },
+    {
+      "mimeType": "text/plain",
+      "name": "Resource 57",
+      "uri": "test://static/resource/57",
+    },
+    {
+      "mimeType": "application/octet-stream",
+      "name": "Resource 58",
+      "uri": "test://static/resource/58",
+    },
+    {
+      "mimeType": "text/plain",
+      "name": "Resource 59",
+      "uri": "test://static/resource/59",
+    },
+    {
+      "mimeType": "application/octet-stream",
+      "name": "Resource 60",
+      "uri": "test://static/resource/60",
+    },
+    {
+      "mimeType": "text/plain",
+      "name": "Resource 61",
+      "uri": "test://static/resource/61",
+    },
+    {
+      "mimeType": "application/octet-stream",
+      "name": "Resource 62",
+      "uri": "test://static/resource/62",
+    },
+    {
+      "mimeType": "text/plain",
+      "name": "Resource 63",
+      "uri": "test://static/resource/63",
+    },
+    {
+      "mimeType": "application/octet-stream",
+      "name": "Resource 64",
+      "uri": "test://static/resource/64",
+    },
+    {
+      "mimeType": "text/plain",
+      "name": "Resource 65",
+      "uri": "test://static/resource/65",
+    },
+    {
+      "mimeType": "application/octet-stream",
+      "name": "Resource 66",
+      "uri": "test://static/resource/66",
+    },
+    {
+      "mimeType": "text/plain",
+      "name": "Resource 67",
+      "uri": "test://static/resource/67",
+    },
+    {
+      "mimeType": "application/octet-stream",
+      "name": "Resource 68",
+      "uri": "test://static/resource/68",
+    },
+    {
+      "mimeType": "text/plain",
+      "name": "Resource 69",
+      "uri": "test://static/resource/69",
+    },
+    {
+      "mimeType": "application/octet-stream",
+      "name": "Resource 70",
+      "uri": "test://static/resource/70",
+    },
+    {
+      "mimeType": "text/plain",
+      "name": "Resource 71",
+      "uri": "test://static/resource/71",
+    },
+    {
+      "mimeType": "application/octet-stream",
+      "name": "Resource 72",
+      "uri": "test://static/resource/72",
+    },
+    {
+      "mimeType": "text/plain",
+      "name": "Resource 73",
+      "uri": "test://static/resource/73",
+    },
+    {
+      "mimeType": "application/octet-stream",
+      "name": "Resource 74",
+      "uri": "test://static/resource/74",
+    },
+    {
+      "mimeType": "text/plain",
+      "name": "Resource 75",
+      "uri": "test://static/resource/75",
+    },
+    {
+      "mimeType": "application/octet-stream",
+      "name": "Resource 76",
+      "uri": "test://static/resource/76",
+    },
+    {
+      "mimeType": "text/plain",
+      "name": "Resource 77",
+      "uri": "test://static/resource/77",
+    },
+    {
+      "mimeType": "application/octet-stream",
+      "name": "Resource 78",
+      "uri": "test://static/resource/78",
+    },
+    {
+      "mimeType": "text/plain",
+      "name": "Resource 79",
+      "uri": "test://static/resource/79",
+    },
+    {
+      "mimeType": "application/octet-stream",
+      "name": "Resource 80",
+      "uri": "test://static/resource/80",
+    },
+    {
+      "mimeType": "text/plain",
+      "name": "Resource 81",
+      "uri": "test://static/resource/81",
+    },
+    {
+      "mimeType": "application/octet-stream",
+      "name": "Resource 82",
+      "uri": "test://static/resource/82",
+    },
+    {
+      "mimeType": "text/plain",
+      "name": "Resource 83",
+      "uri": "test://static/resource/83",
+    },
+    {
+      "mimeType": "application/octet-stream",
+      "name": "Resource 84",
+      "uri": "test://static/resource/84",
+    },
+    {
+      "mimeType": "text/plain",
+      "name": "Resource 85",
+      "uri": "test://static/resource/85",
+    },
+    {
+      "mimeType": "application/octet-stream",
+      "name": "Resource 86",
+      "uri": "test://static/resource/86",
+    },
+    {
+      "mimeType": "text/plain",
+      "name": "Resource 87",
+      "uri": "test://static/resource/87",
+    },
+    {
+      "mimeType": "application/octet-stream",
+      "name": "Resource 88",
+      "uri": "test://static/resource/88",
+    },
+    {
+      "mimeType": "text/plain",
+      "name": "Resource 89",
+      "uri": "test://static/resource/89",
+    },
+    {
+      "mimeType": "application/octet-stream",
+      "name": "Resource 90",
+      "uri": "test://static/resource/90",
+    },
+    {
+      "mimeType": "text/plain",
+      "name": "Resource 91",
+      "uri": "test://static/resource/91",
+    },
+    {
+      "mimeType": "application/octet-stream",
+      "name": "Resource 92",
+      "uri": "test://static/resource/92",
+    },
+    {
+      "mimeType": "text/plain",
+      "name": "Resource 93",
+      "uri": "test://static/resource/93",
+    },
+    {
+      "mimeType": "application/octet-stream",
+      "name": "Resource 94",
+      "uri": "test://static/resource/94",
+    },
+    {
+      "mimeType": "text/plain",
+      "name": "Resource 95",
+      "uri": "test://static/resource/95",
+    },
+    {
+      "mimeType": "application/octet-stream",
+      "name": "Resource 96",
+      "uri": "test://static/resource/96",
+    },
+    {
+      "mimeType": "text/plain",
+      "name": "Resource 97",
+      "uri": "test://static/resource/97",
+    },
+    {
+      "mimeType": "application/octet-stream",
+      "name": "Resource 98",
+      "uri": "test://static/resource/98",
+    },
+    {
+      "mimeType": "text/plain",
+      "name": "Resource 99",
+      "uri": "test://static/resource/99",
+    },
+    {
+      "mimeType": "application/octet-stream",
+      "name": "Resource 100",
+      "uri": "test://static/resource/100",
+    },
+  ],
+}
+`;
+
 exports[`@xsmcp/everything > listTools 1`] = `
 {
   "tools": [
@@ -240,6 +759,30 @@ exports[`@xsmcp/everything > listTools 1`] = `
         "type": "object",
       },
       "name": "printEnv",
+    },
+  ],
+}
+`;
+
+exports[`@xsmcp/everything > readResource 1`] = `
+{
+  "contents": [
+    {
+      "mimeType": "text/plain",
+      "text": "Resource 1: This is a plaintext resource",
+      "uri": "test://static/resource/1",
+    },
+  ],
+}
+`;
+
+exports[`@xsmcp/everything > readResource 2`] = `
+{
+  "contents": [
+    {
+      "blob": "UmVzb3VyY2UgMjogVGhpcyBpcyBhIGJhc2U2NCBibG9i",
+      "mimeType": "application/octet-stream",
+      "uri": "test://static/resource/2",
     },
   ],
 }
