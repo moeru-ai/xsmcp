@@ -9,6 +9,8 @@ import type {
   ListPromptsResult,
   ListResourcesRequest,
   ListResourcesResult,
+  ListResourceTemplatesRequest,
+  ListResourceTemplatesResult,
   ListToolsRequest,
   ListToolsResult,
   ReadResourceRequest,
@@ -20,11 +22,13 @@ import { LATEST_PROTOCOL_VERSION } from '@xsmcp/shared'
 
 import type { PromptOptions } from './prompt'
 import type { ResourceOptions } from './resource'
+import type { ResourceTemplateOptions } from './resource-template'
 import type { ToolOptions } from './tool'
 
 import { MethodNotFound } from './error'
 import { listPrompt } from './prompt'
 import { listResource } from './resource'
+import { listResourceTemplate } from './resource-template'
 import { listTool } from './tool'
 
 export interface CreateServerOptions {
@@ -32,6 +36,7 @@ export interface CreateServerOptions {
   name: string
   prompts?: PromptOptions[]
   resources?: ResourceOptions[]
+  resourceTemplates?: ResourceTemplateOptions[]
   tools?: ToolOptions[]
   version: string
 }
@@ -40,6 +45,7 @@ export class Server {
   private capabilities: ServerCapabilities = {}
   private prompts: PromptOptions[] = []
   private resources: ResourceOptions[] = []
+  private resourceTemplates: ResourceTemplateOptions[] = []
   private serverInfo: InitializeResult['serverInfo']
   private tools: ToolOptions[] = []
 
@@ -58,6 +64,9 @@ export class Server {
     if (options.resources)
       this.resources.push(...options.resources)
 
+    if (options.resourceTemplates)
+      this.resourceTemplates.push(...options.resourceTemplates)
+
     if (options.tools)
       this.tools.push(...options.tools)
   }
@@ -71,6 +80,11 @@ export class Server {
 
   public addResource(resource: ResourceOptions) {
     this.resources.push(resource)
+    return this
+  }
+
+  public addResourceTemplate(resourceTemplate: ResourceTemplateOptions) {
+    this.resourceTemplates.push(resourceTemplate)
     return this
   }
 
@@ -131,6 +145,8 @@ export class Server {
         return this.listResources(params as ListResourcesRequest['params'])
       case 'resources/read':
         return this.readResource(params as ReadResourceRequest['params'])
+      case 'resources/templates/list':
+        return this.listResourceTemplates(params as ListResourceTemplatesRequest['params'])
       case 'tools/call':
         return this.callTool(params as CallToolRequest['params'])
       case 'tools/list':
@@ -162,6 +178,13 @@ export class Server {
   public async listResources(_params: ListResourcesRequest['params']): Promise<ListResourcesResult> {
     return {
       resources: this.resources.map(resource => listResource(resource)),
+    }
+  }
+
+  /** @see {@link https://modelcontextprotocol.io/specification/2025-03-26/server/resources#resource-templates} */
+  public async listResourceTemplates(_params?: ListResourceTemplatesRequest['params']): Promise<ListResourceTemplatesResult> {
+    return {
+      resourceTemplates: await Promise.all(this.resourceTemplates.map(async resourceTemplateOptions => listResourceTemplate(resourceTemplateOptions))),
     }
   }
 
