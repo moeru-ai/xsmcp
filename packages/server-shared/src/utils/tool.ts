@@ -3,11 +3,11 @@ import type { InferIn, Schema } from 'xsschema'
 
 import { toJsonSchema } from 'xsschema'
 
-export interface ToolOptions<T1 extends Schema = Schema> {
+export interface ToolOptions<T extends Schema = Schema> {
   description?: string
-  execute: (input: InferIn<T1>) => CallToolResult['content'] | Promise<CallToolResult['content']>
+  execute: (input: InferIn<T>) => CallToolResult['content'] | Promise<CallToolResult['content']>
   name: string
-  parameters: T1
+  parameters: T
 }
 
 export const defineTool = <T extends Schema>(options: ToolOptions<T>) => options
