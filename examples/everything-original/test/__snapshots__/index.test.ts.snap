@@ -105,6 +105,18 @@ exports[`@xsmcp/everything-original > listPrompts 1`] = `
 }
 `;
 
+exports[`@xsmcp/everything-original > listResourceTemplates 1`] = `
+{
+  "resourceTemplates": [
+    {
+      "description": "A static resource with a numeric ID",
+      "name": "Static Resource",
+      "uriTemplate": "test://static/resource/{id}",
+    },
+  ],
+}
+`;
+
 exports[`@xsmcp/everything-original > listResources 1`] = `
 {
   "nextCursor": "MTA=",

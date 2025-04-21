@@ -58,4 +58,9 @@ describe('@xsmcp/everything-original', async () => {
     const oddResult = await client.readResource('test://static/resource/2')
     expect(oddResult).toMatchSnapshot()
   })
+
+  it('listResourceTemplates', async () => {
+    const result = await client.listResourceTemplates()
+    expect(result).toMatchSnapshot()
+  })
 })
