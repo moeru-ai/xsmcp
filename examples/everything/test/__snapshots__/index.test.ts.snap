@@ -102,6 +102,32 @@ exports[`@xsmcp/everything > getPrompt 2`] = `
 }
 `;
 
+exports[`@xsmcp/everything > getPrompt 3`] = `
+{
+  "description": "A prompt that includes an embedded resource reference",
+  "messages": [
+    {
+      "content": {
+        "text": "This prompt includes Resource 2. Please analyze the following resource:",
+        "type": "text",
+      },
+      "role": "user",
+    },
+    {
+      "content": {
+        "resource": {
+          "blob": "UmVzb3VyY2UgMjogVGhpcyBpcyBhIGJhc2U2NCBibG9i",
+          "mimeType": "application/octet-stream",
+          "uri": "test://static/resource/2",
+        },
+        "type": "resource",
+      },
+      "role": "user",
+    },
+  ],
+}
+`;
+
 exports[`@xsmcp/everything > listPrompts 1`] = `
 {
   "prompts": [
@@ -120,6 +146,17 @@ exports[`@xsmcp/everything > listPrompts 1`] = `
       ],
       "description": "A prompt with arguments",
       "name": "complex_prompt",
+    },
+    {
+      "arguments": [
+        {
+          "description": "Resource ID to include (1-100)",
+          "name": "resourceId",
+          "required": true,
+        },
+      ],
+      "description": "A prompt that includes an embedded resource reference",
+      "name": "resource_prompt",
     },
     {
       "description": "A prompt without arguments",
