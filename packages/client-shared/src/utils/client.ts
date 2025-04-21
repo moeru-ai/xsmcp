@@ -14,7 +14,7 @@ import type {
   ServerCapabilities,
 } from '@xsmcp/shared'
 
-import { LATEST_PROTOCOL_VERSION } from '@xsmcp/shared'
+import { JSONRPC_VERSION, LATEST_PROTOCOL_VERSION } from '@xsmcp/shared'
 
 import type { Transport } from '../types/transport'
 
@@ -142,7 +142,7 @@ export class Client {
 
   private notification(method: string, params?: JSONRPCNotification['params']): JSONRPCNotification {
     return {
-      jsonrpc: '2.0',
+      jsonrpc: JSONRPC_VERSION,
       method,
       params,
     }
@@ -151,7 +151,7 @@ export class Client {
   private request(method: string, params?: JSONRPCRequest['params']): JSONRPCRequest {
     return {
       id: crypto.randomUUID(),
-      jsonrpc: '2.0',
+      jsonrpc: JSONRPC_VERSION,
       method,
       params,
     }

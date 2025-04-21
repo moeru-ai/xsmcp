@@ -1,5 +1,7 @@
 import type { JSONRPCError, RequestId } from '@xsmcp/shared'
 
+import { INTERNAL_ERROR, INVALID_PARAMS, INVALID_REQUEST, JSONRPC_VERSION, METHOD_NOT_FOUND, PARSE_ERROR } from '@xsmcp/shared'
+
 export class XSMCPError extends Error {
   code: number
   data: Record<string, unknown> | undefined
@@ -25,7 +27,7 @@ export class XSMCPError extends Error {
     return {
       error: { code: this.code, data: this.data, message: this.message },
       id: this.id as RequestId,
-      jsonrpc: '2.0',
+      jsonrpc: JSONRPC_VERSION,
     }
   }
 
@@ -34,8 +36,8 @@ export class XSMCPError extends Error {
   }
 }
 
-export const ParseError = () => new XSMCPError('Parse error', -32700, 500)
-export const InvalidRequest = () => new XSMCPError('Invalid Request', -32600, 400)
-export const MethodNotFound = () => new XSMCPError('Method not found', -32601, 404)
-export const InvalidParams = () => new XSMCPError('Invalid params', -32602, 500)
-export const InternalError = () => new XSMCPError('Internal error', -32603, 500)
+export const ParseError = () => new XSMCPError('Parse error', PARSE_ERROR, 500)
+export const InvalidRequest = () => new XSMCPError('Invalid Request', INVALID_REQUEST, 400)
+export const MethodNotFound = () => new XSMCPError('Method not found', METHOD_NOT_FOUND, 404)
+export const InvalidParams = () => new XSMCPError('Invalid params', INVALID_PARAMS, 500)
+export const InternalError = () => new XSMCPError('Internal error', INTERNAL_ERROR, 500)
