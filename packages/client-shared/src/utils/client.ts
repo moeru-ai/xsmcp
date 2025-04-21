@@ -8,6 +8,7 @@ import type {
   JSONRPCRequest,
   ListPromptsResult,
   ListResourcesResult,
+  ListResourceTemplatesResult,
   ListToolsResult,
   ReadResourceResult,
   ServerCapabilities,
@@ -117,6 +118,12 @@ export class Client {
     const res = await this.transport.request(this.request('resources/list'))
     // eslint-disable-next-line @masknet/type-prefer-return-type-annotation
     return res[0].result as ListResourcesResult
+  }
+
+  public async listResourceTemplates(): Promise<ListResourceTemplatesResult> {
+    const res = await this.transport.request(this.request('resources/templates/list'))
+    // eslint-disable-next-line @masknet/type-prefer-return-type-annotation
+    return res[0].result as ListResourceTemplatesResult
   }
 
   // TODO: params.cursor
