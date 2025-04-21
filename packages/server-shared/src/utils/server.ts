@@ -69,6 +69,11 @@ export class Server {
     return this
   }
 
+  public addResource(resource: ResourceOptions) {
+    this.resources.push(resource)
+    return this
+  }
+
   // TODO: fix types
   public addTool(tool: ToolOptions<any>) {
     // eslint-disable-next-line ts/no-unsafe-argument
