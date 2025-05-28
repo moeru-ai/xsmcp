@@ -8,6 +8,7 @@
   "scripts": {
     "build": "pnpm -r build",
     "bump": "bumpp",
+    "dev:everything": "pnpm -rF @xsmcp/everything start",
     "docs:dev": "pnpm -rF @xsmcp/docs dev",
     "lint": "eslint --cache .",
     "test": "pnpm -r --workspace-concurrency=1 test"
