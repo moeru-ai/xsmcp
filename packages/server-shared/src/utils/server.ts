@@ -126,12 +126,18 @@ export class Server {
     }
   }
 
+  public async ping() {
+    return {}
+  }
+
   public async handleRequest(method: string, params: unknown) {
     switch (method) {
       case 'initialize':
         return this.initialize(params as InitializeRequest['params'])
       case 'notifications/initialized':
         return
+      case 'ping':
+        return this.ping()
       case 'prompts/get':
         return this.getPrompt(params as GetPromptRequest['params'])
       case 'prompts/list':
