@@ -38,6 +38,6 @@ export class XSMCPError extends Error {
 
 export const ParseError = () => new XSMCPError('Parse error', PARSE_ERROR, 500)
 export const InvalidRequest = () => new XSMCPError('Invalid Request', INVALID_REQUEST, 400)
-export const MethodNotFound = () => new XSMCPError('Method not found', METHOD_NOT_FOUND, 404)
+export const MethodNotFound = (method?: string) => new XSMCPError(method ? `Method not found: ${method}`: 'Method not found', METHOD_NOT_FOUND, 404)
 export const InvalidParams = () => new XSMCPError('Invalid params', INVALID_PARAMS, 500)
 export const InternalError = () => new XSMCPError('Internal error', INTERNAL_ERROR, 500)

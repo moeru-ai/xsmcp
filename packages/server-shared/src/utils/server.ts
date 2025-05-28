@@ -153,7 +153,7 @@ export class Server {
       case 'tools/list':
         return this.listTools(params as ListToolsRequest['params'])
       default:
-        throw MethodNotFound()
+        throw MethodNotFound(method)
     }
   }
 
