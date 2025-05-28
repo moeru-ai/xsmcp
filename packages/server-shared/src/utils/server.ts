@@ -161,6 +161,8 @@ export class Server {
     return {
       capabilities: {
         ...this.capabilities,
+        ...(this.prompts.length > 0 ? { prompts: {} } : {}),
+        ...(this.resources.length > 0 ? { resources: {} } : {}),
         ...(this.tools.length > 0 ? { tools: {} } : {}),
       },
       protocolVersion: LATEST_PROTOCOL_VERSION,
