@@ -1,0 +1,61 @@
+---
+title: Tools
+description: Enable LLMs to perform actions through your server
+---
+
+<Callout>
+  With [xsSchema](https://xsai.js.org/docs/packages-top/xsschema), the `parameters` here can support multiple libraries such as Zod, Valibot, ArkType, Effect Schema, Sury... at the same time.
+</Callout>
+
+## server.addTool
+
+```ts
+import { createServer } from '@xsmcp/server-shared'
+import { description, number, object, pipe } from 'valibot'
+
+const server = createServer({ ...options })
+
+server.addTool({
+  description: 'Adds two numbers',
+  execute: ({ a, b }) => [{ text: `The sum of ${a} and ${b} is ${a + b}.`, type: 'text' }],
+  name: 'add',
+  parameters: object({
+    a: pipe(
+      number(),
+      description('First number'),
+    ),
+    b: pipe(
+      number(),
+      description('Second number'),
+    ),
+  }),
+})
+```
+
+## defineTool
+
+```ts
+import { createServer, defineTool } from '@xsmcp/server-shared'
+import { description, number, object, pipe } from 'valibot'
+
+const tool = defineTool({
+  description: 'Adds two numbers',
+  execute: ({ a, b }) => [{ text: `The sum of ${a} and ${b} is ${a + b}.`, type: 'text' }],
+  name: 'add',
+  parameters: object({
+    a: pipe(
+      number(),
+      description('First number'),
+    ),
+    b: pipe(
+      number(),
+      description('Second number'),
+    ),
+  }),
+})
+
+const server = createServer({ ...options })
+
+server.addTool(tool)
+```
+

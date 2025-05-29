@@ -3,6 +3,7 @@ ignorePaths: []
 dictionaryDefinitions: []
 dictionaries: []
 words:
+  - arktype
   - automd
   - bumpp
   - changelogithub
@@ -22,6 +23,7 @@ words:
   - sonarjs
   - srvx
   - streamable
+  - sury
   - twoslash
   - valibot
   - vercel

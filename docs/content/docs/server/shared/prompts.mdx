@@ -1,0 +1,50 @@
+---
+title: Prompts
+description: Create reusable prompt templates and workflows
+---
+
+## server.addPrompt
+
+```ts
+import { createServer } from '@xsmcp/server-shared'
+
+const server = createServer({ ...options })
+
+server.addPrompt({
+  description: 'A prompt without arguments',
+  execute: () => [
+    {
+      content: {
+        text: 'This is a simple prompt without arguments.',
+        type: 'text',
+      },
+      role: 'user',
+    },
+  ],
+  name: 'simple_prompt',
+})
+```
+
+## definePrompt
+
+```ts
+import { createServer definePrompt } from '@xsmcp/server-shared'
+
+const prompt = definePrompt({
+  description: 'A prompt without arguments',
+  execute: () => [
+    {
+      content: {
+        text: 'This is a simple prompt without arguments.',
+        type: 'text',
+      },
+      role: 'user',
+    },
+  ],
+  name: 'simple_prompt',
+})
+
+const server = createServer({ ...options })
+
+server.addPrompt(prompt)
+```

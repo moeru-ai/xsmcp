@@ -1,34 +1,6 @@
 ---
 title: Intro
-# description: Your first document
+description: provide context, tools, and prompts to clients
 ---
 
-```package-install
-npm i @xsmcp/server-shared
-```
-
-```ts twoslash
-import { createServer } from '@xsmcp/server-shared'
-import { description, number, object, pipe } from 'valibot'
-
-const server = createServer({
-  name: 'example-server',
-  version: '1.0.0',
-})
-
-server.addTool({
-  description: 'Adds two numbers',
-  execute: ({ a, b }) => [{ text: `The sum of ${a} and ${b} is ${a + b}.`, type: 'text' }],
-  name: 'add',
-  parameters: object({
-    a: pipe(
-      number(),
-      description('First number'),
-    ),
-    b: pipe(
-      number(),
-      description('Second number'),
-    ),
-  }),
-})
-```
+> TODO, please read [Shared](./shared/overview.mdx) first

@@ -1,0 +1,23 @@
+---
+title: Overview
+# description: Your first document
+---
+
+`@xsmcp/server-shared` is the basis for all servers and implements a common server architecture.
+
+```package-install
+npm i @xsmcp/server-shared
+```
+
+You can create a server like this:
+
+```ts
+import { createServer } from '@xsmcp/server-shared'
+
+const server = createServer({
+  name: 'example-server',
+  version: '1.0.0'
+})
+```
+
+All subsequent content is based on this server.

@@ -1,0 +1,50 @@
+---
+title: Resources
+description: Expose data and content from your servers to LLMs
+---
+
+## server.addResource
+
+```ts
+import { createServer } from '@xsmcp/server-shared'
+
+const server = createServer({ ...options })
+
+const mimeType = 'text/plain'
+const uri = 'test://static/resource/1'
+
+server.addResource({
+  load: () => [{
+    mimeType,
+    text: 'This is a plaintext resource'
+    uri,
+  }]
+  mimeType,
+  name: 'Resource',
+  uri,
+})
+```
+
+## defineResource
+
+```ts
+import { createServer, defineResource } from '@xsmcp/server-shared'
+
+const mimeType = 'text/plain'
+const uri = 'test://static/resource/1'
+
+const resource = defineResource({
+  load: () => [{
+    mimeType,
+    text: 'This is a plaintext resource'
+    uri,
+  }]
+  mimeType,
+  name: 'Resource',
+  uri,
+})
+
+const server = createServer({ ...options })
+
+server.addResource(resource)
+```

@@ -4,6 +4,8 @@
   "root": true,
   "pages": [
     "index",
+    "---Shared---",
+    "...shared",
     "---HTTP---",
     "...http"
   ]
