@@ -4,6 +4,8 @@ const withMDX = createMDX()
 
 /** @type {import('next').NextConfig} */
 const config = {
+  distDir: 'dist',
+  images: { unoptimized: true },
   output: 'export',
   reactStrictMode: true,
   serverExternalPackages: ['typescript', 'twoslash'],
