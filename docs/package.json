@@ -26,15 +26,8 @@
     "@types/mdx": "^2.0.13",
     "@types/react": "^19.1.6",
     "@types/react-dom": "^19.1.5",
-    "@whatwg-node/server": "catalog:",
-    "@xsmcp/client-http": "workspace:",
-    "@xsmcp/client-shared": "workspace:",
-    "@xsmcp/server-http": "workspace:",
-    "@xsmcp/server-shared": "workspace:",
-    "@xsmcp/shared": "workspace:",
     "postcss": "^8.5.4",
     "tailwindcss": "^4.1.8",
-    "typescript": "^5.8.3",
-    "valibot": "catalog:"
+    "typescript": "^5.8.3"
   }
 }

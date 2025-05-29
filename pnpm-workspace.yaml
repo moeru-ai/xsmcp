@@ -6,7 +6,6 @@ packages:
 
 catalog:
   '@valibot/to-json-schema': &valibot ^1.1.0
-  '@whatwg-node/server': ^0.10.10
   valibot: *valibot
   xsai: &xsai ^0.3.0-beta.3
   xsschema: *xsai
