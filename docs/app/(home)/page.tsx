@@ -14,7 +14,7 @@ export default () => (
         {' '}
         <span>MCP SDK</span>
       </DocsTitle>
-      <DocsDescription className="mb-2">for quick client/server builds.</DocsDescription>
+      <DocsDescription className="mb-2">for mcp builders hating bloat.</DocsDescription>
       <DocsBody className="flex gap-4">
         <Link href="/docs/client">Client</Link>
         <Link href="/docs/server">Server</Link>

@@ -2,7 +2,7 @@
   "name": "@xsmcp/shared",
   "type": "module",
   "version": "0.0.5",
-  "description": "extra-small MCP SDK for quick client/server builds.",
+  "description": "extra-small MCP SDK.",
   "author": "Moeru AI",
   "license": "MIT",
   "homepage": "https://github.com/moeru-ai/xsmcp",

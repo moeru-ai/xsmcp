@@ -1,6 +1,6 @@
 # xsMCP
 
-extra-small MCP SDK for quick client/server builds.
+extra-small MCP SDK for mcp builders hating bloat.
 
 ## About
 
