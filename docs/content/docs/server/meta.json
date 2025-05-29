@@ -1,0 +1,10 @@
+{
+  "title": "Server",
+  "icon": "Server",
+  "root": true,
+  "pages": [
+    "index",
+    "---HTTP---",
+    "...http"
+  ]
+}

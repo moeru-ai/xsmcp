@@ -1,0 +1,19 @@
+---
+title: Cloudflare Workers
+---
+
+```package-install
+npm i @xsmcp/server-http @xsmcp/server-shared
+```
+
+```ts twoslash
+import { fetch } from '@xsmcp/server-http'
+import { createServer } from '@xsmcp/server-shared'
+
+const server = createServer({
+  name: 'example-server',
+  version: '1.0.0'
+})
+
+export default { fetch: fetch(server) } // [!code highlight]
+```
