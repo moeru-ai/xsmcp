@@ -42,6 +42,6 @@
     "@xsmcp/shared": "workspace:"
   },
   "devDependencies": {
-    "hono": "^4.7.5"
+    "hono": "^4.7.10"
   }
 }

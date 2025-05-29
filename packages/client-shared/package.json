@@ -40,6 +40,6 @@
     "@xsmcp/shared": "workspace:"
   },
   "devDependencies": {
-    "valibot": "^1.0.0"
+    "valibot": "^1.1.0"
   }
 }

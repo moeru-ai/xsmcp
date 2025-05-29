@@ -41,6 +41,6 @@
     "@xsmcp/shared": "workspace:"
   },
   "devDependencies": {
-    "eventsource-parser": "^3.0.1"
+    "eventsource-parser": "^3.0.2"
   }
 }
