@@ -26,7 +26,7 @@ xsMCP v0.1 is targeted to be compatible with the `2025-03-26` revision and is no
 
 ```ts
 import { fetch } from '@xsmcp/server-http'
-import { createServer as createMcpServer } from '@xsmcp/server-shared'
+import { createServer } from '@xsmcp/server-shared'
 import { serve } from 'srvx'
 
 import * as tools from '...'
