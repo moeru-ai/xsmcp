@@ -17,7 +17,7 @@ export default ({ children }: Readonly<PropsWithChildren>) => (
       <link href="https://github.com/moeru-ai.png" rel="icon" type="image/png" />
     </head>
     <body className="flex flex-col min-h-screen">
-      <RootProvider>{children}</RootProvider>
+      <RootProvider search={{ options: { type: 'static' } }}>{children}</RootProvider>
     </body>
   </html>
 )
