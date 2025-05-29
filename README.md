@@ -25,65 +25,61 @@ xsMCP v0.1 is targeted to be compatible with the `2025-03-26` revision and is no
 `@xsmcp/server-http` is based on [Web Standards](https://hono.dev/docs/concepts/web-standard), not Express.
 
 ```ts
-import { createServerAdapter } from '@whatwg-node/server'
-import { createHttpServer } from '@xsmcp/server-http'
+import { fetch } from '@xsmcp/server-http'
 import { createServer as createMcpServer } from '@xsmcp/server-shared'
-import { createServer } from 'node:http'
+import { serve } from 'srvx'
 
 import * as tools from '...'
 
-const s = createMcpServer({ ...options })
+const server = createServer({ ...options })
 
 for (const tool of tools) {
-  s.addTool(tool)
+  server.addTool(tool)
 }
 
-const server = createHttpServer(s)
-
 // (req: Request) => Promise<Response>
-type ServerFetch = typeof server.fetch
+const app = fetch(server)
 
-// node.js
-const httpServer = createServer(createServerAdapter(server.fetch))
-httpServer.listen(3000)
+// node.js, deno, bun
+serve({ fetch: app })
 
 // next.js
-export const POST = router.fetch
+export const POST = app
 
-// cloudflare workers, bun
-export default server
+// cloudflare workers
+export default { fetch: app }
 ```
 
 It can be used as a server on its own or with `hono`, `elysia` and `itty-router` for more features:
 
 ```ts
-import { createHttpServer } from '@xsmcp/server-http'
-import { createServer as createMcpServer } from '@xsmcp/server-shared'
+import { fetch } from '@xsmcp/server-http'
+import { createServer } from '@xsmcp/server-shared'
 import { Elysia } from 'elysia'
 import { Hono } from 'hono'
 import { AutoRouter } from 'itty-router'
 
 import * as tools from '...'
 
-const s = createMcpServer({ ...options })
+const server = createServer({ ...options })
 
 for (const tool of tools) {
-  s.addTool(tool)
+  server.addTool(tool)
 }
 
-const server = createHttpServer(s)
+const app = fetch(server)
 
 // hono
 new Hono()
-  .post('/mcp', ({ req }) => server.fetch(req.raw))
+  .post('/mcp', ({ req }) => app(req.raw))
 
 // elysia
 new Elysia()
-  .post('/mcp', ({ request }) => server.fetch(request))
+  .post('/mcp', ({ request }) => app(request))
 
 // itty-router
 AutoRouter()
-  .post('/mcp', req => server.fetch(req))
+  .post('/mcp', req => app(req))
 ```
 
 At the same time, it does not depends on any server framework thus minimizing the size.

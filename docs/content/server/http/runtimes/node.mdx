@@ -2,23 +2,36 @@
 title: Node.js
 ---
 
+## srvx
+
+When you use `srvx`, your code can also run on Deno and Bun.
+
 ```package-install
-npm i @whatwg-node/server @xsmcp/server-http @xsmcp/server-shared
+npm i srvx @xsmcp/server-http @xsmcp/server-shared
 ```
 
 ```ts twoslash
-import { createServerAdapter } from '@whatwg-node/server' // [!code highlight]
-import { createHttpServer } from '@xsmcp/server-http'
-import { createServer as createMcpServer } from '@xsmcp/server-shared'
-import { createServer } from 'node:http'
+import { fetch } from '@xsmcp/server-http'
+import { createServer } from '@xsmcp/server-shared'
+import { serve } from 'srvx' // [!code highlight]
 
-const s = createMcpServer({
+const server = createServer({
   name: 'example-server',
   version: '1.0.0'
 })
 
-const server = createHttpServer(s)
+// https://srvx.h3.dev/guide/options
+const server = serve({
+  fetch: fetch(server),
+  port: 3000, // [!code highlight]
+});
+```
 
-const httpServer = createServer(createServerAdapter(server.fetch)) // [!code highlight]
-httpServer.listen(3000) // [!code highlight]
+### srvx/node
+
+Use when you only want Node.js compatibility.
+
+```diff
+- import { serve } from 'srvx'
++ import { serve } from 'srvx/node'
 ```

@@ -138,9 +138,6 @@ importers:
       '@valibot/to-json-schema':
         specifier: 'catalog:'
         version: 1.2.0(valibot@1.1.0(typescript@5.8.3))
-      '@whatwg-node/server':
-        specifier: 'catalog:'
-        version: 0.10.10
       '@xsmcp/server-http':
         specifier: 'workspace:'
         version: link:../../packages/server-http
@@ -150,6 +147,9 @@ importers:
       '@xsmcp/shared':
         specifier: 'workspace:'
         version: link:../../packages/shared
+      srvx:
+        specifier: ^0.7.2
+        version: 0.7.2
       valibot:
         specifier: 'catalog:'
         version: 1.1.0(typescript@5.8.3)
@@ -2411,6 +2411,9 @@ packages:
     resolution: {integrity: sha512-nTjqfcBFEipKdXCv4YDQWCfmcLZKm81ldF0pAopTvyrFGVbcR6P/VAAd5G7N+0tTr8QqiU0tFadD6FK4NtJwOA==}
     engines: {node: '>= 0.6'}
 
+  cookie-es@2.0.0:
+    resolution: {integrity: sha512-RAj4E421UYRgqokKUmotqAwuplYw15qtdXfY+hGzgCJ/MBjCVZcSoHK/kH9kocfjRjcDME7IiDWR/1WX1TM2Pg==}
+
   cookie-signature@1.2.2:
     resolution: {integrity: sha512-D76uU73ulSXrD1UXF4KE2TMxVVwhsnCgfAyTg9k8P6KGZjlXKrOLe4dJQKI3Bxi5wjesZoFXJWElNWBjPZMbhg==}
     engines: {node: '>=6.6.0'}
@@ -4310,6 +4313,10 @@ packages:
 
   sprintf-js@1.0.3:
     resolution: {integrity: sha512-D9cPgkvLlV3t3IzL0D0YLvGA9Ahk4PcvVwUbN0dSGr1aP0Nrt4AEnTUbuGvquEC0mA64Gqt1fzirlRs5ibXx8g==}
+
+  srvx@0.7.2:
+    resolution: {integrity: sha512-pGnCLds9VubzzWnKSLrEBXMLsZ6UthwqondUtrXHw93uy+R09cXZBxwt5o3KasblrElLCY6fdYtmvQx5zdxXnA==}
+    engines: {node: '>=20.16.0'}
 
   stable-hash@0.0.5:
     resolution: {integrity: sha512-+L3ccpzibovGXFK+Ap/f8LOS0ahMrHTf3xu7mMLSpEGU0EO9ucaysSylKo9eRDFNhWve/y275iPmIZ4z39a9iA==}
@@ -6803,6 +6810,8 @@ snapshots:
       safe-buffer: 5.2.1
 
   content-type@1.0.5: {}
+
+  cookie-es@2.0.0: {}
 
   cookie-signature@1.2.2: {}
 
@@ -9387,6 +9396,10 @@ snapshots:
   spdx-license-ids@3.0.21: {}
 
   sprintf-js@1.0.3: {}
+
+  srvx@0.7.2:
+    dependencies:
+      cookie-es: 2.0.0
 
   stable-hash@0.0.5: {}
 

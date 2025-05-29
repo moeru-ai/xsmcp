@@ -9,10 +9,10 @@
   },
   "dependencies": {
     "@valibot/to-json-schema": "catalog:",
-    "@whatwg-node/server": "catalog:",
     "@xsmcp/server-http": "workspace:",
     "@xsmcp/server-shared": "workspace:",
     "@xsmcp/shared": "workspace:",
+    "srvx": "^0.7.2",
     "valibot": "catalog:"
   },
   "devDependencies": {
