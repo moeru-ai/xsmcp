@@ -126,10 +126,6 @@ export class Server {
     }
   }
 
-  public async ping() {
-    return {}
-  }
-
   public async handleRequest(method: string, params: unknown) {
     switch (method) {
       case 'initialize':
@@ -200,6 +196,10 @@ export class Server {
     return {
       tools: await Promise.all(this.tools.map(async toolOptions => listTool(toolOptions))),
     }
+  }
+
+  public async ping() {
+    return {}
   }
 
   public async readResource(params: ReadResourceRequest['params']): Promise<ReadResourceResult> {
