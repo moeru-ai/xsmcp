@@ -1,9 +1,8 @@
 {
-  "title": "HTTP",
-  "defaultOpen": true,
   "pages": [
-    "index",
-    "web-standards",
-    "runtimes"
+    "overview",
+    "usage",
+    "runtimes",
+    "integrations"
   ]
 }

@@ -1,0 +1,45 @@
+---
+title: Runtimes
+description: Run your server.
+---
+
+## srvx (Node.js, Deno, Bun)
+
+If you don't need to run in Edge Runtime, this is our most recommended way.
+
+It can support all three major JS Runtime at the same time.
+
+```package-install
+npm i srvx
+```
+
+```ts twoslash
+import { createFetch } from '@xsmcp/server-http'
+import { createServer } from '@xsmcp/server-shared'
+import { serve } from 'srvx' // [!code highlight]
+
+const server = createServer({
+  name: 'example-server',
+  version: '1.0.0'
+})
+
+// https://srvx.h3.dev/guide/options
+serve({ // [!code highlight]
+  fetch: createFetch(server), // [!code highlight]
+  port: 3000, // [!code highlight]
+}) // [!code highlight]
+```
+
+## export default (Cloudflare Workers / Pages)
+
+```ts twoslash
+import { createApp } from '@xsmcp/server-http'
+import { createServer } from '@xsmcp/server-shared'
+
+const server = createServer({
+  name: 'example-server',
+  version: '1.0.0'
+})
+
+export default createApp(server) // [!code highlight]
+```

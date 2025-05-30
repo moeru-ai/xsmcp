@@ -4,7 +4,7 @@ import type { JSONRPCBatchResponse, JSONRPCRequest, JSONRPCResponse } from '@xsm
 import { InternalError, XSMCPError } from '@xsmcp/server-shared'
 import { JSONRPC_VERSION } from '@xsmcp/shared'
 
-export const fetch = (server: Server) =>
+export const createFetch = (server: Server) =>
   // eslint-disable-next-line sonarjs/cognitive-complexity
   async (req: Request) => {
     try {

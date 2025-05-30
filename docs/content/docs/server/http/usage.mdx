@@ -1,0 +1,37 @@
+---
+title: Usage
+---
+
+```package-install
+npm i @xsmcp/server-http
+```
+
+## createApp
+
+```ts
+import { createApp } from '@xsmcp/server-http'
+import { createServer } from '@xsmcp/server-shared'
+
+const server = createServer({
+  name: 'example-server',
+  version: '1.0.0'
+})
+
+// { fetch: (req: Request) => Promise<Response> }
+const app = createApp(server)
+```
+
+## createFetch
+
+```ts
+import { createFetch } from '@xsmcp/server-http'
+import { createServer } from '@xsmcp/server-shared'
+
+const server = createServer({
+  name: 'example-server',
+  version: '1.0.0'
+})
+
+// (req: Request) => Promise<Response>
+const fetch = createFetch(server)
+```

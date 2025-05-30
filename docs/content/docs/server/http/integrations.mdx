@@ -1,0 +1,67 @@
+---
+title: Integrations
+description: Integration with other Web Framework.
+---
+
+## Hono
+
+```ts
+import { createFetch } from '@xsmcp/server-http'
+import { createServer } from '@xsmcp/server-shared'
+import { Hono } from 'hono' // [!code highlight]
+
+import * as tools from '...'
+
+const server = createServer({ ...options })
+
+for (const tool of tools) {
+  server.addTool(tool)
+}
+
+const fetch = createFetch(server)
+
+const app = new Hono() // [!code highlight]
+  .post('/mcp', ({ req }) => fetch(req.raw)) // [!code highlight]
+```
+
+## Elysia
+
+```ts
+import { createFetch } from '@xsmcp/server-http'
+import { createServer } from '@xsmcp/server-shared'
+import { Elysia } from 'elysia' // [!code highlight]
+
+import * as tools from '...'
+
+const server = createServer({ ...options })
+
+for (const tool of tools) {
+  server.addTool(tool)
+}
+
+const fetch = createFetch(server)
+
+const app = new Elysia() // [!code highlight]
+  .post('/mcp', ({ request }) => fetch(request)) // [!code highlight]
+```
+
+## itty-router
+
+```ts
+import { createFetch } from '@xsmcp/server-http'
+import { createServer } from '@xsmcp/server-shared'
+import { AutoRouter } from 'itty-router' // [!code highlight]
+
+import * as tools from '...'
+
+const server = createServer({ ...options })
+
+for (const tool of tools) {
+  server.addTool(tool)
+}
+
+const fetch = createFetch(server)
+
+const app = AutoRouter() // [!code highlight]
+  .post('/mcp', req => fetch(req)) // [!code highlight]
+```
