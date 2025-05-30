@@ -1,0 +1,36 @@
+---
+title: Prompts
+description: Create reusable prompt templates and workflows
+---
+
+## client.listPrompts
+
+```ts
+import { createClient } from '@xsmcp/server-shared'
+import { createHttpTransport } from '@xsmcp/client-http'
+
+const client = createClient({
+  name: 'example-client',
+  version: '1.0.0',
+  transport: createHttpTransport({ url: 'http://localhost:3000/mcp' }),
+})
+
+await client.listPrompts()
+```
+
+## client.getPrompt
+
+```ts
+import { createClient } from '@xsmcp/server-shared'
+import { createHttpTransport } from '@xsmcp/client-http'
+
+const client = createClient({
+  name: 'example-client',
+  version: '1.0.0',
+  transport: createHttpTransport({ url: 'http://localhost:3000/mcp' }),
+})
+
+await client.getPrompt('simple_prompt')
+await client.getPrompt('complex_prompt', { style: 'dark', temperature: 42 })
+await client.getPrompt('resource_prompt', { resourceId: 2 })
+```

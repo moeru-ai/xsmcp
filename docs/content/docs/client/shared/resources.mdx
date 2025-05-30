@@ -1,0 +1,35 @@
+---
+title: Resources
+description: Expose data and content from your servers to LLMs
+---
+
+## client.listResources
+
+```ts
+import { createClient } from '@xsmcp/server-shared'
+import { createHttpTransport } from '@xsmcp/client-http'
+
+const client = createClient({
+  name: 'example-client',
+  version: '1.0.0',
+  transport: createHttpTransport({ url: 'http://localhost:3000/mcp' }),
+})
+
+await client.listResources()
+```
+
+## client.readResource
+
+```ts
+import { createClient } from '@xsmcp/server-shared'
+import { createHttpTransport } from '@xsmcp/client-http'
+
+const client = createClient({
+  name: 'example-client',
+  version: '1.0.0',
+  transport: createHttpTransport({ url: 'http://localhost:3000/mcp' }),
+})
+
+await client.readResource('test://static/resource/1')
+await client.readResource('test://static/resource/2')
+```

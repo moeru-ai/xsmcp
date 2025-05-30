@@ -1,0 +1,29 @@
+Hey you, you're finally awake.
+
+It's {new Date().getFullYear()},
+
+and we've been able to [Move on to ESM-only](https://antfu.me/posts/move-on-to-esm-only),
+
+built on [Web Standards](https://hono.dev/docs/concepts/web-standard) and [Standard Schema](https://standardschema.dev/)...
+
+No, wait, why are there [CommonJS](https://github.com/modelcontextprotocol/typescript-sdk/issues/90), [Zod, AJV and Express](https://pkg-size.dev/@modelcontextprotocol/sdk)?
+
+## If you don't want to see that either, then xsMCP is for you.
+
+### Independent implementation
+
+xsMCP does not depend on `@modelcontextprotocol/sdk`, but reimplement with reference to it.
+
+This allows us to significantly reduce the size.
+
+### Client/Server Code Separation
+
+Usually you should only want to use one of them.
+
+If you wish to use both, don't worry, just install them together.
+
+### Modern target, Runtime-agnostic, Schema library-agnostic
+
+xsMCP is built as ES Module for the ESNext target.
+
+We try not to rely on Node.js built-in modules wherever possible, so it works well in the browser, Deno, Bun, and edge runtimes.

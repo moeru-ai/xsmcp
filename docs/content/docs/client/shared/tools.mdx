@@ -1,0 +1,40 @@
+---
+title: Tools
+description: Enable LLMs to perform actions through your server
+---
+
+<Callout>
+  With [xsSchema](https://xsai.js.org/docs/packages-top/xsschema), the `parameters` here can support multiple libraries such as Zod, Valibot, ArkType, Effect Schema, Sury... at the same time.
+</Callout>
+
+## client.listTools
+
+```ts
+import { createClient } from '@xsmcp/server-shared'
+import { createHttpTransport } from '@xsmcp/client-http'
+
+const client = createClient({
+  name: 'example-client',
+  version: '1.0.0',
+  transport: createHttpTransport({ url: 'http://localhost:3000/mcp' }),
+})
+
+await client.listTools()
+```
+
+## client.callTool
+
+```ts
+import { createClient } from '@xsmcp/server-shared'
+import { createHttpTransport } from '@xsmcp/client-http'
+
+const client = createClient({
+  name: 'example-client',
+  version: '1.0.0',
+  transport: createHttpTransport({ url: 'http://localhost:3000/mcp' }),
+})
+
+await client.callTool('add', { a: 1, b: 1 })
+await client.callTool('echo', { message: 'Hello, World!' })
+await client.callTool('getTinyImage', {})
+```

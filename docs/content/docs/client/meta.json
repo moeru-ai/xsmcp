@@ -1,5 +1,12 @@
 {
   "title": "Client",
   "icon": "MonitorSmartphone",
-  "root": true
+  "root": true,
+  "pages": [
+    "index",
+    "---Shared---",
+    "...shared",
+    "---HTTP---",
+    "...http"
+  ]
 }

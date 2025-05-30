@@ -1,0 +1,25 @@
+---
+title: Overview
+# description: Your first document
+---
+
+`@xsmcp/client-shared` is the basis for all clients and implements a common client architecture.
+
+```package-install
+npm i @xsmcp/client-shared
+```
+
+You can create a client like this:
+
+```ts
+import { createClient } from '@xsmcp/server-shared'
+import { createHttpTransport } from '@xsmcp/client-http' // [!code highlight]
+
+const client = createClient({
+  name: 'example-client',
+  version: '1.0.0',
+  transport: createHttpTransport({ url: 'http://localhost:3000/mcp' }), // [!code highlight]
+})
+```
+
+All subsequent content is based on this client.
