@@ -25,7 +25,7 @@ xsMCP v0.1 is targeted to be compatible with the `2025-03-26` revision and is no
 `@xsmcp/server-http` is based on [Web Standards](https://hono.dev/docs/concepts/web-standard), not Express.
 
 ```ts
-import { fetch } from '@xsmcp/server-http'
+import { createFetch } from '@xsmcp/server-http'
 import { createServer } from '@xsmcp/server-shared'
 import { serve } from 'srvx'
 
@@ -38,22 +38,19 @@ for (const tool of tools) {
 }
 
 // (req: Request) => Promise<Response>
-const app = fetch(server)
+const fetch = createFetch(server)
 
 // node.js, deno, bun
-serve({ fetch: app })
+serve({ fetch })
 
-// next.js
-export const POST = app
-
-// cloudflare workers
-export default { fetch: app }
+// cloudflare workers, pages
+export default { fetch }
 ```
 
 It can be used as a server on its own or with `hono`, `elysia` and `itty-router` for more features:
 
 ```ts
-import { fetch } from '@xsmcp/server-http'
+import { createFetch } from '@xsmcp/server-http'
 import { createServer } from '@xsmcp/server-shared'
 import { Elysia } from 'elysia'
 import { Hono } from 'hono'
@@ -67,19 +64,19 @@ for (const tool of tools) {
   server.addTool(tool)
 }
 
-const app = fetch(server)
+const fetch = createFetch(server)
 
 // hono
 new Hono()
-  .post('/mcp', ({ req }) => app(req.raw))
+  .post('/mcp', ({ req }) => fetch(req.raw))
 
 // elysia
 new Elysia()
-  .post('/mcp', ({ request }) => app(request))
+  .post('/mcp', ({ request }) => fetch(request))
 
 // itty-router
 AutoRouter()
-  .post('/mcp', req => app(req))
+  .post('/mcp', req => fetch(req))
 ```
 
 At the same time, it does not depends on any server framework thus minimizing the size.
