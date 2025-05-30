@@ -9,7 +9,7 @@ npm i @xsmcp/client-http
 ## createHttpTransport
 
 ```ts
-import { createClient } from '@xsmcp/server-shared'
+import { createClient } from '@xsmcp/client-shared'
 import { createHttpTransport } from '@xsmcp/client-http' // [!code highlight]
 
 const client = createClient({
@@ -22,7 +22,7 @@ const client = createClient({
 ## createHttpClient
 
 ```ts
-import { createClient } from '@xsmcp/server-shared' // [!code --]
+import { createClient } from '@xsmcp/client-shared' // [!code --]
 import { createHttpTransport } from '@xsmcp/client-http' // [!code --]
 import { createHttpClient } from '@xsmcp/client-http' // [!code ++]
 

@@ -1,0 +1,70 @@
+---
+title: xsAI
+description: extra-small AI SDK.
+---
+
+```package-install
+npm i @xsmcp/client-xsai
+```
+
+## Examples
+
+### getXSAITools
+
+```ts
+import type { Tool } from '@xsai/shared-chat'
+import { createHttpClient } from '@xsmcp/client-http'
+import { getXSAITools } from '@xsmcp/client-xsai'
+
+const client = createHttpClient({
+  name: 'example-client',
+  version: '1.0.0',
+}, { url: 'http://localhost:3000/mcp' })
+
+const tools: Tool[] = await getXSAITools(client) // [!code highlight]
+```
+
+#### with generateText
+
+```ts
+import { generateText } from '@xsai/generate-text'
+import { createHttpClient } from '@xsmcp/client-http'
+import { getXSAITools } from '@xsmcp/client-xsai'
+
+try {
+  const client = createHttpClient({
+    name: 'example-client',
+    version: '1.0.0',
+  }, { url: 'http://localhost:3000/mcp' })
+
+  const result = await generateText({
+    baseURL: 'http://localhost:11434/v1/'
+    model: 'qwen3',
+    tools: await getXSAITools(client), // [!code highlight]
+    messages: [{ role: 'user', content: 'What does 1+1 equal?' }],
+  })
+} finally {
+  await client.close() // [!code highlight]
+}
+```
+
+#### with streamText
+
+```ts
+import { streamText } from '@xsai/stream-text'
+import { createHttpClient } from '@xsmcp/client-http'
+import { getXSAITools } from '@xsmcp/client-xsai'
+
+const client = createHttpClient({
+  name: 'example-client',
+  version: '1.0.0',
+}, { url: 'http://localhost:3000/mcp' })
+
+const result = await streamText({
+  baseURL: 'http://localhost:11434/v1/'
+  model: 'qwen3',
+  onFinish: async () => client.close(), // [!code highlight]
+  tools: await getXSAITools(client), // [!code highlight]
+  messages: [{ role: 'user', content: 'What does 1+1 equal?' }],
+})
+```

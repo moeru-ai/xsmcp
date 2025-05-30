@@ -1,10 +1,7 @@
-import type { AudioPart, ImagePart, TextPart, Tool as XSAITool } from '@xsai/shared-chat'
-import type { Client } from '@xsmcp/client-shared'
-import type { CallToolResult } from '@xsmcp/shared'
+import type { AudioPart, ImagePart, TextPart } from '@xsai/shared-chat'
+import type { AudioContent, EmbeddedResource, ImageContent, TextContent } from '@xsmcp/shared'
 
-import { rawTool } from '@xsai/tool'
-
-const toXSAIContent = (contents: CallToolResult['content']): (AudioPart | ImagePart | TextPart)[] =>
+export const toXSAIContent = (contents: (AudioContent | EmbeddedResource | ImageContent | TextContent)[]): (AudioPart | ImagePart | TextPart)[] =>
   // eslint-disable-next-line array-callback-return
   contents.map((content) => {
     switch (content.type) {
@@ -40,15 +37,3 @@ const toXSAIContent = (contents: CallToolResult['content']): (AudioPart | ImageP
         } satisfies TextPart
     }
   })
-
-export const getTools = async (client: Client): Promise<XSAITool[]> =>
-  client
-    .listTools()
-    .then(({ tools }) => tools.map(tool => rawTool({
-      description: tool.description,
-      execute: async params => client.callTool(tool.name, params as Record<string, unknown>)
-        // eslint-disable-next-line sonarjs/no-nested-functions
-        .then(result => toXSAIContent(result.content)),
-      name: tool.name,
-      parameters: tool.inputSchema,
-    })))

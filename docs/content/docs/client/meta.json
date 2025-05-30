@@ -7,6 +7,8 @@
     "---Shared---",
     "...shared",
     "---HTTP---",
-    "...http"
+    "...http",
+    "---Integrations---",
+    "...integrations"
   ]
 }

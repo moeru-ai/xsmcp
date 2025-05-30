@@ -6,7 +6,7 @@ description: Expose data and content from your servers to LLMs
 ## client.listResources
 
 ```ts
-import { createClient } from '@xsmcp/server-shared'
+import { createClient } from '@xsmcp/client-shared'
 import { createHttpTransport } from '@xsmcp/client-http'
 
 const client = createClient({
@@ -21,7 +21,7 @@ await client.listResources()
 ## client.readResource
 
 ```ts
-import { createClient } from '@xsmcp/server-shared'
+import { createClient } from '@xsmcp/client-shared'
 import { createHttpTransport } from '@xsmcp/client-http'
 
 const client = createClient({

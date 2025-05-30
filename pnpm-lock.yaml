@@ -9,6 +9,18 @@ catalogs:
     '@valibot/to-json-schema':
       specifier: ^1.1.0
       version: 1.2.0
+    '@xsai/generate-text':
+      specifier: ^0.3.0-beta.3
+      version: 0.3.0-beta.3
+    '@xsai/shared-chat':
+      specifier: ^0.3.0-beta.3
+      version: 0.3.0-beta.3
+    '@xsai/stream-text':
+      specifier: ^0.3.0-beta.3
+      version: 0.3.0-beta.3
+    '@xsai/tool':
+      specifier: ^0.3.0-beta.3
+      version: 0.3.0-beta.3
     valibot:
       specifier: ^1.1.0
       version: 1.1.0
@@ -35,12 +47,6 @@ importers:
       '@types/node':
         specifier: ^22.15.24
         version: 22.15.24
-      '@xsai/shared-chat':
-        specifier: 0.3.0-beta.3
-        version: 0.3.0-beta.3
-      '@xsai/tool':
-        specifier: 0.3.0-beta.3
-        version: 0.3.0-beta.3(@valibot/to-json-schema@1.2.0(valibot@1.1.0(typescript@5.8.3)))(zod-to-json-schema@3.24.5(zod@3.25.35))(zod@3.25.35)
       automd:
         specifier: ^0.4.0
         version: 0.4.0
@@ -214,6 +220,28 @@ importers:
       valibot:
         specifier: ^1.1.0
         version: 1.1.0(typescript@5.8.3)
+
+  packages/client-xsai:
+    dependencies:
+      '@xsai/shared-chat':
+        specifier: 'catalog:'
+        version: 0.3.0-beta.3
+      '@xsai/tool':
+        specifier: 'catalog:'
+        version: 0.3.0-beta.3(@valibot/to-json-schema@1.2.0(valibot@1.1.0(typescript@5.8.3)))(zod-to-json-schema@3.24.5(zod@3.25.35))(zod@3.25.35)
+      '@xsmcp/client-shared':
+        specifier: 'workspace:'
+        version: link:../client-shared
+      '@xsmcp/shared':
+        specifier: 'workspace:'
+        version: link:../shared
+    devDependencies:
+      '@xsai/generate-text':
+        specifier: 'catalog:'
+        version: 0.3.0-beta.3
+      '@xsai/stream-text':
+        specifier: 'catalog:'
+        version: 0.3.0-beta.3
 
   packages/server-http:
     dependencies:
@@ -2093,11 +2121,17 @@ packages:
   '@vue/shared@3.5.13':
     resolution: {integrity: sha512-/hnE/qP5ZoGpol0a5mDi45bOd7t3tjYJBjsgCsivow7D48cJeV5l05RD82lPqi7gRiphZM37rnhW1l6ZoCNNnQ==}
 
+  '@xsai/generate-text@0.3.0-beta.3':
+    resolution: {integrity: sha512-pa875nXARyJGc8RZ3nUGeRzyCF2CS7Lfz/NZ5ASeeBHBo1VpRE0Zi4XyfYadXusNJTgVbv/jEdxhvDPA572l/Q==}
+
   '@xsai/shared-chat@0.3.0-beta.3':
     resolution: {integrity: sha512-LtHGPVog0YjZ+lp7FM7MX0BfuEczSGsWC8EIeucdQ3IrZf9MYn23AUnhKZZNSz4cIkywmNGAF1oQzRrRiT/CoA==}
 
   '@xsai/shared@0.3.0-beta.3':
     resolution: {integrity: sha512-oEwhwLeh2xXb5J0Wt/K/4zQrdBxBvFV9v3aG5UOr4AoZpXsUm3F6Hf+XB2aMX0KegFVhV2dhXe00f7XBa2vFeg==}
+
+  '@xsai/stream-text@0.3.0-beta.3':
+    resolution: {integrity: sha512-eBeU1lqvGQwN2envjSykfYMhfMkk/UokREiP21hOE4B/bAQNnpOgYswzOGhxKYR5L7z74XnCHM1Joj03qbpDAA==}
 
   '@xsai/tool@0.3.0-beta.3':
     resolution: {integrity: sha512-DnqbC+QK6g2u7F5C+26N8qH9pCpk1qw2ei9JGUyVAg4yGOIjtwWzFio3Qw2lEqNF3tsh8gOC+kWk5JAFpCK6LQ==}
@@ -6431,11 +6465,20 @@ snapshots:
 
   '@vue/shared@3.5.13': {}
 
+  '@xsai/generate-text@0.3.0-beta.3':
+    dependencies:
+      '@xsai/shared': 0.3.0-beta.3
+      '@xsai/shared-chat': 0.3.0-beta.3
+
   '@xsai/shared-chat@0.3.0-beta.3':
     dependencies:
       '@xsai/shared': 0.3.0-beta.3
 
   '@xsai/shared@0.3.0-beta.3': {}
+
+  '@xsai/stream-text@0.3.0-beta.3':
+    dependencies:
+      '@xsai/shared-chat': 0.3.0-beta.3
 
   '@xsai/tool@0.3.0-beta.3(@valibot/to-json-schema@1.2.0(valibot@1.1.0(typescript@5.8.3)))(zod-to-json-schema@3.24.5(zod@3.25.35))(zod@3.25.35)':
     dependencies:

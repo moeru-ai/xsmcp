@@ -1,0 +1,50 @@
+{
+  "name": "@xsmcp/client-xsai",
+  "type": "module",
+  "version": "0.0.5",
+  "description": "extra-small MCP SDK.",
+  "author": "Moeru AI",
+  "license": "MIT",
+  "homepage": "https://github.com/moeru-ai/xsmcp",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/moeru-ai/xsmcp.git",
+    "directory": "packages/client-xsai"
+  },
+  "bugs": "https://github.com/moeru-ai/xsmcp/issues",
+  "keywords": [
+    "xsai",
+    "xsmcp",
+    "mcp",
+    "modelcontextprotocol"
+  ],
+  "sideEffects": false,
+  "exports": "./src/index.ts",
+  "files": [
+    "dist"
+  ],
+  "publishConfig": {
+    "exports": {
+      ".": {
+        "types": "./dist/index.d.ts",
+        "default": "./dist/index.js"
+      },
+      "./package.json": "./package.json"
+    },
+    "main": "./dist/index.js",
+    "types": "./dist/index.d.ts"
+  },
+  "scripts": {
+    "build": "pkgroll"
+  },
+  "dependencies": {
+    "@xsai/shared-chat": "catalog:",
+    "@xsai/tool": "catalog:",
+    "@xsmcp/client-shared": "workspace:",
+    "@xsmcp/shared": "workspace:"
+  },
+  "devDependencies": {
+    "@xsai/generate-text": "catalog:",
+    "@xsai/stream-text": "catalog:"
+  }
+}

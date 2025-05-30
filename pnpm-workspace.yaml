@@ -6,6 +6,10 @@ packages:
 
 catalog:
   '@valibot/to-json-schema': &valibot ^1.1.0
+  '@xsai/generate-text': &xsai ^0.3.0-beta.3
+  '@xsai/shared-chat': *xsai
+  '@xsai/stream-text': *xsai
+  '@xsai/tool': *xsai
   valibot: *valibot
-  xsai: &xsai ^0.3.0-beta.3
+  # xsai: &xsai ^0.3.0-beta.3
   xsschema: *xsai
