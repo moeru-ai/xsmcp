@@ -51,12 +51,10 @@ export class Client {
   }
 
   public async callTool(name: string, args: Record<string, unknown> = {}): Promise<CallToolResult> {
-    const { result } = await this.transport.request<CallToolResult>(this.request('tools/call', {
+    return this.transport.request<CallToolResult>(this.request('tools/call', {
       arguments: args,
       name,
     }))
-
-    return result
   }
 
   public async close() {
@@ -68,12 +66,10 @@ export class Client {
   }
 
   public async getPrompt(name: string, args: Record<string, unknown> = {}): Promise<GetPromptResult> {
-    const { result } = await this.transport.request<GetPromptResult>(this.request('prompts/get', {
+    return this.transport.request<GetPromptResult>(this.request('prompts/get', {
       arguments: args,
       name,
     }))
-
-    return result
   }
 
   public getServerCapabilities() {
@@ -85,7 +81,7 @@ export class Client {
   }
 
   public async initialize() {
-    const { result } = await this.transport.request<InitializeResult>(this.request('initialize', {
+    const result = await this.transport.request<InitializeResult>(this.request('initialize', {
       capabilities: this.clientCapabilities,
       clientInfo: this.clientInfo,
       protocolVersion: LATEST_PROTOCOL_VERSION,
@@ -104,31 +100,26 @@ export class Client {
 
   // TODO: params.cursor
   public async listPrompts(): Promise<ListPromptsResult> {
-    const { result } = await this.transport.request<ListPromptsResult>(this.request('prompts/list'))
-    return result
+    return this.transport.request<ListPromptsResult>(this.request('prompts/list'))
   }
 
   // TODO: params.cursor
   public async listResources(): Promise<ListResourcesResult> {
-    const { result } = await this.transport.request<ListResourcesResult>(this.request('resources/list'))
-    return result
+    return this.transport.request<ListResourcesResult>(this.request('resources/list'))
   }
 
   // TODO: params.cursor
   public async listResourceTemplates(): Promise<ListResourceTemplatesResult> {
-    const { result } = await this.transport.request<ListResourceTemplatesResult>(this.request('resources/templates/list'))
-    return result
+    return this.transport.request<ListResourceTemplatesResult>(this.request('resources/templates/list'))
   }
 
   // TODO: params.cursor
   public async listTools(): Promise<ListToolsResult> {
-    const { result } = await this.transport.request<ListToolsResult>(this.request('tools/list'))
-    return result
+    return this.transport.request<ListToolsResult>(this.request('tools/list'))
   }
 
   public async readResource(uri: string): Promise<ReadResourceResult> {
-    const { result } = await this.transport.request<ReadResourceResult>(this.request('resources/read', { uri }))
-    return result
+    return this.transport.request<ReadResourceResult>(this.request('resources/read', { uri }))
   }
 
   private notification(method: string, params?: JSONRPCNotification['params']): JSONRPCNotification {

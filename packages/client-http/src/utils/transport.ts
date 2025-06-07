@@ -1,5 +1,5 @@
 import type { OAuthClientProvider, Transport } from '@xsmcp/client-shared'
-import type { JSONRPCMessage, JSONRPCNotification, JSONRPCRequest, JSONRPCResponse } from '@xsmcp/shared'
+import type { JSONRPCMessage, JSONRPCNotification, JSONRPCRequest, JSONRPCResponse, Result } from '@xsmcp/shared'
 
 import { auth, UnauthorizedError } from '@xsmcp/client-shared'
 import { EventSourceParserStream } from 'eventsource-parser/stream'
@@ -29,7 +29,7 @@ export class HttpTransport implements Transport {
     await this.send(notification)
   }
 
-  public async request(request: JSONRPCRequest | JSONRPCRequest[]): Promise<JSONRPCResponse[]> {
+  public async request<T extends Result = Result>(request: JSONRPCRequest): Promise<T> {
     const res = await this.send(request)
 
     // Check the response type
@@ -39,15 +39,14 @@ export class HttpTransport implements Transport {
       throw new Error('No response body')
 
     if (contentType?.includes('application/json')) {
+      const json = await res.json() as JSONRPCResponse
       // eslint-disable-next-line @masknet/type-prefer-return-type-annotation
-      return res.json() as Promise<JSONRPCResponse[]>
+      return json.result as T
     }
     else if (contentType?.includes('text/event-stream')) {
       const eventStream = res.body
         .pipeThrough(new TextDecoderStream())
         .pipeThrough(new EventSourceParserStream())
-
-      const messages: JSONRPCResponse[] = []
 
       for await (const event of eventStream) {
         // if (event.id != null)
@@ -57,11 +56,10 @@ export class HttpTransport implements Transport {
           const message = JSON.parse(event.data) as JSONRPCNotification | JSONRPCResponse
 
           if ('id' in message)
-            messages.push(message)
+            // eslint-disable-next-line @masknet/type-prefer-return-type-annotation
+            return message.result as T
         }
       }
-
-      return messages
     }
 
     throw new Error(`Invalid content type: ${contentType}`)
