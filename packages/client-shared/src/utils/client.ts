@@ -51,13 +51,12 @@ export class Client {
   }
 
   public async callTool(name: string, args: Record<string, unknown> = {}): Promise<CallToolResult> {
-    const res = await this.transport.request(this.request('tools/call', {
+    const { result } = await this.transport.request<CallToolResult>(this.request('tools/call', {
       arguments: args,
       name,
     }))
 
-    // eslint-disable-next-line @masknet/type-prefer-return-type-annotation
-    return res.result as CallToolResult
+    return result
   }
 
   public async close() {
@@ -69,13 +68,12 @@ export class Client {
   }
 
   public async getPrompt(name: string, args: Record<string, unknown> = {}): Promise<GetPromptResult> {
-    const res = await this.transport.request(this.request('prompts/get', {
+    const { result } = await this.transport.request<GetPromptResult>(this.request('prompts/get', {
       arguments: args,
       name,
     }))
 
-    // eslint-disable-next-line @masknet/type-prefer-return-type-annotation
-    return res.result as GetPromptResult
+    return result
   }
 
   public getServerCapabilities() {
@@ -87,13 +85,11 @@ export class Client {
   }
 
   public async initialize() {
-    const res = await this.transport.request(this.request('initialize', {
+    const { result } = await this.transport.request<InitializeResult>(this.request('initialize', {
       capabilities: this.clientCapabilities,
       clientInfo: this.clientInfo,
       protocolVersion: LATEST_PROTOCOL_VERSION,
     }))
-
-    const result = res.result as InitializeResult
 
     // https://github.com/modelcontextprotocol/typescript-sdk/issues/364
     // if (result.protocolVersion !== LATEST_PROTOCOL_VERSION)
@@ -108,36 +104,31 @@ export class Client {
 
   // TODO: params.cursor
   public async listPrompts(): Promise<ListPromptsResult> {
-    const res = await this.transport.request(this.request('prompts/list'))
-    // eslint-disable-next-line @masknet/type-prefer-return-type-annotation
-    return res.result as ListPromptsResult
+    const { result } = await this.transport.request<ListPromptsResult>(this.request('prompts/list'))
+    return result
   }
 
   // TODO: params.cursor
   public async listResources(): Promise<ListResourcesResult> {
-    const res = await this.transport.request(this.request('resources/list'))
-    // eslint-disable-next-line @masknet/type-prefer-return-type-annotation
-    return res.result as ListResourcesResult
+    const { result } = await this.transport.request<ListResourcesResult>(this.request('resources/list'))
+    return result
   }
 
+  // TODO: params.cursor
   public async listResourceTemplates(): Promise<ListResourceTemplatesResult> {
-    const res = await this.transport.request(this.request('resources/templates/list'))
-    // eslint-disable-next-line @masknet/type-prefer-return-type-annotation
-    return res.result as ListResourceTemplatesResult
+    const { result } = await this.transport.request<ListResourceTemplatesResult>(this.request('resources/templates/list'))
+    return result
   }
 
   // TODO: params.cursor
   public async listTools(): Promise<ListToolsResult> {
-    const res = await this.transport.request(this.request('tools/list'))
-    // eslint-disable-next-line @masknet/type-prefer-return-type-annotation
-    return res.result as ListToolsResult
+    const { result } = await this.transport.request<ListToolsResult>(this.request('tools/list'))
+    return result
   }
 
   public async readResource(uri: string): Promise<ReadResourceResult> {
-    const res = await this.transport.request(this.request('resources/read', { uri }))
-
-    // eslint-disable-next-line @masknet/type-prefer-return-type-annotation
-    return res.result as ReadResourceResult
+    const { result } = await this.transport.request<ReadResourceResult>(this.request('resources/read', { uri }))
+    return result
   }
 
   private notification(method: string, params?: JSONRPCNotification['params']): JSONRPCNotification {
