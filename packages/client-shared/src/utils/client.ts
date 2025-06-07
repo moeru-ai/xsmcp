@@ -1,4 +1,5 @@
 import type {
+  CallToolRequest,
   CallToolResult,
   ClientCapabilities,
   Cursor,
@@ -60,7 +61,7 @@ export class Client {
       void this.initialize()
   }
 
-  public async callTool(name: string, args: Record<string, unknown> = {}): Promise<CallToolResult> {
+  public async callTool(name: string, args: CallToolRequest['params']['arguments'] = {}): Promise<CallToolResult> {
     return this.transport.request<CallToolResult>(this.request('tools/call', {
       arguments: args,
       name,
