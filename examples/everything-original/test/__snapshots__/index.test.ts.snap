@@ -68,281 +68,812 @@ exports[`@xsmcp/everything-original > getPrompt 1`] = `
 `;
 
 exports[`@xsmcp/everything-original > listPrompts 1`] = `
-{
-  "prompts": [
-    {
-      "description": "A prompt without arguments",
-      "name": "simple_prompt",
-    },
-    {
-      "arguments": [
-        {
-          "description": "Temperature setting",
-          "name": "temperature",
-          "required": true,
-        },
-        {
-          "description": "Output style",
-          "name": "style",
-          "required": false,
-        },
-      ],
-      "description": "A prompt with arguments",
-      "name": "complex_prompt",
-    },
-    {
-      "arguments": [
-        {
-          "description": "Resource ID to include (1-100)",
-          "name": "resourceId",
-          "required": true,
-        },
-      ],
-      "description": "A prompt that includes an embedded resource reference",
-      "name": "resource_prompt",
-    },
-  ],
-}
+[
+  {
+    "description": "A prompt without arguments",
+    "name": "simple_prompt",
+  },
+  {
+    "arguments": [
+      {
+        "description": "Temperature setting",
+        "name": "temperature",
+        "required": true,
+      },
+      {
+        "description": "Output style",
+        "name": "style",
+        "required": false,
+      },
+    ],
+    "description": "A prompt with arguments",
+    "name": "complex_prompt",
+  },
+  {
+    "arguments": [
+      {
+        "description": "Resource ID to include (1-100)",
+        "name": "resourceId",
+        "required": true,
+      },
+    ],
+    "description": "A prompt that includes an embedded resource reference",
+    "name": "resource_prompt",
+  },
+]
 `;
 
 exports[`@xsmcp/everything-original > listResourceTemplates 1`] = `
-{
-  "resourceTemplates": [
-    {
-      "description": "A static resource with a numeric ID",
-      "name": "Static Resource",
-      "uriTemplate": "test://static/resource/{id}",
-    },
-  ],
-}
+[
+  {
+    "description": "A static resource with a numeric ID",
+    "name": "Static Resource",
+    "uriTemplate": "test://static/resource/{id}",
+  },
+]
 `;
 
 exports[`@xsmcp/everything-original > listResources 1`] = `
-{
-  "nextCursor": "MTA=",
-  "resources": [
-    {
-      "mimeType": "text/plain",
-      "name": "Resource 1",
-      "text": "Resource 1: This is a plaintext resource",
-      "uri": "test://static/resource/1",
-    },
-    {
-      "blob": "UmVzb3VyY2UgMjogVGhpcyBpcyBhIGJhc2U2NCBibG9i",
-      "mimeType": "application/octet-stream",
-      "name": "Resource 2",
-      "uri": "test://static/resource/2",
-    },
-    {
-      "mimeType": "text/plain",
-      "name": "Resource 3",
-      "text": "Resource 3: This is a plaintext resource",
-      "uri": "test://static/resource/3",
-    },
-    {
-      "blob": "UmVzb3VyY2UgNDogVGhpcyBpcyBhIGJhc2U2NCBibG9i",
-      "mimeType": "application/octet-stream",
-      "name": "Resource 4",
-      "uri": "test://static/resource/4",
-    },
-    {
-      "mimeType": "text/plain",
-      "name": "Resource 5",
-      "text": "Resource 5: This is a plaintext resource",
-      "uri": "test://static/resource/5",
-    },
-    {
-      "blob": "UmVzb3VyY2UgNjogVGhpcyBpcyBhIGJhc2U2NCBibG9i",
-      "mimeType": "application/octet-stream",
-      "name": "Resource 6",
-      "uri": "test://static/resource/6",
-    },
-    {
-      "mimeType": "text/plain",
-      "name": "Resource 7",
-      "text": "Resource 7: This is a plaintext resource",
-      "uri": "test://static/resource/7",
-    },
-    {
-      "blob": "UmVzb3VyY2UgODogVGhpcyBpcyBhIGJhc2U2NCBibG9i",
-      "mimeType": "application/octet-stream",
-      "name": "Resource 8",
-      "uri": "test://static/resource/8",
-    },
-    {
-      "mimeType": "text/plain",
-      "name": "Resource 9",
-      "text": "Resource 9: This is a plaintext resource",
-      "uri": "test://static/resource/9",
-    },
-    {
-      "blob": "UmVzb3VyY2UgMTA6IFRoaXMgaXMgYSBiYXNlNjQgYmxvYg==",
-      "mimeType": "application/octet-stream",
-      "name": "Resource 10",
-      "uri": "test://static/resource/10",
-    },
-  ],
-}
+[
+  {
+    "mimeType": "text/plain",
+    "name": "Resource 1",
+    "text": "Resource 1: This is a plaintext resource",
+    "uri": "test://static/resource/1",
+  },
+  {
+    "blob": "UmVzb3VyY2UgMjogVGhpcyBpcyBhIGJhc2U2NCBibG9i",
+    "mimeType": "application/octet-stream",
+    "name": "Resource 2",
+    "uri": "test://static/resource/2",
+  },
+  {
+    "mimeType": "text/plain",
+    "name": "Resource 3",
+    "text": "Resource 3: This is a plaintext resource",
+    "uri": "test://static/resource/3",
+  },
+  {
+    "blob": "UmVzb3VyY2UgNDogVGhpcyBpcyBhIGJhc2U2NCBibG9i",
+    "mimeType": "application/octet-stream",
+    "name": "Resource 4",
+    "uri": "test://static/resource/4",
+  },
+  {
+    "mimeType": "text/plain",
+    "name": "Resource 5",
+    "text": "Resource 5: This is a plaintext resource",
+    "uri": "test://static/resource/5",
+  },
+  {
+    "blob": "UmVzb3VyY2UgNjogVGhpcyBpcyBhIGJhc2U2NCBibG9i",
+    "mimeType": "application/octet-stream",
+    "name": "Resource 6",
+    "uri": "test://static/resource/6",
+  },
+  {
+    "mimeType": "text/plain",
+    "name": "Resource 7",
+    "text": "Resource 7: This is a plaintext resource",
+    "uri": "test://static/resource/7",
+  },
+  {
+    "blob": "UmVzb3VyY2UgODogVGhpcyBpcyBhIGJhc2U2NCBibG9i",
+    "mimeType": "application/octet-stream",
+    "name": "Resource 8",
+    "uri": "test://static/resource/8",
+  },
+  {
+    "mimeType": "text/plain",
+    "name": "Resource 9",
+    "text": "Resource 9: This is a plaintext resource",
+    "uri": "test://static/resource/9",
+  },
+  {
+    "blob": "UmVzb3VyY2UgMTA6IFRoaXMgaXMgYSBiYXNlNjQgYmxvYg==",
+    "mimeType": "application/octet-stream",
+    "name": "Resource 10",
+    "uri": "test://static/resource/10",
+  },
+  {
+    "mimeType": "text/plain",
+    "name": "Resource 11",
+    "text": "Resource 11: This is a plaintext resource",
+    "uri": "test://static/resource/11",
+  },
+  {
+    "blob": "UmVzb3VyY2UgMTI6IFRoaXMgaXMgYSBiYXNlNjQgYmxvYg==",
+    "mimeType": "application/octet-stream",
+    "name": "Resource 12",
+    "uri": "test://static/resource/12",
+  },
+  {
+    "mimeType": "text/plain",
+    "name": "Resource 13",
+    "text": "Resource 13: This is a plaintext resource",
+    "uri": "test://static/resource/13",
+  },
+  {
+    "blob": "UmVzb3VyY2UgMTQ6IFRoaXMgaXMgYSBiYXNlNjQgYmxvYg==",
+    "mimeType": "application/octet-stream",
+    "name": "Resource 14",
+    "uri": "test://static/resource/14",
+  },
+  {
+    "mimeType": "text/plain",
+    "name": "Resource 15",
+    "text": "Resource 15: This is a plaintext resource",
+    "uri": "test://static/resource/15",
+  },
+  {
+    "blob": "UmVzb3VyY2UgMTY6IFRoaXMgaXMgYSBiYXNlNjQgYmxvYg==",
+    "mimeType": "application/octet-stream",
+    "name": "Resource 16",
+    "uri": "test://static/resource/16",
+  },
+  {
+    "mimeType": "text/plain",
+    "name": "Resource 17",
+    "text": "Resource 17: This is a plaintext resource",
+    "uri": "test://static/resource/17",
+  },
+  {
+    "blob": "UmVzb3VyY2UgMTg6IFRoaXMgaXMgYSBiYXNlNjQgYmxvYg==",
+    "mimeType": "application/octet-stream",
+    "name": "Resource 18",
+    "uri": "test://static/resource/18",
+  },
+  {
+    "mimeType": "text/plain",
+    "name": "Resource 19",
+    "text": "Resource 19: This is a plaintext resource",
+    "uri": "test://static/resource/19",
+  },
+  {
+    "blob": "UmVzb3VyY2UgMjA6IFRoaXMgaXMgYSBiYXNlNjQgYmxvYg==",
+    "mimeType": "application/octet-stream",
+    "name": "Resource 20",
+    "uri": "test://static/resource/20",
+  },
+  {
+    "mimeType": "text/plain",
+    "name": "Resource 21",
+    "text": "Resource 21: This is a plaintext resource",
+    "uri": "test://static/resource/21",
+  },
+  {
+    "blob": "UmVzb3VyY2UgMjI6IFRoaXMgaXMgYSBiYXNlNjQgYmxvYg==",
+    "mimeType": "application/octet-stream",
+    "name": "Resource 22",
+    "uri": "test://static/resource/22",
+  },
+  {
+    "mimeType": "text/plain",
+    "name": "Resource 23",
+    "text": "Resource 23: This is a plaintext resource",
+    "uri": "test://static/resource/23",
+  },
+  {
+    "blob": "UmVzb3VyY2UgMjQ6IFRoaXMgaXMgYSBiYXNlNjQgYmxvYg==",
+    "mimeType": "application/octet-stream",
+    "name": "Resource 24",
+    "uri": "test://static/resource/24",
+  },
+  {
+    "mimeType": "text/plain",
+    "name": "Resource 25",
+    "text": "Resource 25: This is a plaintext resource",
+    "uri": "test://static/resource/25",
+  },
+  {
+    "blob": "UmVzb3VyY2UgMjY6IFRoaXMgaXMgYSBiYXNlNjQgYmxvYg==",
+    "mimeType": "application/octet-stream",
+    "name": "Resource 26",
+    "uri": "test://static/resource/26",
+  },
+  {
+    "mimeType": "text/plain",
+    "name": "Resource 27",
+    "text": "Resource 27: This is a plaintext resource",
+    "uri": "test://static/resource/27",
+  },
+  {
+    "blob": "UmVzb3VyY2UgMjg6IFRoaXMgaXMgYSBiYXNlNjQgYmxvYg==",
+    "mimeType": "application/octet-stream",
+    "name": "Resource 28",
+    "uri": "test://static/resource/28",
+  },
+  {
+    "mimeType": "text/plain",
+    "name": "Resource 29",
+    "text": "Resource 29: This is a plaintext resource",
+    "uri": "test://static/resource/29",
+  },
+  {
+    "blob": "UmVzb3VyY2UgMzA6IFRoaXMgaXMgYSBiYXNlNjQgYmxvYg==",
+    "mimeType": "application/octet-stream",
+    "name": "Resource 30",
+    "uri": "test://static/resource/30",
+  },
+  {
+    "mimeType": "text/plain",
+    "name": "Resource 31",
+    "text": "Resource 31: This is a plaintext resource",
+    "uri": "test://static/resource/31",
+  },
+  {
+    "blob": "UmVzb3VyY2UgMzI6IFRoaXMgaXMgYSBiYXNlNjQgYmxvYg==",
+    "mimeType": "application/octet-stream",
+    "name": "Resource 32",
+    "uri": "test://static/resource/32",
+  },
+  {
+    "mimeType": "text/plain",
+    "name": "Resource 33",
+    "text": "Resource 33: This is a plaintext resource",
+    "uri": "test://static/resource/33",
+  },
+  {
+    "blob": "UmVzb3VyY2UgMzQ6IFRoaXMgaXMgYSBiYXNlNjQgYmxvYg==",
+    "mimeType": "application/octet-stream",
+    "name": "Resource 34",
+    "uri": "test://static/resource/34",
+  },
+  {
+    "mimeType": "text/plain",
+    "name": "Resource 35",
+    "text": "Resource 35: This is a plaintext resource",
+    "uri": "test://static/resource/35",
+  },
+  {
+    "blob": "UmVzb3VyY2UgMzY6IFRoaXMgaXMgYSBiYXNlNjQgYmxvYg==",
+    "mimeType": "application/octet-stream",
+    "name": "Resource 36",
+    "uri": "test://static/resource/36",
+  },
+  {
+    "mimeType": "text/plain",
+    "name": "Resource 37",
+    "text": "Resource 37: This is a plaintext resource",
+    "uri": "test://static/resource/37",
+  },
+  {
+    "blob": "UmVzb3VyY2UgMzg6IFRoaXMgaXMgYSBiYXNlNjQgYmxvYg==",
+    "mimeType": "application/octet-stream",
+    "name": "Resource 38",
+    "uri": "test://static/resource/38",
+  },
+  {
+    "mimeType": "text/plain",
+    "name": "Resource 39",
+    "text": "Resource 39: This is a plaintext resource",
+    "uri": "test://static/resource/39",
+  },
+  {
+    "blob": "UmVzb3VyY2UgNDA6IFRoaXMgaXMgYSBiYXNlNjQgYmxvYg==",
+    "mimeType": "application/octet-stream",
+    "name": "Resource 40",
+    "uri": "test://static/resource/40",
+  },
+  {
+    "mimeType": "text/plain",
+    "name": "Resource 41",
+    "text": "Resource 41: This is a plaintext resource",
+    "uri": "test://static/resource/41",
+  },
+  {
+    "blob": "UmVzb3VyY2UgNDI6IFRoaXMgaXMgYSBiYXNlNjQgYmxvYg==",
+    "mimeType": "application/octet-stream",
+    "name": "Resource 42",
+    "uri": "test://static/resource/42",
+  },
+  {
+    "mimeType": "text/plain",
+    "name": "Resource 43",
+    "text": "Resource 43: This is a plaintext resource",
+    "uri": "test://static/resource/43",
+  },
+  {
+    "blob": "UmVzb3VyY2UgNDQ6IFRoaXMgaXMgYSBiYXNlNjQgYmxvYg==",
+    "mimeType": "application/octet-stream",
+    "name": "Resource 44",
+    "uri": "test://static/resource/44",
+  },
+  {
+    "mimeType": "text/plain",
+    "name": "Resource 45",
+    "text": "Resource 45: This is a plaintext resource",
+    "uri": "test://static/resource/45",
+  },
+  {
+    "blob": "UmVzb3VyY2UgNDY6IFRoaXMgaXMgYSBiYXNlNjQgYmxvYg==",
+    "mimeType": "application/octet-stream",
+    "name": "Resource 46",
+    "uri": "test://static/resource/46",
+  },
+  {
+    "mimeType": "text/plain",
+    "name": "Resource 47",
+    "text": "Resource 47: This is a plaintext resource",
+    "uri": "test://static/resource/47",
+  },
+  {
+    "blob": "UmVzb3VyY2UgNDg6IFRoaXMgaXMgYSBiYXNlNjQgYmxvYg==",
+    "mimeType": "application/octet-stream",
+    "name": "Resource 48",
+    "uri": "test://static/resource/48",
+  },
+  {
+    "mimeType": "text/plain",
+    "name": "Resource 49",
+    "text": "Resource 49: This is a plaintext resource",
+    "uri": "test://static/resource/49",
+  },
+  {
+    "blob": "UmVzb3VyY2UgNTA6IFRoaXMgaXMgYSBiYXNlNjQgYmxvYg==",
+    "mimeType": "application/octet-stream",
+    "name": "Resource 50",
+    "uri": "test://static/resource/50",
+  },
+  {
+    "mimeType": "text/plain",
+    "name": "Resource 51",
+    "text": "Resource 51: This is a plaintext resource",
+    "uri": "test://static/resource/51",
+  },
+  {
+    "blob": "UmVzb3VyY2UgNTI6IFRoaXMgaXMgYSBiYXNlNjQgYmxvYg==",
+    "mimeType": "application/octet-stream",
+    "name": "Resource 52",
+    "uri": "test://static/resource/52",
+  },
+  {
+    "mimeType": "text/plain",
+    "name": "Resource 53",
+    "text": "Resource 53: This is a plaintext resource",
+    "uri": "test://static/resource/53",
+  },
+  {
+    "blob": "UmVzb3VyY2UgNTQ6IFRoaXMgaXMgYSBiYXNlNjQgYmxvYg==",
+    "mimeType": "application/octet-stream",
+    "name": "Resource 54",
+    "uri": "test://static/resource/54",
+  },
+  {
+    "mimeType": "text/plain",
+    "name": "Resource 55",
+    "text": "Resource 55: This is a plaintext resource",
+    "uri": "test://static/resource/55",
+  },
+  {
+    "blob": "UmVzb3VyY2UgNTY6IFRoaXMgaXMgYSBiYXNlNjQgYmxvYg==",
+    "mimeType": "application/octet-stream",
+    "name": "Resource 56",
+    "uri": "test://static/resource/56",
+  },
+  {
+    "mimeType": "text/plain",
+    "name": "Resource 57",
+    "text": "Resource 57: This is a plaintext resource",
+    "uri": "test://static/resource/57",
+  },
+  {
+    "blob": "UmVzb3VyY2UgNTg6IFRoaXMgaXMgYSBiYXNlNjQgYmxvYg==",
+    "mimeType": "application/octet-stream",
+    "name": "Resource 58",
+    "uri": "test://static/resource/58",
+  },
+  {
+    "mimeType": "text/plain",
+    "name": "Resource 59",
+    "text": "Resource 59: This is a plaintext resource",
+    "uri": "test://static/resource/59",
+  },
+  {
+    "blob": "UmVzb3VyY2UgNjA6IFRoaXMgaXMgYSBiYXNlNjQgYmxvYg==",
+    "mimeType": "application/octet-stream",
+    "name": "Resource 60",
+    "uri": "test://static/resource/60",
+  },
+  {
+    "mimeType": "text/plain",
+    "name": "Resource 61",
+    "text": "Resource 61: This is a plaintext resource",
+    "uri": "test://static/resource/61",
+  },
+  {
+    "blob": "UmVzb3VyY2UgNjI6IFRoaXMgaXMgYSBiYXNlNjQgYmxvYg==",
+    "mimeType": "application/octet-stream",
+    "name": "Resource 62",
+    "uri": "test://static/resource/62",
+  },
+  {
+    "mimeType": "text/plain",
+    "name": "Resource 63",
+    "text": "Resource 63: This is a plaintext resource",
+    "uri": "test://static/resource/63",
+  },
+  {
+    "blob": "UmVzb3VyY2UgNjQ6IFRoaXMgaXMgYSBiYXNlNjQgYmxvYg==",
+    "mimeType": "application/octet-stream",
+    "name": "Resource 64",
+    "uri": "test://static/resource/64",
+  },
+  {
+    "mimeType": "text/plain",
+    "name": "Resource 65",
+    "text": "Resource 65: This is a plaintext resource",
+    "uri": "test://static/resource/65",
+  },
+  {
+    "blob": "UmVzb3VyY2UgNjY6IFRoaXMgaXMgYSBiYXNlNjQgYmxvYg==",
+    "mimeType": "application/octet-stream",
+    "name": "Resource 66",
+    "uri": "test://static/resource/66",
+  },
+  {
+    "mimeType": "text/plain",
+    "name": "Resource 67",
+    "text": "Resource 67: This is a plaintext resource",
+    "uri": "test://static/resource/67",
+  },
+  {
+    "blob": "UmVzb3VyY2UgNjg6IFRoaXMgaXMgYSBiYXNlNjQgYmxvYg==",
+    "mimeType": "application/octet-stream",
+    "name": "Resource 68",
+    "uri": "test://static/resource/68",
+  },
+  {
+    "mimeType": "text/plain",
+    "name": "Resource 69",
+    "text": "Resource 69: This is a plaintext resource",
+    "uri": "test://static/resource/69",
+  },
+  {
+    "blob": "UmVzb3VyY2UgNzA6IFRoaXMgaXMgYSBiYXNlNjQgYmxvYg==",
+    "mimeType": "application/octet-stream",
+    "name": "Resource 70",
+    "uri": "test://static/resource/70",
+  },
+  {
+    "mimeType": "text/plain",
+    "name": "Resource 71",
+    "text": "Resource 71: This is a plaintext resource",
+    "uri": "test://static/resource/71",
+  },
+  {
+    "blob": "UmVzb3VyY2UgNzI6IFRoaXMgaXMgYSBiYXNlNjQgYmxvYg==",
+    "mimeType": "application/octet-stream",
+    "name": "Resource 72",
+    "uri": "test://static/resource/72",
+  },
+  {
+    "mimeType": "text/plain",
+    "name": "Resource 73",
+    "text": "Resource 73: This is a plaintext resource",
+    "uri": "test://static/resource/73",
+  },
+  {
+    "blob": "UmVzb3VyY2UgNzQ6IFRoaXMgaXMgYSBiYXNlNjQgYmxvYg==",
+    "mimeType": "application/octet-stream",
+    "name": "Resource 74",
+    "uri": "test://static/resource/74",
+  },
+  {
+    "mimeType": "text/plain",
+    "name": "Resource 75",
+    "text": "Resource 75: This is a plaintext resource",
+    "uri": "test://static/resource/75",
+  },
+  {
+    "blob": "UmVzb3VyY2UgNzY6IFRoaXMgaXMgYSBiYXNlNjQgYmxvYg==",
+    "mimeType": "application/octet-stream",
+    "name": "Resource 76",
+    "uri": "test://static/resource/76",
+  },
+  {
+    "mimeType": "text/plain",
+    "name": "Resource 77",
+    "text": "Resource 77: This is a plaintext resource",
+    "uri": "test://static/resource/77",
+  },
+  {
+    "blob": "UmVzb3VyY2UgNzg6IFRoaXMgaXMgYSBiYXNlNjQgYmxvYg==",
+    "mimeType": "application/octet-stream",
+    "name": "Resource 78",
+    "uri": "test://static/resource/78",
+  },
+  {
+    "mimeType": "text/plain",
+    "name": "Resource 79",
+    "text": "Resource 79: This is a plaintext resource",
+    "uri": "test://static/resource/79",
+  },
+  {
+    "blob": "UmVzb3VyY2UgODA6IFRoaXMgaXMgYSBiYXNlNjQgYmxvYg==",
+    "mimeType": "application/octet-stream",
+    "name": "Resource 80",
+    "uri": "test://static/resource/80",
+  },
+  {
+    "mimeType": "text/plain",
+    "name": "Resource 81",
+    "text": "Resource 81: This is a plaintext resource",
+    "uri": "test://static/resource/81",
+  },
+  {
+    "blob": "UmVzb3VyY2UgODI6IFRoaXMgaXMgYSBiYXNlNjQgYmxvYg==",
+    "mimeType": "application/octet-stream",
+    "name": "Resource 82",
+    "uri": "test://static/resource/82",
+  },
+  {
+    "mimeType": "text/plain",
+    "name": "Resource 83",
+    "text": "Resource 83: This is a plaintext resource",
+    "uri": "test://static/resource/83",
+  },
+  {
+    "blob": "UmVzb3VyY2UgODQ6IFRoaXMgaXMgYSBiYXNlNjQgYmxvYg==",
+    "mimeType": "application/octet-stream",
+    "name": "Resource 84",
+    "uri": "test://static/resource/84",
+  },
+  {
+    "mimeType": "text/plain",
+    "name": "Resource 85",
+    "text": "Resource 85: This is a plaintext resource",
+    "uri": "test://static/resource/85",
+  },
+  {
+    "blob": "UmVzb3VyY2UgODY6IFRoaXMgaXMgYSBiYXNlNjQgYmxvYg==",
+    "mimeType": "application/octet-stream",
+    "name": "Resource 86",
+    "uri": "test://static/resource/86",
+  },
+  {
+    "mimeType": "text/plain",
+    "name": "Resource 87",
+    "text": "Resource 87: This is a plaintext resource",
+    "uri": "test://static/resource/87",
+  },
+  {
+    "blob": "UmVzb3VyY2UgODg6IFRoaXMgaXMgYSBiYXNlNjQgYmxvYg==",
+    "mimeType": "application/octet-stream",
+    "name": "Resource 88",
+    "uri": "test://static/resource/88",
+  },
+  {
+    "mimeType": "text/plain",
+    "name": "Resource 89",
+    "text": "Resource 89: This is a plaintext resource",
+    "uri": "test://static/resource/89",
+  },
+  {
+    "blob": "UmVzb3VyY2UgOTA6IFRoaXMgaXMgYSBiYXNlNjQgYmxvYg==",
+    "mimeType": "application/octet-stream",
+    "name": "Resource 90",
+    "uri": "test://static/resource/90",
+  },
+  {
+    "mimeType": "text/plain",
+    "name": "Resource 91",
+    "text": "Resource 91: This is a plaintext resource",
+    "uri": "test://static/resource/91",
+  },
+  {
+    "blob": "UmVzb3VyY2UgOTI6IFRoaXMgaXMgYSBiYXNlNjQgYmxvYg==",
+    "mimeType": "application/octet-stream",
+    "name": "Resource 92",
+    "uri": "test://static/resource/92",
+  },
+  {
+    "mimeType": "text/plain",
+    "name": "Resource 93",
+    "text": "Resource 93: This is a plaintext resource",
+    "uri": "test://static/resource/93",
+  },
+  {
+    "blob": "UmVzb3VyY2UgOTQ6IFRoaXMgaXMgYSBiYXNlNjQgYmxvYg==",
+    "mimeType": "application/octet-stream",
+    "name": "Resource 94",
+    "uri": "test://static/resource/94",
+  },
+  {
+    "mimeType": "text/plain",
+    "name": "Resource 95",
+    "text": "Resource 95: This is a plaintext resource",
+    "uri": "test://static/resource/95",
+  },
+  {
+    "blob": "UmVzb3VyY2UgOTY6IFRoaXMgaXMgYSBiYXNlNjQgYmxvYg==",
+    "mimeType": "application/octet-stream",
+    "name": "Resource 96",
+    "uri": "test://static/resource/96",
+  },
+  {
+    "mimeType": "text/plain",
+    "name": "Resource 97",
+    "text": "Resource 97: This is a plaintext resource",
+    "uri": "test://static/resource/97",
+  },
+  {
+    "blob": "UmVzb3VyY2UgOTg6IFRoaXMgaXMgYSBiYXNlNjQgYmxvYg==",
+    "mimeType": "application/octet-stream",
+    "name": "Resource 98",
+    "uri": "test://static/resource/98",
+  },
+  {
+    "mimeType": "text/plain",
+    "name": "Resource 99",
+    "text": "Resource 99: This is a plaintext resource",
+    "uri": "test://static/resource/99",
+  },
+  {
+    "blob": "UmVzb3VyY2UgMTAwOiBUaGlzIGlzIGEgYmFzZTY0IGJsb2I=",
+    "mimeType": "application/octet-stream",
+    "name": "Resource 100",
+    "uri": "test://static/resource/100",
+  },
+]
 `;
 
 exports[`@xsmcp/everything-original > listTools 1`] = `
-{
-  "tools": [
-    {
-      "description": "Echoes back the input",
-      "inputSchema": {
-        "$schema": "http://json-schema.org/draft-07/schema#",
-        "additionalProperties": false,
-        "properties": {
-          "message": {
-            "description": "Message to echo",
-            "type": "string",
-          },
+[
+  {
+    "description": "Echoes back the input",
+    "inputSchema": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "additionalProperties": false,
+      "properties": {
+        "message": {
+          "description": "Message to echo",
+          "type": "string",
         },
-        "required": [
-          "message",
-        ],
-        "type": "object",
       },
-      "name": "echo",
+      "required": [
+        "message",
+      ],
+      "type": "object",
     },
-    {
-      "description": "Adds two numbers",
-      "inputSchema": {
-        "$schema": "http://json-schema.org/draft-07/schema#",
-        "additionalProperties": false,
-        "properties": {
-          "a": {
-            "description": "First number",
-            "type": "number",
-          },
-          "b": {
-            "description": "Second number",
-            "type": "number",
-          },
+    "name": "echo",
+  },
+  {
+    "description": "Adds two numbers",
+    "inputSchema": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "additionalProperties": false,
+      "properties": {
+        "a": {
+          "description": "First number",
+          "type": "number",
         },
-        "required": [
-          "a",
-          "b",
-        ],
-        "type": "object",
-      },
-      "name": "add",
-    },
-    {
-      "description": "Prints all environment variables, helpful for debugging MCP server configuration",
-      "inputSchema": {
-        "$schema": "http://json-schema.org/draft-07/schema#",
-        "additionalProperties": false,
-        "properties": {},
-        "type": "object",
-      },
-      "name": "printEnv",
-    },
-    {
-      "description": "Demonstrates a long running operation with progress updates",
-      "inputSchema": {
-        "$schema": "http://json-schema.org/draft-07/schema#",
-        "additionalProperties": false,
-        "properties": {
-          "duration": {
-            "default": 10,
-            "description": "Duration of the operation in seconds",
-            "type": "number",
-          },
-          "steps": {
-            "default": 5,
-            "description": "Number of steps in the operation",
-            "type": "number",
-          },
+        "b": {
+          "description": "Second number",
+          "type": "number",
         },
-        "type": "object",
       },
-      "name": "longRunningOperation",
+      "required": [
+        "a",
+        "b",
+      ],
+      "type": "object",
     },
-    {
-      "description": "Samples from an LLM using MCP's sampling feature",
-      "inputSchema": {
-        "$schema": "http://json-schema.org/draft-07/schema#",
-        "additionalProperties": false,
-        "properties": {
-          "maxTokens": {
-            "default": 100,
-            "description": "Maximum number of tokens to generate",
-            "type": "number",
-          },
-          "prompt": {
-            "description": "The prompt to send to the LLM",
-            "type": "string",
-          },
+    "name": "add",
+  },
+  {
+    "description": "Prints all environment variables, helpful for debugging MCP server configuration",
+    "inputSchema": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "additionalProperties": false,
+      "properties": {},
+      "type": "object",
+    },
+    "name": "printEnv",
+  },
+  {
+    "description": "Demonstrates a long running operation with progress updates",
+    "inputSchema": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "additionalProperties": false,
+      "properties": {
+        "duration": {
+          "default": 10,
+          "description": "Duration of the operation in seconds",
+          "type": "number",
         },
-        "required": [
-          "prompt",
-        ],
-        "type": "object",
-      },
-      "name": "sampleLLM",
-    },
-    {
-      "description": "Returns the MCP_TINY_IMAGE",
-      "inputSchema": {
-        "$schema": "http://json-schema.org/draft-07/schema#",
-        "additionalProperties": false,
-        "properties": {},
-        "type": "object",
-      },
-      "name": "getTinyImage",
-    },
-    {
-      "description": "Demonstrates how annotations can be used to provide metadata about content",
-      "inputSchema": {
-        "$schema": "http://json-schema.org/draft-07/schema#",
-        "additionalProperties": false,
-        "properties": {
-          "includeImage": {
-            "default": false,
-            "description": "Whether to include an example image",
-            "type": "boolean",
-          },
-          "messageType": {
-            "description": "Type of message to demonstrate different annotation patterns",
-            "enum": [
-              "error",
-              "success",
-              "debug",
-            ],
-            "type": "string",
-          },
+        "steps": {
+          "default": 5,
+          "description": "Number of steps in the operation",
+          "type": "number",
         },
-        "required": [
-          "messageType",
-        ],
-        "type": "object",
       },
-      "name": "annotatedMessage",
+      "type": "object",
     },
-    {
-      "description": "Returns a resource reference that can be used by MCP clients",
-      "inputSchema": {
-        "$schema": "http://json-schema.org/draft-07/schema#",
-        "additionalProperties": false,
-        "properties": {
-          "resourceId": {
-            "description": "ID of the resource to reference (1-100)",
-            "maximum": 100,
-            "minimum": 1,
-            "type": "number",
-          },
+    "name": "longRunningOperation",
+  },
+  {
+    "description": "Samples from an LLM using MCP's sampling feature",
+    "inputSchema": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "additionalProperties": false,
+      "properties": {
+        "maxTokens": {
+          "default": 100,
+          "description": "Maximum number of tokens to generate",
+          "type": "number",
         },
-        "required": [
-          "resourceId",
-        ],
-        "type": "object",
+        "prompt": {
+          "description": "The prompt to send to the LLM",
+          "type": "string",
+        },
       },
-      "name": "getResourceReference",
+      "required": [
+        "prompt",
+      ],
+      "type": "object",
     },
-  ],
-}
+    "name": "sampleLLM",
+  },
+  {
+    "description": "Returns the MCP_TINY_IMAGE",
+    "inputSchema": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "additionalProperties": false,
+      "properties": {},
+      "type": "object",
+    },
+    "name": "getTinyImage",
+  },
+  {
+    "description": "Demonstrates how annotations can be used to provide metadata about content",
+    "inputSchema": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "additionalProperties": false,
+      "properties": {
+        "includeImage": {
+          "default": false,
+          "description": "Whether to include an example image",
+          "type": "boolean",
+        },
+        "messageType": {
+          "description": "Type of message to demonstrate different annotation patterns",
+          "enum": [
+            "error",
+            "success",
+            "debug",
+          ],
+          "type": "string",
+        },
+      },
+      "required": [
+        "messageType",
+      ],
+      "type": "object",
+    },
+    "name": "annotatedMessage",
+  },
+  {
+    "description": "Returns a resource reference that can be used by MCP clients",
+    "inputSchema": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "additionalProperties": false,
+      "properties": {
+        "resourceId": {
+          "description": "ID of the resource to reference (1-100)",
+          "maximum": 100,
+          "minimum": 1,
+          "type": "number",
+        },
+      },
+      "required": [
+        "resourceId",
+      ],
+      "type": "object",
+    },
+    "name": "getResourceReference",
+  },
+]
 `;
 
 exports[`@xsmcp/everything-original > readResource 1`] = `
