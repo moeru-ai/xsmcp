@@ -1,0 +1,19 @@
+---
+title: Resource Templates
+description: Expose parameterized resources using URI templates
+---
+
+## client.listResourceTemplates
+
+```ts
+import { createClient } from '@xsmcp/client-shared'
+import { createHttpTransport } from '@xsmcp/client-http'
+
+const client = createClient({
+  name: 'example-client',
+  version: '1.0.0',
+  transport: createHttpTransport({ url: 'http://localhost:3000/mcp' }),
+})
+
+await client.listResourceTemplates()
+```

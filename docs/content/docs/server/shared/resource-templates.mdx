@@ -1,0 +1,36 @@
+---
+title: Resource Templates
+description: Expose parameterized resources using URI templates
+---
+
+> Resource Template will only be returned on `resources/templates/list` request in server, nothing else.
+
+## server.addResourceTemplate
+
+```ts
+import { createServer } from '@xsmcp/server-shared'
+
+const server = createServer({ ...options })
+
+server.addResourceTemplate({
+  description: 'A static resource with a numeric ID',
+  name: 'Static Resource',
+  uriTemplate: 'test://static/resource/{id}',
+})
+```
+
+## defineResourceTemplate
+
+```ts
+import { createServer, defineResourceTemplate } from '@xsmcp/server-shared'
+
+const resourceTemplate = defineResourceTemplate({
+  description: 'A static resource with a numeric ID',
+  name: 'Static Resource',
+  uriTemplate: 'test://static/resource/{id}',
+})
+
+const server = createServer({ ...options })
+
+server.addResourceTemplate(resourceTemplate)
+```
