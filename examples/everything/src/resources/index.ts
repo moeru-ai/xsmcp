@@ -1,6 +1,4 @@
-import type { ResourceTemplate } from '@xsmcp/shared'
-
-import { defineResource } from '@xsmcp/server-shared'
+import { defineResource, defineResourceTemplate } from '@xsmcp/server-shared'
 import { Buffer } from 'node:buffer'
 
 export const resources = Array.from({ length: 100 }, (_, i) => {
@@ -22,8 +20,8 @@ export const resources = Array.from({ length: 100 }, (_, i) => {
   })
 })
 
-export const resourceTemplate = {
+export const resourceTemplate = defineResourceTemplate({
   description: 'A static resource with a numeric ID',
   name: 'Static Resource',
   uriTemplate: 'test://static/resource/{id}',
-} satisfies ResourceTemplate
+})
