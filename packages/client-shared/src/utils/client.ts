@@ -2,6 +2,7 @@ import type {
   CallToolResult,
   ClientCapabilities,
   Cursor,
+  GetPromptRequest,
   GetPromptResult,
   Implementation,
   InitializeResult,
@@ -74,7 +75,7 @@ export class Client {
     return this.serverInstructions
   }
 
-  public async getPrompt(name: string, args: Record<string, unknown> = {}): Promise<GetPromptResult> {
+  public async getPrompt(name: string, args: GetPromptRequest['params']['arguments'] = {}): Promise<GetPromptResult> {
     return this.transport.request<GetPromptResult>(this.request('prompts/get', {
       arguments: args,
       name,

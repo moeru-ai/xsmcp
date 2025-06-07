@@ -37,13 +37,11 @@ describe('@xsmcp/everything-original', async () => {
     const simpleResult = await client.getPrompt('simple_prompt')
     expect(simpleResult).toMatchSnapshot()
 
-    // TODO: FIXME: FAILED
-    // const complexResult = await client.getPrompt('complex_prompt', { style: 'dark', temperature: 42 })
-    // expect(complexResult).toMatchSnapshot()
+    const complexResult = await client.getPrompt('complex_prompt', { style: 'dark', temperature: '42' })
+    expect(complexResult).toMatchSnapshot()
 
-    // TODO: FIXME: FAILED
-    // const resourceResult = await client.getPrompt('resource_prompt', { resourceId: 2 })
-    // expect(resourceResult).toMatchSnapshot()
+    const resourceResult = await client.getPrompt('resource_prompt', { resourceId: '2' })
+    expect(resourceResult).toMatchSnapshot()
   })
 
   it('listResources', async () => {

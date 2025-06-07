@@ -37,10 +37,10 @@ describe('@xsmcp/everything', async () => {
     const simpleResult = await client.getPrompt('simple_prompt')
     expect(simpleResult).toMatchSnapshot()
 
-    const complexResult = await client.getPrompt('complex_prompt', { style: 'dark', temperature: 42 })
+    const complexResult = await client.getPrompt('complex_prompt', { style: 'dark', temperature: '42' })
     expect(complexResult).toMatchSnapshot()
 
-    const resourceResult = await client.getPrompt('resource_prompt', { resourceId: 2 })
+    const resourceResult = await client.getPrompt('resource_prompt', { resourceId: '2s' })
     expect(resourceResult).toMatchSnapshot()
   })
 
