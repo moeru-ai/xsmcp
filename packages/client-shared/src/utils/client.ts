@@ -1,17 +1,26 @@
 import type {
   CallToolResult,
   ClientCapabilities,
+  Cursor,
   GetPromptResult,
   Implementation,
   InitializeResult,
   JSONRPCNotification,
   JSONRPCRequest,
+  ListPromptsRequest,
   ListPromptsResult,
+  ListResourcesRequest,
   ListResourcesResult,
+  ListResourceTemplatesRequest,
   ListResourceTemplatesResult,
+  ListToolsRequest,
   ListToolsResult,
+  Prompt,
   ReadResourceResult,
+  Resource,
+  ResourceTemplate,
   ServerCapabilities,
+  Tool,
 } from '@xsmcp/shared'
 
 import { JSONRPC_VERSION, LATEST_PROTOCOL_VERSION } from '@xsmcp/shared'
@@ -98,24 +107,64 @@ export class Client {
     await this.transport.notification(this.notification('notifications/initialized'))
   }
 
-  // TODO: params.cursor
-  public async listPrompts(): Promise<ListPromptsResult> {
-    return this.transport.request<ListPromptsResult>(this.request('prompts/list'))
+  public async listPrompts(params?: ListPromptsRequest['params']): Promise<Prompt[]> {
+    let cursor: Cursor | undefined = params?.cursor
+
+    const { nextCursor, prompts } = await this.transport.request<ListPromptsResult>(this.request('prompts/list', { cursor }))
+    cursor = nextCursor
+
+    while (cursor == null) {
+      const result = await this.transport.request<ListPromptsResult>(this.request('prompts/list', { cursor }))
+      prompts.push(...result.prompts)
+      cursor = result.nextCursor
+    }
+
+    return prompts
   }
 
-  // TODO: params.cursor
-  public async listResources(): Promise<ListResourcesResult> {
-    return this.transport.request<ListResourcesResult>(this.request('resources/list'))
+  public async listResources(params?: ListResourcesRequest['params']): Promise<Resource[]> {
+    let cursor: Cursor | undefined = params?.cursor
+
+    const { nextCursor, resources } = await this.transport.request<ListResourcesResult>(this.request('resources/list', { cursor }))
+    cursor = nextCursor
+
+    while (cursor == null) {
+      const result = await this.transport.request<ListResourcesResult>(this.request('resources/list', { cursor }))
+      resources.push(...result.resources)
+      cursor = result.nextCursor
+    }
+
+    return resources
   }
 
-  // TODO: params.cursor
-  public async listResourceTemplates(): Promise<ListResourceTemplatesResult> {
-    return this.transport.request<ListResourceTemplatesResult>(this.request('resources/templates/list'))
+  public async listResourceTemplates(params?: ListResourceTemplatesRequest['params']): Promise<ResourceTemplate[]> {
+    let cursor: Cursor | undefined = params?.cursor
+
+    const { nextCursor, resourceTemplates } = await this.transport.request<ListResourceTemplatesResult>(this.request('resources/templates/list', { cursor }))
+    cursor = nextCursor
+
+    while (cursor == null) {
+      const result = await this.transport.request<ListResourceTemplatesResult>(this.request('resources/templates/list', { cursor }))
+      resourceTemplates.push(...result.resourceTemplates)
+      cursor = result.nextCursor
+    }
+
+    return resourceTemplates
   }
 
-  // TODO: params.cursor
-  public async listTools(): Promise<ListToolsResult> {
-    return this.transport.request<ListToolsResult>(this.request('tools/list'))
+  public async listTools(params?: ListToolsRequest['params']): Promise<Tool[]> {
+    let cursor: Cursor | undefined = params?.cursor
+
+    const { nextCursor, tools } = await this.transport.request<ListToolsResult>(this.request('tools/list', { cursor }))
+    cursor = nextCursor
+
+    while (cursor == null) {
+      const result = await this.transport.request<ListToolsResult>(this.request('tools/list', { cursor }))
+      tools.push(...result.tools)
+      cursor = result.nextCursor
+    }
+
+    return tools
   }
 
   public async readResource(uri: string): Promise<ReadResourceResult> {
