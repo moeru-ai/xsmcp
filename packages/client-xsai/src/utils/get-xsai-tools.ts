@@ -8,7 +8,7 @@ import { toXSAIContent } from './to-xsai-content'
 export const getXSAITools = async (client: Client): Promise<Tool[]> =>
   client
     .listTools()
-    .then(({ tools }) => tools.map(tool => rawTool({
+    .then(tools => tools.map(tool => rawTool({
       description: tool.description,
       execute: async params => client.callTool(tool.name, params as Record<string, unknown>)
         // eslint-disable-next-line sonarjs/no-nested-functions
