@@ -39,14 +39,16 @@ export class HttpTransport implements Transport {
       throw new Error('No response body')
 
     if (contentType?.includes('application/json')) {
-      const json = await res.json() as JSONRPCResponse
+      const json = await res.json() as JSONRPCResponse[]
       // eslint-disable-next-line @masknet/type-prefer-return-type-annotation
-      return json.result as T
+      return json[0].result as T
     }
     else if (contentType?.includes('text/event-stream')) {
       const eventStream = res.body
         .pipeThrough(new TextDecoderStream())
         .pipeThrough(new EventSourceParserStream())
+
+      const messages: JSONRPCResponse[] = []
 
       for await (const event of eventStream) {
         // if (event.id != null)
@@ -56,10 +58,12 @@ export class HttpTransport implements Transport {
           const message = JSON.parse(event.data) as JSONRPCNotification | JSONRPCResponse
 
           if ('id' in message)
-            // eslint-disable-next-line @masknet/type-prefer-return-type-annotation
-            return message.result as T
+            messages.push(message)
         }
       }
+
+      // eslint-disable-next-line @masknet/type-prefer-return-type-annotation
+      return messages[0].result as T
     }
 
     throw new Error(`Invalid content type: ${contentType}`)
