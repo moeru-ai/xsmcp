@@ -108,63 +108,66 @@ export class Client {
   }
 
   public async listPrompts(params?: ListPromptsRequest['params']): Promise<Prompt[]> {
+    const results: Prompt[] = []
     let cursor: Cursor | undefined = params?.cursor
+    while (true) {
+      const { nextCursor, prompts } = await this.transport.request<ListPromptsResult>(this.request('prompts/list', { cursor }))
+      results.push(...prompts)
+      if (nextCursor == null)
+        break
 
-    const { nextCursor, prompts } = await this.transport.request<ListPromptsResult>(this.request('prompts/list', { cursor }))
-    cursor = nextCursor
-
-    while (cursor == null) {
-      const result = await this.transport.request<ListPromptsResult>(this.request('prompts/list', { cursor }))
-      prompts.push(...result.prompts)
-      cursor = result.nextCursor
+      cursor = nextCursor
     }
 
-    return prompts
+    return results
   }
 
   public async listResources(params?: ListResourcesRequest['params']): Promise<Resource[]> {
+    const results: Resource[] = []
     let cursor: Cursor | undefined = params?.cursor
 
-    const { nextCursor, resources } = await this.transport.request<ListResourcesResult>(this.request('resources/list', { cursor }))
-    cursor = nextCursor
+    while (true) {
+      const { nextCursor, resources } = await this.transport.request<ListResourcesResult>(this.request('resources/list', { cursor }))
+      results.push(...resources)
+      if (nextCursor == null)
+        break
 
-    while (cursor == null) {
-      const result = await this.transport.request<ListResourcesResult>(this.request('resources/list', { cursor }))
-      resources.push(...result.resources)
-      cursor = result.nextCursor
+      cursor = nextCursor
     }
 
-    return resources
+    return results
   }
 
   public async listResourceTemplates(params?: ListResourceTemplatesRequest['params']): Promise<ResourceTemplate[]> {
+    const results: ResourceTemplate[] = []
     let cursor: Cursor | undefined = params?.cursor
 
-    const { nextCursor, resourceTemplates } = await this.transport.request<ListResourceTemplatesResult>(this.request('resources/templates/list', { cursor }))
-    cursor = nextCursor
+    while (true) {
+      const { nextCursor, resourceTemplates } = await this.transport.request<ListResourceTemplatesResult>(this.request('resources/templates/list', { cursor }))
+      results.push(...resourceTemplates)
+      if (nextCursor == null)
+        break
 
-    while (cursor == null) {
-      const result = await this.transport.request<ListResourceTemplatesResult>(this.request('resources/templates/list', { cursor }))
-      resourceTemplates.push(...result.resourceTemplates)
-      cursor = result.nextCursor
+      cursor = nextCursor
     }
 
-    return resourceTemplates
+    return results
   }
 
   public async listTools(params?: ListToolsRequest['params']): Promise<Tool[]> {
+    const results: Tool[] = []
     let cursor: Cursor | undefined = params?.cursor
 
-    const { nextCursor, tools } = await this.transport.request<ListToolsResult>(this.request('tools/list', { cursor }))
-    cursor = nextCursor
+    while (true) {
+      const { nextCursor, tools } = await this.transport.request<ListToolsResult>(this.request('tools/list', { cursor }))
+      results.push(...tools)
+      if (nextCursor == null)
+        break
 
-    while (cursor == null) {
-      const result = await this.transport.request<ListToolsResult>(this.request('tools/list', { cursor }))
-      tools.push(...result.tools)
-      cursor = result.nextCursor
+      cursor = nextCursor
     }
 
-    return tools
+    return results
   }
 
   public async readResource(uri: string): Promise<ReadResourceResult> {
