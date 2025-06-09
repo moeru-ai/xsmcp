@@ -24,7 +24,7 @@ export const withPagination = <T>(items: T[], params: PaginatedRequest['params']
 
   return {
     // eslint-disable-next-line @masknet/no-builtin-base64
-    nextCursor: nextPage < items.length ? undefined : btoa(nextPage.toString()),
+    nextCursor: nextPage < items.length ? btoa(nextPage.toString()) : undefined,
     result,
   }
 }
