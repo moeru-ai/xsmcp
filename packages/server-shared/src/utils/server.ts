@@ -26,6 +26,7 @@ import type { ResourceOptions } from './resource'
 import type { ToolOptions } from './tool'
 
 import { MethodNotFound } from './error'
+import { withPagination } from './pagination'
 import { listPrompt } from './prompt'
 import { listResource } from './resource'
 import { listTool } from './tool'
@@ -166,36 +167,36 @@ export class Server {
     }
   }
 
-  // TODO: support params (cursor)
   /** @see {@link https://modelcontextprotocol.io/specification/2025-03-26/server/prompts#listing-prompts} */
-  public async listPrompts(_params?: ListPromptsRequest['params']): Promise<ListPromptsResult> {
-    return {
-      prompts: await Promise.all(this.prompts.map(async promptOptions => listPrompt(promptOptions))),
-    }
+  public async listPrompts(params?: ListPromptsRequest['params']): Promise<ListPromptsResult> {
+    const allPrompts = await Promise.all(this.prompts.map(async promptOptions => listPrompt(promptOptions)))
+    const { nextCursor, result: prompts } = withPagination(allPrompts, params)
+
+    return { nextCursor, prompts }
   }
 
-  // TODO: support params (cursor)
   /** @see {@link https://modelcontextprotocol.io/specification/2025-03-26/server/resources#listing-resources} */
-  public async listResources(_params: ListResourcesRequest['params']): Promise<ListResourcesResult> {
-    return {
-      resources: this.resources.map(resource => listResource(resource)),
-    }
+  public async listResources(params: ListResourcesRequest['params']): Promise<ListResourcesResult> {
+    const allResources = this.resources.map(resource => listResource(resource))
+    const { nextCursor, result: resources } = withPagination(allResources, params)
+
+    return { nextCursor, resources }
   }
 
-  // TODO: support params (cursor)
   /** @see {@link https://modelcontextprotocol.io/specification/2025-03-26/server/resources#resource-templates} */
-  public async listResourceTemplates(_params?: ListResourceTemplatesRequest['params']): Promise<ListResourceTemplatesResult> {
-    return {
-      resourceTemplates: this.resourceTemplates,
-    }
+  public async listResourceTemplates(params?: ListResourceTemplatesRequest['params']): Promise<ListResourceTemplatesResult> {
+    const allResourceTemplates = this.resourceTemplates
+    const { nextCursor, result: resourceTemplates } = withPagination(allResourceTemplates, params)
+
+    return { nextCursor, resourceTemplates }
   }
 
-  // TODO: support params (cursor)
   /** @see {@link https://spec.modelcontextprotocol.io/specification/2025-03-26/server/tools/#listing-tools} */
-  public async listTools(_params?: ListToolsRequest['params']): Promise<ListToolsResult> {
-    return {
-      tools: await Promise.all(this.tools.map(async toolOptions => listTool(toolOptions))),
-    }
+  public async listTools(params?: ListToolsRequest['params']): Promise<ListToolsResult> {
+    const allTools = await Promise.all(this.tools.map(async toolOptions => listTool(toolOptions)))
+    const { nextCursor, result: tools } = withPagination(allTools, params)
+
+    return { nextCursor, tools }
   }
 
   public async ping() {
