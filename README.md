@@ -1,10 +1,16 @@
 # xsMCP
 
-extra-small MCP SDK for mcp builders hating bloat.
+> extra-small MCP SDK for mcp builders hating bloat.
+
+> [!CAUTION]
+> xsMCP has been sunset
+>
+> Due to frequent MCP updates and a lack of actual users for xsMCP, we archived xsMCP in July 2025.
+>
+> If MCP is stable enough and there is user interest, we may restart this project.
 
 ## About
 
-> 🚧 This project is under active development, stay tuned!
 
 ### Why is there this project?
 
